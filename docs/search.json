@@ -1,16 +1,30 @@
 [
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "silkieMoth.github.io",
-    "section": "",
-    "text": "This is a Quarto website.\nTo learn more about Quarto websites visit https://quarto.org/docs/websites.\n\n1 + 1\n\n[1] 2"
-  },
-  {
     "objectID": "about.html",
     "href": "about.html",
     "title": "About",
     "section": "",
     "text": "About this site\n\n1 + 1\n\n[1] 2"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Joshua Paul Cohen",
+    "section": "",
+    "text": "Hi there! I’m Joshua. I’m currently a Environmental Data Science student at the UCSN Bren School. But I also like bugs, music, hiking, rock climbing, and all the cool stuff."
+  },
+  {
+    "objectID": "index.html#education",
+    "href": "index.html#education",
+    "title": "Joshua Paul Cohen",
+    "section": "Education",
+    "text": "Education\ntext"
+  },
+  {
+    "objectID": "index.html#another-header",
+    "href": "index.html#another-header",
+    "title": "Joshua Paul Cohen",
+    "section": "another header",
+    "text": "another header\ntext"
   }
 ]

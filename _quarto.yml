@@ -3,18 +3,22 @@ project:
   output-dir: docs
 
 website:
-  title: "silkieMoth.github.io"
+  title: "Joshua Paul Cohen"
   navbar:
     left:
       - href: index.qmd
         text: Home
       - about.qmd
+      - resources.qmd
 
 format:
   html:
-    theme: cosmo
+    theme:
+      light: minty
+      dark: solar
     css: styles.css
-    toc: true
+    toc: false
+    page-layout: full
 
 editor: visual
 

@@ -1,11 +1,27 @@
 ---
-title: "silkieMoth.github.io"
+#title: "silkieMoth.github.io"
+image: headshot.jpg
+about: 
+  template: jolla
+  image-shape: round
+  image-width: 17em
+  links: 
+    - text: LinkedIn
+      href: https://www.linkedin.com/in/joshua-p-cohen/
+      target: _blank
+    - text: GitHub
+      href: https://github.com/silkieMoth
+      target: _blank
+    - text: Email
+      href: mailto:jpcohen@bren.ucsb.edu
 ---
 
-This is a Quarto website.
+Hi there! I’m Joshua. I'm currently a Environmental Data Science student at the UCSN Bren School. But I also like bugs, music, hiking, rock climbing, and all the cool stuff.
 
-To learn more about Quarto websites visit <https://quarto.org/docs/websites>.
+## Education
 
-```{r}
-1 + 1
-```
+text
+
+## another header
+
+text
