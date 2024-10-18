@@ -1,0 +1,32 @@
+/*-- scss:defaults --*/
+
+// colors
+$dark_brown: #452316;
+$pumpkin: #f6850a;
+$peach: #ecc498;
+$stone: #846464;
+$marshmallow: #fcefeb;
+$bright: #b65c5cff;
+
+// Quarto Sass Variabkes
+$body-bg: $dark_brown;
+$navbar-bg: $pumpkin;
+$navbar-fg: $bright;
+$navbar-hl: $marshmallow;
+
+h1, h2 {
+  letter-spacing: 5px;
+  font-weight: 800; // Google fonts tells you which weights your chosen font family allows for!
+}
+
+.title{
+  color: maroon;
+}
+
+.center-text {
+  text-align: center;
+}
+
+.white-text {
+  color: $marshmallow;
+}

@@ -4,19 +4,25 @@ project:
 
 website:
   title: "Joshua Paul Cohen"
+  favicon: images/my-favicon.png
   navbar:
-    left:
+    logo: silkieMoth.github.io/website_icon.png
+    logo-alt: "alt text"
+    right:
       - href: index.qmd
         text: Home
       - about.qmd
       - resources.qmd
+      - text: Resume
+  page-footer:
+    background: light
+    left: No Copyright, Feel free to distribute.
+    right: This website is built with {{< fa brands github title="the octocat github icon">}}
 
 format:
   html:
-    theme:
-      light: minty
-      dark: solar
-    css: styles.css
+    theme: styles.scss
+    mainfont: Fauna One
     toc: false
     page-layout: full
 

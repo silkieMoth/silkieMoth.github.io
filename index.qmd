@@ -7,6 +7,7 @@ about:
   image-width: 17em
   links: 
     - text: LinkedIn
+      icon: linkedin
       href: https://www.linkedin.com/in/joshua-p-cohen/
       target: _blank
     - text: GitHub
