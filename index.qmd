@@ -17,12 +17,12 @@ about:
       href: mailto:jpcohen@bren.ucsb.edu
 ---
 
-Hi there! I’m Joshua. I'm currently a Environmental Data Science student at the UCSN Bren School. But I also like bugs, music, hiking, rock climbing, and all the cool stuff.
+[Hi there! I’m Joshua. I'm currently a Environmental Data Science student at the UCSN Bren School. But I also like bugs, music, hiking, rock climbing, and all the cool stuff.]{.white-text}
 
-## Education
+## [Education]{.white-text}
 
-text
+[text]{.white-text}
 
-## another header
+## [another header]{.white-text}
 
-text
+[text]{.white-text}

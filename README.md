@@ -1,0 +1,1 @@
+### Hi, I’m Josh and after college I fumbled around the environmental sector for a bit until I realized that I liked to code. So yeah, I did that.

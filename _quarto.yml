@@ -6,14 +6,18 @@ website:
   title: "Joshua Paul Cohen"
   favicon: images/my-favicon.png
   navbar:
-    logo: silkieMoth.github.io/website_icon.png
-    logo-alt: "alt text"
+    logo: website_icon_cropped.PNG
+    #title: false
+    logo-alt: "cute silk moth"
     right:
       - href: index.qmd
         text: Home
       - about.qmd
-      - resources.qmd
-      - text: Resume
+      - href: resources.qmd
+        text: Resources
+      #- text: Resume
+      - href: posts.qmd
+        text: Posts
   page-footer:
     background: light
     left: No Copyright, Feel free to distribute.

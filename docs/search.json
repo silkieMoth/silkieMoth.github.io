@@ -1,10 +1,31 @@
 [
   {
+    "objectID": "DELETE_LATER/practice.html",
+    "href": "DELETE_LATER/practice.html",
+    "title": "practice",
+    "section": "",
+    "text": "Here is my level one header\nHere is my first paragraph\nHere is my second paragraph, where you can read more about MEDS.\nThis is very important text!"
+  },
+  {
     "objectID": "about.html",
     "href": "about.html",
     "title": "About",
     "section": "",
     "text": "some text\n\n\n\n\n\nfun stuff\n\nhere is some more text\n\nhere is a line\nanother"
+  },
+  {
+    "objectID": "about.html#what-i-do-for-work",
+    "href": "about.html#what-i-do-for-work",
+    "title": "About",
+    "section": "",
+    "text": "some text"
+  },
+  {
+    "objectID": "about.html#what-i-do-for-fun",
+    "href": "about.html#what-i-do-for-fun",
+    "title": "About",
+    "section": "",
+    "text": "fun stuff\n\nhere is some more text\n\nhere is a line\nanother"
   },
   {
     "objectID": "index.html",
@@ -28,24 +49,10 @@
     "text": "another header\ntext"
   },
   {
-    "objectID": "DELETE_LATER/practice.html",
-    "href": "DELETE_LATER/practice.html",
-    "title": "practice",
+    "objectID": "posts.html",
+    "href": "posts.html",
+    "title": "Blog",
     "section": "",
-    "text": "Here is my level one header\nHere is my first paragraph\nHere is my second paragraph, where you can read more about MEDS.\nThis is very important text!"
-  },
-  {
-    "objectID": "about.html#what-i-do-for-work",
-    "href": "about.html#what-i-do-for-work",
-    "title": "About",
-    "section": "",
-    "text": "some text"
-  },
-  {
-    "objectID": "about.html#what-i-do-for-fun",
-    "href": "about.html#what-i-do-for-fun",
-    "title": "About",
-    "section": "",
-    "text": "fun stuff\n\nhere is some more text\n\nhere is a line\nanother"
+    "text": "No matching items"
   }
 ]
