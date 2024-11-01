@@ -7,11 +7,12 @@ $peach: #ecc498;
 $stone: #846464;
 $marshmallow: #fcefeb;
 $bright: #b65c5cff;
+$black: #000;
 
-// Quarto Sass Variabkes
+// Quarto Sass Variables
 $body-bg: $dark_brown;
-$navbar-bg: $pumpkin;
-$navbar-fg: $bright;
+$navbar-bg: $black;
+$navbar-fg: $pumpkin;
 $navbar-hl: $marshmallow;
 
 h1, h2 {
@@ -29,4 +30,9 @@ h1, h2 {
 
 .white-text {
   color: $marshmallow;
+}
+
+.navbar-brand img { 
+  max-height: 60px;
+  width: auto;
 }

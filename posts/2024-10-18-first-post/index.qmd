@@ -1,0 +1,44 @@
+---
+title: "blog post title"
+description: "short desc"
+author: 
+  - name: Joshua Paul Cohen
+    url: https://silkiemoth.github.io/
+    affiliation: MEDS
+    affiliation_URL: https://bren.ucsb.edu/masters-programs/master-environmental-data-science
+date: 2024-10-18
+categories: [Quarto, MEDS, idk]
+toc: true
+bibliography: references.bib
+image: taco.jpg
+citation:
+  url: https://silkiemoth.github.io/
+draft: true
+draft-mode: visible
+---
+
+## this is my first section
+
+I'm going to insert a footnote here[^1]
+
+[^1]: Here it the footnote
+
+## this is my second
+
+Here's my next paragraph^[Here is my second footnote]
+
+```{r}
+#| eval: true
+#| echo: false
+library(ggplot2)
+
+ggplot(data = palmerpenguins::penguins, aes(x = species, y = flipper_length_mm))
+
+```
+
+```{r}
+#| echo: false
+#| fig-align: "center"
+knitr::include_graphics("taco.jpg")
+```
+
