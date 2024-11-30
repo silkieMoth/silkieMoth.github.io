@@ -16,6 +16,12 @@ title: "About"
 
 ## What I do for fun
 
-<p class=white-text>I love whenever I can get some time with my guitar, maybe with some paper and a pencil to strech my creative side. I also love trying things I've never tried before, or getting outside and exploring places I have never seen or been to.<p>
+  <p class=white-text>*fun stuff*<p>
 
-<p class=white-text>Anyone is free to reach out if they ever want to go hiking or rock climbing!<p>
+[here is some more text]{.white-text}
+
+::: {center-text}
+here is a line
+
+another
+:::

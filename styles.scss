@@ -10,10 +10,11 @@ $bright: #b65c5cff;
 $black: #000;
 
 // Quarto Sass Variables
-$body-bg: $dark_brown;
+$body-bg: $stone;
 $navbar-bg: $black;
 $navbar-fg: $pumpkin;
 $navbar-hl: $marshmallow;
+$toc-color: $marshmallow;
 
 h1, h2 {
   letter-spacing: 5px;
@@ -21,7 +22,7 @@ h1, h2 {
 }
 
 .title{
-  color: maroon;
+  color: $peach;
 }
 
 .center-text {
