@@ -1,6 +1,6 @@
 ---
-title: "blog post title"
-description: "short desc"
+title: "Test blog post"
+description: "Temp blog post for testing"
 author: 
   - name: Joshua Paul Cohen
     url: https://silkiemoth.github.io/
@@ -25,14 +25,17 @@ I'm going to insert a footnote here[^1]
 
 ## this is my second
 
-Here's my next paragraph^[Here is my second footnote]
+Here's my next paragraph[^2]
+
+[^2]: Here is my second footnote
 
 ```{r}
 #| eval: true
 #| echo: false
 library(ggplot2)
 
-ggplot(data = palmerpenguins::penguins, aes(x = species, y = flipper_length_mm))
+ggplot(data = palmerpenguins::penguins, aes(x = species, y = flipper_length_mm)) + 
+  geom_point()
 
 ```
 
@@ -41,4 +44,3 @@ ggplot(data = palmerpenguins::penguins, aes(x = species, y = flipper_length_mm))
 #| fig-align: "center"
 knitr::include_graphics("taco.jpg")
 ```
-
