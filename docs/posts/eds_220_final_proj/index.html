@@ -359,91 +359,91 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="subset-and-saving-of-the-2017-thomas-fire-shapefile" class="level3">
 <h3 class="anchored" data-anchor-id="subset-and-saving-of-the-2017-thomas-fire-shapefile">Subset and saving of the 2017 Thomas Fire shapefile</h3>
 <p>Subset for the 2017 Thomas Fire record and save to <code>.shp</code> format.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Subset for 2017 Thomas Fire</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>thomas_perim <span class="ot">=</span> fire_perim[(fire_perim[<span class="st">'fire_name'</span>]<span class="fu">.str.contains</span>(<span class="st">'thomas'</span>)) <span class="sc">&amp;</span> </span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>           (fire_perim[<span class="st">'year'</span>] <span class="sc">==</span> <span class="dv">2017</span>)]</span>
+<div id="de75c44e" class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Subset for 2017 Thomas Fire</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>thomas_perim <span class="op">=</span> fire_perim[(fire_perim[<span class="st">'fire_name'</span>].<span class="bu">str</span>.contains(<span class="st">'thomas'</span>)) <span class="op">&amp;</span> </span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>           (fire_perim[<span class="st">'year'</span>] <span class="op">==</span> <span class="dv">2017</span>)]</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Make folder to save shapefile</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> not <span class="fu">os.path.exists</span>(<span class="st">'data/thomas_perim'</span>)<span class="sc">:</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">os.makedirs</span>(<span class="st">'data/thomas_perim'</span>)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="kw">not</span> os.path.exists(<span class="st">'data/thomas_perim'</span>):</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    os.makedirs(<span class="st">'data/thomas_perim'</span>)</span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Save subset as .shp</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="fu">thomas_perim.to_file</span>(<span class="st">'data/thomas_perim/thomas_perim.shp'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>thomas_perim.to_file(<span class="st">'data/thomas_perim/thomas_perim.shp'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="landsat-data-cleaning" class="level3">
 <h3 class="anchored" data-anchor-id="landsat-data-cleaning">Landsat data cleaning</h3>
 <p>Because there is only one band in the <code>dataArray</code>, we can drop the <code>band</code> dimension. This will prevent plotting errors.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Drop `band` dimension</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>landsat_bandless <span class="ot">=</span> <span class="fu">landsat.squeeze</span>()<span class="fu">.drop_vars</span>(<span class="st">'band'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="f8a10804" class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Drop `band` dimension</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>landsat_bandless <span class="op">=</span> landsat.squeeze().drop_vars(<span class="st">'band'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="true-color-visualization-of-santa-barbara-county" class="level3">
 <h3 class="anchored" data-anchor-id="true-color-visualization-of-santa-barbara-county">True color visualization of Santa Barbara County</h3>
 <p>Landsat imagery contains standard RGB bands, allowing true color plotting.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create false color dataArray</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>true_col <span class="ot">=</span> landsat_bandless[[<span class="st">'red'</span>, <span class="st">'green'</span>, <span class="st">'blue'</span>]]</span>
+<div id="6308251f" class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create false color dataArray</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>true_col <span class="op">=</span> landsat_bandless[[<span class="st">'red'</span>, <span class="st">'green'</span>, <span class="st">'blue'</span>]]</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot landsat bands adjusting for cloud cover</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="ot">=</span> <span class="fu">plt.subplots</span>()</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ax.axis</span>(<span class="st">'off'</span>)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots()</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>ax.axis(<span class="st">'off'</span>)</span>
 <span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="fu">true_col.to_array</span>()<span class="fu">.plot.imshow</span>(<span class="at">robust =</span> True)</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>true_col.to_array().plot.imshow(robust <span class="op">=</span> <span class="va">True</span>)</span>
 <span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="co"># create scalebar</span></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="fu">ax.add_artist</span>(<span class="fu">ScaleBar</span>(<span class="fl">0.08</span>, </span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>ax.add_artist(ScaleBar(<span class="fl">0.08</span>, </span>
 <span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>                       <span class="st">"cm"</span>, </span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>                       <span class="at">length_fraction =</span> <span class="fl">0.30</span>, </span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>                       <span class="at">width_fraction =</span> <span class="fl">0.02</span>,</span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>                       <span class="at">location =</span> <span class="st">'lower left'</span>,</span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>                       <span class="at">box_alpha =</span> <span class="fl">0.2</span>,</span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>                       <span class="at">box_color =</span> <span class="st">'k'</span>,</span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>                       <span class="at">color =</span> <span class="st">'w'</span>))</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>                       length_fraction <span class="op">=</span> <span class="fl">0.30</span>, </span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>                       width_fraction <span class="op">=</span> <span class="fl">0.02</span>,</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>                       location <span class="op">=</span> <span class="st">'lower left'</span>,</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>                       box_alpha <span class="op">=</span> <span class="fl">0.2</span>,</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>                       box_color <span class="op">=</span> <span class="st">'k'</span>,</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>                       color <span class="op">=</span> <span class="st">'w'</span>))</span>
 <span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a><span class="fu">ax.set_title</span>(<span class="st">'True Color Imagery of Santa Barbara County, CA'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">'True Color Imagery of Santa Barbara County, CA'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="false-color-visualization-of-thomas-fire-damage-with-infrared-reflectance-and-fire-perimeter" class="level3">
 <h3 class="anchored" data-anchor-id="false-color-visualization-of-thomas-fire-damage-with-infrared-reflectance-and-fire-perimeter">False color visualization of Thomas Fire damage with infrared reflectance and fire perimeter</h3>
 <p>Placing short-wave infrared and near infrared over red and green highlights freshly burned patches of land.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create false color dataArray</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>false_col <span class="ot">=</span> landsat_bandless[[<span class="st">'swir22'</span>, <span class="st">'nir08'</span>, <span class="st">'red'</span>]]</span>
+<div id="fb79379f" class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create false color dataArray</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>false_col <span class="op">=</span> landsat_bandless[[<span class="st">'swir22'</span>, <span class="st">'nir08'</span>, <span class="st">'red'</span>]]</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot landsat bands adjusting for cloud cover</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="ot">=</span> <span class="fu">plt.subplots</span>()</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ax.axis</span>(<span class="st">'off'</span>)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots()</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>ax.axis(<span class="st">'off'</span>)</span>
 <span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="fu">false_col.to_array</span>()<span class="fu">.plot.imshow</span>(<span class="at">ax =</span> ax,</span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">robust =</span> True)</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>false_col.to_array().plot.imshow(ax <span class="op">=</span> ax,</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>                                 robust <span class="op">=</span> <span class="va">True</span>)</span>
 <span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Init legend for landsat bands</span></span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>legend_labels <span class="ot">=</span> [<span class="fu">Patch</span>(<span class="at">color =</span> <span class="st">'red'</span>, <span class="at">label =</span> <span class="st">'SWIR22'</span>), </span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>                 <span class="fu">Patch</span>(<span class="at">color =</span> <span class="st">'green'</span>, <span class="at">label =</span> <span class="st">'NIR08'</span>), </span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>                 <span class="fu">Patch</span>(<span class="at">color =</span> <span class="st">'blue'</span>, <span class="at">label =</span> <span class="st">'Red'</span>)]</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>legend_labels <span class="op">=</span> [Patch(color <span class="op">=</span> <span class="st">'red'</span>, label <span class="op">=</span> <span class="st">'SWIR22'</span>), </span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>                 Patch(color <span class="op">=</span> <span class="st">'green'</span>, label <span class="op">=</span> <span class="st">'NIR08'</span>), </span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>                 Patch(color <span class="op">=</span> <span class="st">'blue'</span>, label <span class="op">=</span> <span class="st">'Red'</span>)]</span>
 <span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Declare legend variable for landsat bands</span></span>
-<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>legend <span class="ot">=</span> <span class="fu">ax.legend</span>(<span class="at">handles =</span> legend_labels, </span>
-<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>                    <span class="at">loc =</span> <span class="st">'upper right'</span>, </span>
-<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>                    <span class="at">title =</span> <span class="st">'Bands by RGB Color'</span>,</span>
-<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>                    <span class="at">alignment =</span> <span class="st">'left'</span>,</span>
-<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>                    <span class="at">fontsize =</span> <span class="st">'x-small'</span>,</span>
-<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>                    <span class="at">title_fontsize =</span> <span class="st">'x-small'</span>)</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>legend <span class="op">=</span> ax.legend(handles <span class="op">=</span> legend_labels, </span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>                    loc <span class="op">=</span> <span class="st">'upper right'</span>, </span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>                    title <span class="op">=</span> <span class="st">'Bands by RGB Color'</span>,</span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>                    alignment <span class="op">=</span> <span class="st">'left'</span>,</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>                    fontsize <span class="op">=</span> <span class="st">'x-small'</span>,</span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>                    title_fontsize <span class="op">=</span> <span class="st">'x-small'</span>)</span>
 <span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a><span class="co"># create scalebar</span></span>
-<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a><span class="fu">ax.add_artist</span>(<span class="fu">ScaleBar</span>(<span class="fl">0.08</span>, </span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>ax.add_artist(ScaleBar(<span class="fl">0.08</span>, </span>
 <span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>                       <span class="st">"cm"</span>, </span>
-<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>                       <span class="at">length_fraction =</span> <span class="fl">0.30</span>, </span>
-<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>                       <span class="at">width_fraction =</span> <span class="fl">0.02</span>,</span>
-<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>                       <span class="at">location =</span> <span class="st">'lower left'</span>,</span>
-<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>                       <span class="at">box_alpha =</span> <span class="fl">0.2</span>,</span>
-<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>                       <span class="at">box_color =</span> <span class="st">'k'</span>,</span>
-<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>                       <span class="at">color =</span> <span class="st">'w'</span>))</span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>                       length_fraction <span class="op">=</span> <span class="fl">0.30</span>, </span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>                       width_fraction <span class="op">=</span> <span class="fl">0.02</span>,</span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>                       location <span class="op">=</span> <span class="st">'lower left'</span>,</span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>                       box_alpha <span class="op">=</span> <span class="fl">0.2</span>,</span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>                       box_color <span class="op">=</span> <span class="st">'k'</span>,</span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>                       color <span class="op">=</span> <span class="st">'w'</span>))</span>
 <span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a><span class="fu">ax.set_title</span>(<span class="st">'False Color Imagery of Santa Barbara County, CA'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">'False Color Imagery of Santa Barbara County, CA'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 </section>
