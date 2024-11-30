@@ -17,6 +17,8 @@ draft: true
 draft-mode: visible
 highlight-style: github
 theme: cosmo
+execute: 
+  enabled: false
 ---
 ## GitHub
 ##### All relevant files and figures can be found here.
@@ -97,7 +99,7 @@ Cross-referencing the Thomas Fire perimeter and the Landsat imagery allows us to
 ### Subset and saving of the 2017 Thomas Fire shapefile
 
 Subset for the 2017 Thomas Fire record and save to `.shp` format.
-```{r, eval=FALSE}
+```{python}
 # Subset for 2017 Thomas Fire
 thomas_perim = fire_perim[(fire_perim['fire_name'].str.contains('thomas')) & 
            (fire_perim['year'] == 2017)]
@@ -114,7 +116,7 @@ thomas_perim.to_file('data/thomas_perim/thomas_perim.shp')
 
 Because there is only one band in the `dataArray`, we can drop the `band` dimension. This will prevent plotting errors.
 
-```{r, eval=FALSE}
+```{python}
 # Drop `band` dimension
 landsat_bandless = landsat.squeeze().drop_vars('band')
 ```
@@ -122,7 +124,7 @@ landsat_bandless = landsat.squeeze().drop_vars('band')
 ### True color visualization of Santa Barbara County
 
 Landsat imagery contains standard RGB bands, allowing true color plotting.
-```{r, eval=FALSE}
+```{python}
 # Create false color dataArray
 true_col = landsat_bandless[['red', 'green', 'blue']]
 
@@ -149,7 +151,7 @@ ax.set_title('True Color Imagery of Santa Barbara County, CA')
 ### False color visualization of Thomas Fire damage with infrared reflectance and fire perimeter
 
 Placing short-wave infrared and near infrared over red and green highlights freshly burned patches of land.
-```{r, eval=FALSE}
+```{python}
 # Create false color dataArray
 false_col = landsat_bandless[['swir22', 'nir08', 'red']]
 
