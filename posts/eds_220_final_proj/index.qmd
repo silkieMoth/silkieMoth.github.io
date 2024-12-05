@@ -34,7 +34,7 @@ The Thomas Fire was a wildfire that was particularly notable for it's sheer size
 The goal of this analysis is to map the impact of the 2017 Thomas Fire relative to the rest of Santa Barbara County. Because the fire left a 'scar' that is visible from space, it shows up in satellite imagery. Landsat data can capture this damage, as the infrared reluctance of burned land is high.
 
 
-Cross-referencing the Thomas Fire perimeter and the Landsat imagery allows us to visualize the scar left behind.
+Cross-referencing the Thomas Fire perimeter and the Landsat imagery allows us to visualize the scar left behind. Furthermore, we can see the effect of the fire on air quality by visualizing the AQI (Air Quality Index) in the region. AQI is a measure of air quality as it relates to human health, with a focus on O<sub>3</sub>, PM<sub>2.5</sub>, PM<sub>10</sub>, CO, SO<sub>2</sub>, and NO<sub>2</sub>.
 
 ## Highlights of Analysis
 
@@ -53,6 +53,8 @@ Cross-referencing the Thomas Fire perimeter and the Landsat imagery allows us to
             * SWIR's reflectance correlates with moisture in plants and soil. A dry environment like a newly burned forest will reflect greatly.
         - Near Infrared in green band
             * This is useful for analysis as much like plants reflect green light, they reflect NIR very strongly, particularly healthy vegetation.
+* Plotting of Santa Barbara AQI: daily & 5 day average
+    + The 2017 and 2018 AQI datasets were combined, subsetted, and averaged.
             
 :::
 
@@ -86,19 +88,28 @@ Cross-referencing the Thomas Fire perimeter and the Landsat imagery allows us to
         - y
             * Latitude
             * Length = 731
+* Daily AQI by county 2017 and 2018
+    + Datasets produced by the Environmental Protection Agency
+    + Each record contains a state, county, date, level of concern, and defining pollutant.
+    + Combined datasets contain over 650000 entries.
+    
         
 ### Data Access
 
 - `California_Fire_Perimeters_(1950+)` can be downloaded from [California Natural Resources agency](https://gis.data.cnra.ca.gov/datasets/CALFIRE-Forestry::california-fire-perimeters-1950-1/explore) website.
 - `landsat8-2018-01-26-sb-simplified` is a pre-processed file and the only way to access it is through University of California, Santa Barbara's Posit Workbench server. However, a similar Landsat image of Santa Barbara can be downloaded from the [Microsoft Planetary Computer](https://planetarycomputer.microsoft.com/dataset/landsat-c2-l2) data catalogue.
+- `daily_aqi_by_county_2017.zip` and `daily_aqi_by_county_2018.zip` are acquirable from the [Environmental Protection Agency website](https://aqs.epa.gov/aqsweb/airdata/download_files.html) under the 'Daily AQI' section.
         
 :::
 
 ## Analysis
 
-### Subset and saving of the 2017 Thomas Fire shapefile
+### Thomas Fire Perimeter Preparation
+
+#### Subset and saving of the 2017 Thomas Fire shapefile
 
 Subset for the 2017 Thomas Fire record and save to `.shp` format.
+
 ```{python}
 # Subset for 2017 Thomas Fire
 thomas_perim = fire_perim[(fire_perim['fire_name'].str.contains('thomas')) & 
@@ -112,7 +123,9 @@ if not os.path.exists('data/thomas_perim'):
 thomas_perim.to_file('data/thomas_perim/thomas_perim.shp')
 ```
 
-### Landsat data cleaning
+### Spectral DataArray Preparation
+
+#### Landsat data cleaning
 
 Because there is only one band in the `dataArray`, we can drop the `band` dimension. This will prevent plotting errors.
 
@@ -121,9 +134,59 @@ Because there is only one band in the `dataArray`, we can drop the `band` dimens
 landsat_bandless = landsat.squeeze().drop_vars('band')
 ```
 
-### True color visualization of Santa Barbara County
+### AQI Dataset Preparation
+
+#### Concatenation of the 2017 and 2018 AQI datasets.
+
+The 2017 and 2018 datasets could only be downloaded separately, and in order to create a visualization of both years, we must combine them
+
+```{python}
+# Append 2018 air quality data to 2017 data
+aqi = pd.concat([aqi_17, aqi_18])
+```
+
+#### Subsetting AQI for the area of analysis
+
+The dataset contains an associated county for every record. Therefore we can subset for the county most effected by the Thomas Fire, being Santa Barbara.
+
+```{python}
+# Subset for data in Santa Barbara and drop unneeded cols
+aqi_sb = (aqi[aqi['county_name'] == 'Santa Barbara']
+          .drop(['state_name', 'county_name', 'state_code', 'county_code'], axis = 1))
+```
+
+#### Setting the date column as index
+
+This allows for plotting datetime on the x axis.
+
+```{python}
+# Convert 'date' col to datetime
+aqi_sb.date = pd.to_datetime(arg = aqi_sb.date)
+
+# Set 'date' col as index
+aqi_sb = aqi_sb.set_index('date')
+```
+
+#### Calculating the 5 day average
+
+The `rolling` method runs a window of values across the rows of a series or data_frame column, and moves that window down one with each iteration. By applying a summarizing method like `mean`, we can average every value in the window and apply a mean value for each row. 
+
+`rolling` is used here to create the `five_day_average` column in our AQI data_frame.
+
+```{python}
+# Calculate AQI rolling average over 5 days
+rolling_average = aqi_sb.aqi.rolling('5D').mean()
+
+# Add rolling mean column to air quality df
+aqi_sb['five_day_average'] = rolling_average
+```
+
+### Visualization Code
+
+#### True color visualization of Santa Barbara County
 
 Landsat imagery contains standard RGB bands, allowing true color plotting.
+
 ```{python}
 # Create false color dataArray
 true_col = landsat_bandless[['red', 'green', 'blue']]
@@ -147,10 +210,10 @@ ax.add_artist(ScaleBar(0.08,
 ax.set_title('True Color Imagery of Santa Barbara County, CA')
 ```
 
-
-### False color visualization of Thomas Fire damage with infrared reflectance and fire perimeter
+#### False color visualization of Thomas Fire damage with infrared reflectance and fire perimeter
 
 Placing short-wave infrared and near infrared over red and green highlights freshly burned patches of land.
+
 ```{python}
 # Create false color dataArray
 false_col = landsat_bandless[['swir22', 'nir08', 'red']]
@@ -188,9 +251,34 @@ ax.add_artist(ScaleBar(0.08,
 ax.set_title('False Color Imagery of Santa Barbara County, CA')
 ```
 
-## Final Visualizations
+#### Plotting daily AQI and 5 year average for Santa Barbara, CA (2017-2018)
 
-</br>
+This plot shows a sharp rise in aqi at the time of the 2017 Thomas Fire.
+
+```{python}
+# Create false color dataArray
+true_col = landsat_bandless[['red', 'green', 'blue']]
+
+# Plot landsat bands adjusting for cloud cover
+fig, ax = plt.subplots()
+ax.axis('off')
+
+true_col.to_array().plot.imshow(robust = True)
+
+# create scalebar
+ax.add_artist(ScaleBar(0.08, 
+                       "cm", 
+                       length_fraction = 0.30, 
+                       width_fraction = 0.02,
+                       location = 'lower left',
+                       box_alpha = 0.2,
+                       box_color = 'k',
+                       color = 'w'))
+
+ax.set_title('True Color Imagery of Santa Barbara County, CA')
+```
+
+## Final Visualizations
 
 ![](figs/true_col.png){fig-align="center"}
 
@@ -202,6 +290,11 @@ This image has the red, green, and blue variables mapped to their respective col
 
 This false color raster plots short-wave infrared and near infrared on the red and green colors respectively. By utilizing infrared light reflectance, the difference between the vegetation rich areas and the vegetation poor areas becomes significantly more distinct. The Thomas Fire damage is now distinctly visible, as SWIR reflects greatly under recently burned areas, and NIR reflects best under healthy vegetation.
 
+</br>
+
+![](figs/sb_aqi.png){fig-align="center"}
+
+This plot depicts that the 2017 Thomas Fire correlated with a sudden and extreme rise in the AQI. The baseline state of the AQI in Santa Barbara is hovering around a range of about 30 to 120. When the Thomas Fire occured in December 2017, the AQI jumped to over 300 at it's peak.
 
 ## Citations
 
@@ -216,3 +309,5 @@ McKenzie, D., Gedalof, Z., Peterson, D.L. and Mote, P. (2004), Climatic Change, 
 Earth Resources Observation and Science (EROS) Center. (2020). Landsat 8-9 Operational Land Imager / Thermal Infrared Sensor Level-2, Collection 2 [dataset]. U.S. Geological Survey. [Link](https://planetarycomputer.microsoft.com/dataset/landsat-c2-l2)
 
 California Department of Forestry and Fire Protection (2024), California Historical Fire Perimeters [dataset]. California Natural Resources Agency.[Link](https://gis.data.cnra.ca.gov/maps/CALFIRE-Forestry::california-historical-fire-perimeters/about)
+
+US Environmental Protection Agency. Air Quality System Data Mart [internet database] available via https://aqs.epa.gov/aqsweb/airdata/download_files.html. Accessed October 2024.
