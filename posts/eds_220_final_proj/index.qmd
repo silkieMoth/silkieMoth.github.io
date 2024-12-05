@@ -253,7 +253,7 @@ ax.set_title('False Color Imagery of Santa Barbara County, CA')
 
 #### Plotting daily AQI and 5 year average for Santa Barbara, CA (2017-2018)
 
-This plot shows a sharp rise in aqi at the time of the 2017 Thomas Fire.
+This plot shows a sharp rise in AQI at the time of the 2017 Thomas Fire.
 
 ```{python}
 # Create false color dataArray
