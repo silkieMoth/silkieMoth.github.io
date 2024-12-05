@@ -372,7 +372,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="subset-and-saving-of-the-2017-thomas-fire-shapefile" class="level4">
 <h4 class="anchored" data-anchor-id="subset-and-saving-of-the-2017-thomas-fire-shapefile">Subset and saving of the 2017 Thomas Fire shapefile</h4>
 <p>Subset for the 2017 Thomas Fire record and save to <code>.shp</code> format.</p>
-<div id="8ea00891" class="cell">
+<div id="6bc26a6d" class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Subset for 2017 Thomas Fire</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>thomas_perim <span class="op">=</span> fire_perim[(fire_perim[<span class="st">'fire_name'</span>].<span class="bu">str</span>.contains(<span class="st">'thomas'</span>)) <span class="op">&amp;</span> </span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>           (fire_perim[<span class="st">'year'</span>] <span class="op">==</span> <span class="dv">2017</span>)]</span>
@@ -391,7 +391,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="landsat-data-cleaning" class="level4">
 <h4 class="anchored" data-anchor-id="landsat-data-cleaning">Landsat data cleaning</h4>
 <p>Because there is only one band in the <code>dataArray</code>, we can drop the <code>band</code> dimension. This will prevent plotting errors.</p>
-<div id="c14bcb56" class="cell">
+<div id="07978c7b" class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Drop `band` dimension</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>landsat_bandless <span class="op">=</span> landsat.squeeze().drop_vars(<span class="st">'band'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -402,7 +402,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="concatenation-of-the-2017-and-2018-aqi-datasets." class="level4">
 <h4 class="anchored" data-anchor-id="concatenation-of-the-2017-and-2018-aqi-datasets.">Concatenation of the 2017 and 2018 AQI datasets.</h4>
 <p>The 2017 and 2018 datasets could only be downloaded separately, and in order to create a visualization of both years, we must combine them</p>
-<div id="8826641f" class="cell">
+<div id="8b6330f6" class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Append 2018 air quality data to 2017 data</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>aqi <span class="op">=</span> pd.concat([aqi_17, aqi_18])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -410,7 +410,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="subsetting-aqi-for-the-area-of-analysis" class="level4">
 <h4 class="anchored" data-anchor-id="subsetting-aqi-for-the-area-of-analysis">Subsetting AQI for the area of analysis</h4>
 <p>The dataset contains an associated county for every record. Therefore we can subset for the county most effected by the Thomas Fire, being Santa Barbara.</p>
-<div id="aadd3da2" class="cell">
+<div id="85b4a714" class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Subset for data in Santa Barbara and drop unneeded cols</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>aqi_sb <span class="op">=</span> (aqi[aqi[<span class="st">'county_name'</span>] <span class="op">==</span> <span class="st">'Santa Barbara'</span>]</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>          .drop([<span class="st">'state_name'</span>, <span class="st">'county_name'</span>, <span class="st">'state_code'</span>, <span class="st">'county_code'</span>], axis <span class="op">=</span> <span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -419,7 +419,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="setting-the-date-column-as-index" class="level4">
 <h4 class="anchored" data-anchor-id="setting-the-date-column-as-index">Setting the date column as index</h4>
 <p>This allows for plotting datetime on the x axis.</p>
-<div id="71d006e7" class="cell">
+<div id="aca46f82" class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert 'date' col to datetime</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>aqi_sb.date <span class="op">=</span> pd.to_datetime(arg <span class="op">=</span> aqi_sb.date)</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -431,7 +431,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h4 class="anchored" data-anchor-id="calculating-the-5-day-average">Calculating the 5 day average</h4>
 <p>The <code>rolling</code> method runs a window of values across the rows of a series or data_frame column, and moves that window down one with each iteration. By applying a summarizing method like <code>mean</code>, we can average every value in the window and apply a mean value for each row.</p>
 <p><code>rolling</code> is used here to create the <code>five_day_average</code> column in our AQI data_frame.</p>
-<div id="4642e327" class="cell">
+<div id="0e8c69bd" class="cell">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate AQI rolling average over 5 days</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>rolling_average <span class="op">=</span> aqi_sb.aqi.rolling(<span class="st">'5D'</span>).mean()</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -445,7 +445,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="true-color-visualization-of-santa-barbara-county" class="level4">
 <h4 class="anchored" data-anchor-id="true-color-visualization-of-santa-barbara-county">True color visualization of Santa Barbara County</h4>
 <p>Landsat imagery contains standard RGB bands, allowing true color plotting.</p>
-<div id="9cb8e542" class="cell">
+<div id="1429698e" class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create false color dataArray</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>true_col <span class="op">=</span> landsat_bandless[[<span class="st">'red'</span>, <span class="st">'green'</span>, <span class="st">'blue'</span>]]</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -471,7 +471,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="false-color-visualization-of-thomas-fire-damage-with-infrared-reflectance-and-fire-perimeter" class="level4">
 <h4 class="anchored" data-anchor-id="false-color-visualization-of-thomas-fire-damage-with-infrared-reflectance-and-fire-perimeter">False color visualization of Thomas Fire damage with infrared reflectance and fire perimeter</h4>
 <p>Placing short-wave infrared and near infrared over red and green highlights freshly burned patches of land.</p>
-<div id="8c45a41d" class="cell">
+<div id="96c0e9c2" class="cell">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create false color dataArray</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>false_col <span class="op">=</span> landsat_bandless[[<span class="st">'swir22'</span>, <span class="st">'nir08'</span>, <span class="st">'red'</span>]]</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -511,7 +511,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="plotting-daily-aqi-and-5-year-average-for-santa-barbara-ca-2017-2018" class="level4">
 <h4 class="anchored" data-anchor-id="plotting-daily-aqi-and-5-year-average-for-santa-barbara-ca-2017-2018">Plotting daily AQI and 5 year average for Santa Barbara, CA (2017-2018)</h4>
 <p>This plot shows a sharp rise in AQI at the time of the 2017 Thomas Fire.</p>
-<div id="577dce47" class="cell">
+<div id="60f845df" class="cell">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create false color dataArray</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>true_col <span class="op">=</span> landsat_bandless[[<span class="st">'red'</span>, <span class="st">'green'</span>, <span class="st">'blue'</span>]]</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
