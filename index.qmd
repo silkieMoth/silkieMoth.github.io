@@ -10,10 +10,10 @@ about:
     - text: LinkedIn
       icon: linkedin
       href: https://www.linkedin.com/in/joshua-p-cohen/
-      target: _blank
+     # target: _blank
     - text: GitHub
       href: https://github.com/silkieMoth
-      target: _blank
+     # target: _blank
     - text: Email
       href: mailto:jpcohen@bren.ucsb.edu
 ---
