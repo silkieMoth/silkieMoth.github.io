@@ -21,8 +21,7 @@ execute:
   enabled: false
 ---
 ## GitHub
-##### All relevant files and figures can be found here.
-#### **https://github.com/silkieMoth/eds220-hwk4**
+All relevant files and figures can be found here: </br>[https://github.com/silkieMoth/eds220-hwk4](https://github.com/silkieMoth/eds220-hwk4)
 
 
 ## About
@@ -256,26 +255,26 @@ ax.set_title('False Color Imagery of Santa Barbara County, CA')
 This plot shows a sharp rise in AQI at the time of the 2017 Thomas Fire.
 
 ```{python}
-# Create false color dataArray
-true_col = landsat_bandless[['red', 'green', 'blue']]
+# Plot the base line graph
+ax = aqi_sb.plot.line(use_index = True,
+                     y = ['aqi', 'five_day_average'],
+                     ylabel = 'Air Quality Index (AQI)',
+                     xlabel = 'Date',
+                     title = "Santa Barbara, CA Air Quality Index (2017-2018)")
 
-# Plot landsat bands adjusting for cloud cover
-fig, ax = plt.subplots()
-ax.axis('off')
+# Write in legend labels
+ax.legend(['Daily', 'Five Day Avg'])
 
-true_col.to_array().plot.imshow(robust = True)
+# Rotate tick labels 45 degrees
+ax.set_xticks(ax.get_xticks()) 
+ax.set_xticklabels(ax.get_xticklabels(), rotation=45)
 
-# create scalebar
-ax.add_artist(ScaleBar(0.08, 
-                       "cm", 
-                       length_fraction = 0.30, 
-                       width_fraction = 0.02,
-                       location = 'lower left',
-                       box_alpha = 0.2,
-                       box_color = 'k',
-                       color = 'w'))
+# Set x-axis for every other month
+fter = mdates.AutoDateLocator(maxticks = 20)
+ax.xaxis.set_major_locator(fter)
+ax.xaxis.set_major_formatter(mdates.ConciseDateFormatter(fter))   
 
-ax.set_title('True Color Imagery of Santa Barbara County, CA')
+plt.show()
 ```
 
 ## Final Visualizations
