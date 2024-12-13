@@ -1,0 +1,143 @@
+---
+title: "Pesticides and Bee Biodiversity at the Golden Coast"
+description: "A data analysis of the effect of California’s pesticide use on Anthophila richness."
+author: 
+  - name: Joshua Paul Cohen
+    url: https://silkiemoth.github.io/
+    affiliation: MEDS
+    affiliation_URL: https://bren.ucsb.edu/masters-programs/master-environmental-data-science
+date: last-modified
+categories: [Bees, Pesticides, R, Geospatial, Statistics]
+toc: true
+bibliography: references.bib
+image: bee_on_flower.png
+citation:
+  url: https://silkiemoth.github.io/
+draft: true
+draft-mode: visible
+highlight-style: github
+theme: cosmo
+execute: 
+  enabled: false
+---
+
+# Introduction
+Bees and other pollinators are extremely valuable for the ecosystem services they provide. Yet, throughout the past few decades, they have declined in both population and biodiversity (Goulson et al, 2015). Attributed factors are invasive parasites (Meeus et al, 2011), climate change (Soroye, Newbold, & Kerr, 2020), habitat destruction (and fragmentation (Aizen & Feinsinger, 1994), and pesticide use (Arena & Sgolastra, 2014).
+
+Several factor's make California an ideal microcosm to analyze the effect of pesticides on bee biodiversity.
+* The state's 1989 Food Safety Act requires uniquely high standards for reporting (California DPR, 2023). Pesticide use datasets out of CA are therefore large and highly detailed.
+* CA is size means it has many different ecosystems contained within the same political boundaries.
+* CA is a agricultural hotspot in the country, meaning there are areas of intensive pesticide use.
+
+Therefore in this analysis, we will be analyzing pesticide use. Later, we attempt to introduce other variables such as population density, habitat fragmentation, and land use to see if there is a significant effect. 
+
+## Key Highlights
+* Creation of an error model between biodiversity and pesticide use.
+* Creation of multiple linear models to detect significant correlations between variables.
+
+# Data
+### Big Bee: Extending Anthophila Research Through Image and Trait Digitization
+* Description
+  + A large data base containing 4 million+ records of bee occurrence data for 5000+ unique species, along with attribute data. 
+  + Compilation of multiple databases.
+  + Format: csv with latitude/longitude columns.
+  + Contains observations from around the world, and from as early as the 19th century.
+  + Led by Katja Seltmann, a researcher associated with the Cheadle Center for Biodiversity and Restoration at UCSB.
+  + Overarching goal is to compile bee attribute data (body length, flight range, etc) for as many species as possible into one place. 
+* Limitations
+  + Spatially biased: most observations are located near areas of high population
+  + Dirty data: A compilation approach to sampling leads to inconsistent data structure with many NAs. 
+  + No absence data.
+  + Includes citizen science data, increasing chance of possible misidentification.
+* Subset in this analysis
+  + Data from the past 5 years in all of California.
+* Access
+  + Data is downloadable from [the map section of the Big Bee Library](https://library.big-bee.net/portal/collections/map/index.php).
+  + Must choose a subset to download, can subset by location, taxa, time, observer/collector, and more.
+  
+### California DPR Annual Pesticide Summaries
+* Description
+  + In accordance with the Food Safety Act of 1989.
+  + Contains data for products, active ingredients, amounts, locations, etc.
+  + Format: comma delineated .txt files.
+* Limitations
+  + Does not contain spatial information, only analyzable spatially through joining.
+* Subset in this analysis
+  + All available data from 2017.
+* Access
+  Data is downloadable from [California DPR's Pesticide Use Reporting page](https://www.cdpr.ca.gov/docs/pur/purmain.htm).
+  
+### California Public Land Survey System
+* Description
+  + Shapefile associated with the pesticide use data
+  + Contains polygons for all CA townships.
+* Limitations
+  + Pesticide data does not contains a joinable column for township, only joinable by county.
+* Access
+  + See pesticide use data.
+  
+### California County Population Totals
+* Description
+  + Excel file containing population estimates for years 2020 to 2023 by county in CA.
+  + Yearly estimates calculated by last year's census estimate + births - deaths + immigration - emigration, and adjusted for demographic info.
+  + Reported as being very accurate by the Census Bureau
+* Access
+  + Data is downloadable from the [U.S Census Bureau website](https://www.census.gov/data/datasets/time-series/demo/popest/2020s-counties-total.html).
+
+### Magnitude of Habitat Fragmentation by Terrestrial Ecoregion
+* Description
+  + Developed by The Nature Conservancy.
+  + Shapefile delineating "ecoregions" based on "fragmenting features".
+  + Global scale.
+  + Features considered include agriculture, urban development, roads, and railroads.
+  + Contains fields for eco region ID codes, ecoregion type, total area and perimeter, and a habitat fragmentation index.
+  + Contains 827 unique types.
+* Limitations
+  + Polygons are large relative to CA, making analysis on a statewide scale unwieldy.
+* Subset in this analysis
+  + All polygon's intersecting CA.
+* Access
+  + Data is downloadable from [it's page on databasin.org](https://databasin.org/datasets/f88b2b0d922642e689864cbd3409c177/).
+
+### USGS 2023 Land Cover (CONUS)
+* Description
+  + Land cover classification types.
+  + 16 different classification types for water, development, forest/grassland, marsh, barren land, and agriculture.
+  + CONUS stands for Conterminous United States.
+* Limitations
+  + Extremely large, and designed for a county wide scale. Needed to be aggregated to be worked with on a state wide scale
+  + Aggregation caused distortion in classification values.
+* Access
+  + Data is downloadable from [it's page on the official USGS website](https://www.usgs.gov/centers/eros/science/data-access).
+  + It is possible to subset the data by uploading a county shapefile [in the MRLC Viewer](https://www.mrlc.gov/viewer/), then download each county individually, but this was not done due to time restrictions.
+  
+![](figs/solano_land_cover.png "Solano County land type distribution."){fig-align="center"}
+
+# Analysis Plan
+
+
+# Citations
+
+### In Text
+Goulson, D., Nicholls, E., Botías, C., & Rotheray, E. L. (2015). Bee declines driven by combined stress from parasites, pesticides, and lack of flowers. Science, 347(6229), 1255957.
+
+California Department of Pesticide Regulation. (2023, January). PESTICIDE USE ANNUAL REPORT. https://www.cdpr.ca.gov/docs/pur/pur_history_background.pdf
+
+Meeus, I., Brown, M. J. F., de Graaf, D. C., & Smagghe, G. (2011). Effects of invasive parasites on bumble bee declines. Conservation Biology, 25(4), 662-671. https://doi.org/10.1111/j.1523-1739.2011.01707.x
+
+Soroye, P., Newbold, T., & Kerr, J. (2020). Climate change contributes to widespread declines among bumble bees across continents. Science, 367(6478), 685-688.
+
+Aizen, M. A., & Feinsinger, P. (1994). Habitat fragmentation, native insect pollinators, and feral honey bees in Argentine'Chaco Serrano'. Ecological applications, 4(2), 378-392.
+
+Arena, M., & Sgolastra, F. (2014). A meta-analysis comparing the sensitivity of bees to pesticides. Ecotoxicology, 23, 324-334.
+
+### Data
+Seltmann KC, Allen J, Brown BV, Carper A, Engel MS, Franz N, Gilbert E, Grinter C, Gonzalez VH, Horsley P, Lee S, Maier C, Miko I, Morris P, Oboyski P, Pierce NE, Poelen J, Scott VL, Smith M, Talamas EJ, Tsutsui ND, Tucker E (2021) Announcing Big-Bee: An initiative to promote understanding of bees through image and trait digitization. Biodiversity Information Science and Standards 5: e74037. https://doi.org/10.3897/biss.5.74037
+
+California Department of Pesticide Regulation. (2017). Pesticide use reporting (PUR). California Environmental Protection Agency. Retrieved from https://www.cdpr.ca.gov/docs/pur/purmain.htm
+
+U.S. Census Bureau (2024). County Population Totals and Components of Change: 2020-2023 Retrieved from https://www.census.gov/data/datasets/time-series/demo/popest/2020s-counties-total.html
+
+Hoekstra, J. M., Molnar, J. L., Jennings, M., Revenga, C., Spalding, M. D., Boucher, T. M., Robertson, J. C., Heibel, T. J., & Ellison, K. (2010). The atlas of global conservation: Changes, challenges, and opportunities to make a difference. J. L. Molnar (Ed.). Berkeley: University of California Press.
+
+Earth Resources Observation and Science Center (2024). Annual National Land Cover Database. U.S. Geological Survey. Retrieved from https://www.usgs.gov/centers/eros/science/data-access
