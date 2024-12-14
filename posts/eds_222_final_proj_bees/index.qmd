@@ -31,6 +31,8 @@ Several factor's make California an ideal microcosm to analyze the effect of pes
 
 Therefore in this analysis, we will be analyzing pesticide use. Later, we introduce another variable, land cover, to see if there is a significant effect. 
 
+![](bee_pesticide_map.png "Bee Pesticide Map"){fig-align="center"}
+
 ## Key Highlights
 * Creation of two error models
   + A two variable model between biodiversity and pesticide use.
@@ -230,6 +232,7 @@ This initial analysis found that there was no significant correlation between bi
 
 
 <u>From here</u>
+
 Because biodiversity and pesticide use was not significantly correlated, I want to add more variables to see if there is potentially omitted variable bias. I decided to add land cover to the model because of it's relation to habitat fragmentation. Land cover was added as a binary variable, in which the land types were classified into being habitat and non-habitat. Our new model is:
 
 $$\text{Species Richness} = {\beta}_0 + {\beta}_1\text{Pesticide Amount} + {\beta}_2\text{Land Cover}$$
@@ -330,7 +333,7 @@ Despite the result, I will still see if it was a product of chance or not.
   + The difference in y-intercept for the model between habitat and non-habitat land.
 
 ```{r, eval=FALSE}
-#| code-fold: false
+#| code-fold: true
 
 # separate land use values
 biodiversity_hab <- biodiversity %>% 

@@ -279,6 +279,11 @@ window.Quarto = {
 <p>Bees and other pollinators are extremely valuable for the ecosystem services they provide. Yet, throughout the past few decades, they have declined in both population and biodiversity (Goulson et al, 2015). Attributed factors are invasive parasites (Meeus et al, 2011), climate change (Soroye, Newbold, &amp; Kerr, 2020), habitat destruction (and fragmentation (Aizen &amp; Feinsinger, 1994), and pesticide use (Arena &amp; Sgolastra, 2014).</p>
 <p>Several factor’s make California an ideal microcosm to analyze the effect of pesticides on bee biodiversity. * The state’s 1989 Food Safety Act requires uniquely high standards for reporting (California DPR, 2023). Pesticide use datasets out of CA are therefore large and highly detailed. * CA is size means it has many different ecosystems contained within the same political boundaries. * CA is a agricultural hotspot in the country, meaning there are areas of intensive pesticide use.</p>
 <p>Therefore in this analysis, we will be analyzing pesticide use. Later, we introduce another variable, land cover, to see if there is a significant effect.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="bee_pesticide_map.png" title="Bee Pesticide Map" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
 <section id="key-highlights" class="level2">
 <h2 class="anchored" data-anchor-id="key-highlights">Key Highlights</h2>
 <ul>
@@ -506,7 +511,8 @@ Demonstration of spatial autocorrelation. On top, Moran’s I falls outside the 
 <span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>err_res_lm <span class="ot">&lt;-</span> <span class="fu">lm</span>(lag_mod_tib<span class="sc">$</span>neighborhood_err <span class="sc">~</span> lag_mod_tib<span class="sc">$</span>error_resid)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>This initial analysis found that there was no significant correlation between biodiversity and pesticide use. There are a variety of possible reasons which I will discuss in a later section.</p>
-<p><u>From here</u> Because biodiversity and pesticide use was not significantly correlated, I want to add more variables to see if there is potentially omitted variable bias. I decided to add land cover to the model because of it’s relation to habitat fragmentation. Land cover was added as a binary variable, in which the land types were classified into being habitat and non-habitat. Our new model is:</p>
+<p><u>From here</u></p>
+<p>Because biodiversity and pesticide use was not significantly correlated, I want to add more variables to see if there is potentially omitted variable bias. I decided to add land cover to the model because of it’s relation to habitat fragmentation. Land cover was added as a binary variable, in which the land types were classified into being habitat and non-habitat. Our new model is:</p>
 <p><span class="math display">\[\text{Species Richness} = {\beta}_0 + {\beta}_1\text{Pesticide Amount} + {\beta}_2\text{Land Cover}\]</span></p>
 <img src="figs/final_fig.png" title="Pesticide Use vs Biodiversity in Error Model" class="img-fluid quarto-figure quarto-figure-center">
 <figcaption>
@@ -611,6 +617,8 @@ A parallel slopes model for the effect of pesticide use and land cover on specie
 </ul></li>
 </ul>
 <div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># separate land use values</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>biodiversity_hab <span class="ot">&lt;-</span> biodiversity <span class="sc">%&gt;%</span> </span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(land_use <span class="sc">==</span> <span class="dv">1</span>)</span>
@@ -627,6 +635,7 @@ A parallel slopes model for the effect of pesticide use and land cover on specie
 <span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a><span class="co"># get difference</span></span>
 <span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>diff <span class="ot">&lt;-</span> t_st_hab <span class="sc">-</span> t_st_non_hab</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <ol start="3" type="1">
 <li>Run a randomization test</li>
