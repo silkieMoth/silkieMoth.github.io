@@ -23,6 +23,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -74,6 +108,35 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 <meta name="quarto:status" content="draft">
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -189,7 +252,16 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#magnitude-of-habitat-fragmentation-by-terrestrial-ecoregion" id="toc-magnitude-of-habitat-fragmentation-by-terrestrial-ecoregion" class="nav-link" data-scroll-target="#magnitude-of-habitat-fragmentation-by-terrestrial-ecoregion">Magnitude of Habitat Fragmentation by Terrestrial Ecoregion</a></li>
   <li><a href="#usgs-2023-land-cover-conus" id="toc-usgs-2023-land-cover-conus" class="nav-link" data-scroll-target="#usgs-2023-land-cover-conus">USGS 2023 Land Cover (CONUS)</a></li>
   </ul></li>
-  <li><a href="#analysis-plan" id="toc-analysis-plan" class="nav-link" data-scroll-target="#analysis-plan">Analysis Plan</a></li>
+  <li><a href="#analysis-plan" id="toc-analysis-plan" class="nav-link" data-scroll-target="#analysis-plan">Analysis Plan</a>
+  <ul class="collapse">
+  <li><a href="#final-figure" id="toc-final-figure" class="nav-link" data-scroll-target="#final-figure">Final Figure</a></li>
+  <li><a href="#hypothesis-test" id="toc-hypothesis-test" class="nav-link" data-scroll-target="#hypothesis-test">Hypothesis Test</a></li>
+  </ul></li>
+  <li><a href="#discussion" id="toc-discussion" class="nav-link" data-scroll-target="#discussion">Discussion</a>
+  <ul class="collapse">
+  <li><a href="#reflection" id="toc-reflection" class="nav-link" data-scroll-target="#reflection">Reflection</a></li>
+  <li><a href="#possible-next-steps" id="toc-possible-next-steps" class="nav-link" data-scroll-target="#possible-next-steps">Possible Next Steps</a></li>
+  </ul></li>
   <li><a href="#citations" id="toc-citations" class="nav-link" data-scroll-target="#citations">Citations</a>
   <ul class="collapse">
   <li><a href="#in-text" id="toc-in-text" class="nav-link" data-scroll-target="#in-text">In Text</a></li>
@@ -358,6 +430,360 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="analysis-plan" class="level1">
 <h1>Analysis Plan</h1>
+<p>My first question is simply if there is a significant effect of pesticide use on bee biodiversity. The model can be written as:</p>
+<p><span class="math display">\[\text{Species Richness} = {\beta}_0 + {\beta}_1\text{Pesticide Amount}\]</span></p>
+<p><u>Analysis Plan</u>: 1. Join data + Pesticide data and CA County shapefile is joinable by <code>county_cd</code> (county code) + Shapefile and bee occurrence data are joinable by spatial relationship.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># group by county and join population</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>counties <span class="ot">&lt;-</span> townships <span class="sc">%&gt;%</span> </span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">clean_names</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(county_cd) <span class="sc">%&gt;%</span> </span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">geometry =</span> <span class="fu">st_union</span>(geometry)) <span class="sc">%&gt;%</span> </span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">inner_join</span>(pop_mean, <span class="at">by =</span> <span class="fu">join_by</span>(<span class="st">'county_cd'</span>))</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co"># get pesticide sum by county</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>pesticides_sum <span class="ot">&lt;-</span> pesticides <span class="sc">%&gt;%</span> </span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(lbs_prd_used, county_cd) <span class="sc">%&gt;%</span> </span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(county_cd) <span class="sc">%&gt;%</span> </span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">lbs_prd_used =</span> <span class="fu">sum</span>(lbs_prd_used, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="co"># join by county</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>pest_by_county <span class="ot">&lt;-</span> <span class="fu">left_join</span>(counties, pesticides_sum, <span class="at">by =</span> <span class="fu">join_by</span>(county_cd))</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="co"># select for rows with ids down to species</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>bee_species <span class="ot">&lt;-</span> bees <span class="sc">%&gt;%</span> </span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(taxonRank <span class="sc">==</span> <span class="st">'Species'</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="st">'id'</span>, <span class="st">'scientificName'</span>)</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="co"># get species richness, by county</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>biodiversity <span class="ot">&lt;-</span> <span class="fu">st_join</span>(pest_by_county, bee_species) <span class="sc">%&gt;%</span> </span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(county_name) <span class="sc">%&gt;%</span> </span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">lbs_prd_used =</span> <span class="fu">first</span>(lbs_prd_used), </span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>            <span class="at">sp_richness =</span> <span class="fu">n_distinct</span>(scientificName)<span class="sc">/</span><span class="fu">n</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<ol start="2" type="1">
+<li>Create initial linear model</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>biodiv_lm <span class="ot">&lt;-</span> <span class="fu">lm</span>(sp_richness <span class="sc">~</span> kg_prd_used, biodiversity)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="initial_lm.png" title="Initial linear model between biodiversity and pesticide use." class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<ol start="3" type="1">
+<li>Diagnose spatial autocorrelation.</li>
+</ol>
+<ul>
+<li>Spatial data often violates the homoscedasticity assumption of Only Least Squares (OLS), skewing the results when creating a basic linear model, due to Tobler’s first law of geography.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># get linear model</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>biodiv_lm <span class="ot">&lt;-</span> <span class="fu">lm</span>(sp_richness <span class="sc">~</span> kg_prd_used, biodiversity)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># attach resids to dataset</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>biodiversity <span class="ot">&lt;-</span> biodiversity <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">sp_pest_resid =</span> <span class="fu">resid</span>(biodiv_lm))</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co"># get centroids of each county polygon</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>bio_center <span class="ot">&lt;-</span> <span class="fu">st_centroid</span>(biodiversity)</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="co"># try and calculate spatial autocorrelation at 50 km</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>bee_nb <span class="ot">&lt;-</span> <span class="fu">dnearneigh</span>(bio_center, <span class="at">d1 =</span> <span class="dv">0</span>, <span class="at">d2 =</span> <span class="dv">100000</span>)</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="co"># assign weights to each neighboring object</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>bee_lw <span class="ot">&lt;-</span> <span class="fu">nb2listw</span>(bee_nb, <span class="at">style =</span> <span class="st">'W'</span>, <span class="at">zero.policy =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="co"># get moran I</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>bee_resid_moran <span class="ot">&lt;-</span> <span class="fu">moran</span>(biodiversity<span class="sc">$</span>sp_pest_resid, </span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>                         <span class="at">listw =</span> bee_lw, </span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>                         <span class="at">n =</span> <span class="fu">length</span>(bee_nb), </span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>                         <span class="at">S0 =</span> <span class="fu">Szero</span>(bee_lw))</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a><span class="co"># run 999 simulations</span></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>bee_mc <span class="ot">&lt;-</span> <span class="fu">moran.mc</span>(biodiversity<span class="sc">$</span>sp_pest_resid, bee_lw, <span class="at">nsim =</span> <span class="dv">999</span>)</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a><span class="co"># running a lag model</span></span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>lag_mod <span class="ot">&lt;-</span> <span class="fu">lag.listw</span>(bee_lw, biodiversity<span class="sc">$</span>sp_pest_resid)</span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a><span class="co"># making lag model table</span></span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>lag_mod_tib <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">resids =</span> biodiversity<span class="sc">$</span>sp_pest_resid, <span class="at">neighborhood =</span> lag_mod)</span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a><span class="co"># lag mod lm</span></span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>lag_lm <span class="ot">&lt;-</span> <span class="fu">lm</span>(neighborhood <span class="sc">~</span> resids, <span class="at">data =</span> lag_mod_tib)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/simple_patchwork.png" title="Effect of Error Model." class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<ol start="4" type="1">
+<li>If spatial autocorrelation is present, create an error model.</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>bio_err <span class="ot">&lt;-</span> <span class="fu">errorsarlm</span>(sp_richness <span class="sc">~</span> kg_prd_used, </span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>            <span class="at">data =</span> biodiversity,</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">listw =</span> bee_lw,</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">na.action =</span> na.exclude, </span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">zero.policy =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(bio_err)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>We had run a lag model to correct for the autocorrelation. A lag model is a model in which the variables are offset step by step from one another, and that offset can be plotted on a figure with the lag on the x-axis, and the neighborhood on the y-axis. Variables that have autocorrelation between variables will hang for a while before hovering around the mean, whereas variables with no spatial autocorrelation nearly immediately begin hovering around the mean.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># add model and model residuals column to lag tibble</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="fu">exists</span>(<span class="st">'error_mod'</span>) <span class="sc">==</span> <span class="cn">FALSE</span>){</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>lag_mod_tib <span class="ot">&lt;-</span> lag_mod_tib <span class="sc">%&gt;%</span> <span class="fu">add_column</span>(<span class="at">error_mod =</span> <span class="fu">fitted</span>(bio_err), <span class="at">error_resid =</span> <span class="fu">resid</span>(bio_err))</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co"># running a lag model with the error model</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>lag_mod_err <span class="ot">&lt;-</span> <span class="fu">lag.listw</span>(bee_lw, lag_mod_tib<span class="sc">$</span>error_resid)</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="co"># get moran I for error model</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>err_moran <span class="ot">&lt;-</span> <span class="fu">moran</span>(lag_mod_tib<span class="sc">$</span>error_resid, <span class="at">listw =</span> bee_lw, <span class="at">n =</span> <span class="fu">length</span>(bee_nb), <span class="at">S0 =</span> <span class="fu">Szero</span>(bee_lw))</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="co"># run simulation with error model</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>resid_mc <span class="ot">&lt;-</span> <span class="fu">moran.mc</span>(lag_mod_tib<span class="sc">$</span>error_resid, bee_lw, <span class="at">nsim =</span> <span class="dv">999</span>)</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="co"># add lag for error to tibble</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="st">'neighborhood_err'</span> <span class="sc">%in%</span> <span class="fu">names</span>(lag_mod_tib) <span class="sc">==</span> <span class="cn">FALSE</span>){</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>lag_mod_tib <span class="ot">&lt;-</span> lag_mod_tib <span class="sc">%&gt;%</span> <span class="fu">add_column</span>(<span class="at">neighborhood_err =</span> lag_mod_err)</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a><span class="co"># run an lm to get p for errors neighborhood ~ resid</span></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>err_res_lm <span class="ot">&lt;-</span> <span class="fu">lm</span>(lag_mod_tib<span class="sc">$</span>neighborhood_err <span class="sc">~</span> lag_mod_tib<span class="sc">$</span>error_resid)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>This initial analysis found that there was no significant correlation between biodiversity and pesticide use. There are a variety of possible reasons which I will discuss in a later section.</p>
+<p>Because biodiversity and pesticide use was not significantly correlated, I want to add more variables to see if there is potentially omitted variable bias. The variables I chose are: * Population density, due to it’s implicit connection with development. * habitat fragmentation * and land cover, added as a binary variable between habitat and non-habitat cover.</p>
+<p><u>From here</u> 1. I ran several more linear models to check for correlations, in which each new variable was added to the original linear model individually. 2. The variable that was most correlative with the lowest p-value was land cover, so I decide to test for spatial autocorrelation again, and add to my error model. Our new model is:</p>
+<p><span class="math display">\[\text{Species Richness} = {\beta}_0 + {\beta}_1\text{Pesticide Amount} + {\beta}_2\text{Land Cover}\]</span></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/final_fig.png" title="Pesticide Use vs Biodiversity in Error Model" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="land_cover_lm.png" title="Biodiversity Against Pesticide Use and Land Cover" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<p>The code and figures are very similar from before.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># new lm w land cover</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>land_use_lm <span class="ot">&lt;-</span> <span class="fu">summary</span>(<span class="fu">lm</span>(sp_richness <span class="sc">~</span> kg_prd_used <span class="sc">+</span> land_use, biodiversity))</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co"># attaching resids of new lm to df</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>biodiversity <span class="ot">&lt;-</span> biodiversity <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">sp_pest_land_resid =</span> <span class="fu">resid</span>(land_use_lm))</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co"># get moran I again for the model with land cover</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>bee_resid_moran <span class="ot">&lt;-</span> <span class="fu">moran</span>(biodiversity<span class="sc">$</span>sp_pest_land_resid, </span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>                         <span class="at">listw =</span> bee_lw, </span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>                         <span class="at">n =</span> <span class="fu">length</span>(bee_nb), </span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>                         <span class="at">S0 =</span> <span class="fu">Szero</span>(bee_lw))</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="co"># run 999 simulations</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>bee_mc <span class="ot">&lt;-</span> <span class="fu">moran.mc</span>(biodiversity<span class="sc">$</span>sp_pest_land_resid, bee_lw, <span class="at">nsim =</span> <span class="dv">999</span>)</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a><span class="co"># running a lag model</span></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>lag_mod <span class="ot">&lt;-</span> <span class="fu">lag.listw</span>(bee_lw, biodiversity<span class="sc">$</span>sp_pest_land_resid)</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a><span class="co"># making lag model table</span></span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>lag_mod_tib <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">resids =</span> biodiversity<span class="sc">$</span>sp_pest_land_resid, <span class="at">neighborhood =</span> lag_mod)</span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a><span class="co"># lag mod lm</span></span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>lag_lm <span class="ot">&lt;-</span> <span class="fu">lm</span>(neighborhood <span class="sc">~</span> resids, <span class="at">data =</span> lag_mod_tib)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>The neighborhood weighting from the previous error model is already suitable for this one so there’s no need to do it again.</p>
+<p>There was possibly some autocorrelation. While the r<sup>2</sup> of the residuals is close to 0, the Moran’s I was still somewhat off from the null dist.</p>
+<p>Making the error model and running the lag model:</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>bio_land_err <span class="ot">&lt;-</span> <span class="fu">errorsarlm</span>(sp_richness <span class="sc">~</span> kg_prd_used <span class="sc">+</span> land_use, </span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>                <span class="at">data =</span> biodiversity,</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>                <span class="at">listw =</span> bee_lw,</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>                <span class="at">na.action =</span> na.exclude, </span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>                <span class="at">zero.policy =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(bio_land_err)</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="co"># add model and model residuals column to lag tibble</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="fu">exists</span>(<span class="st">'error_mod_land'</span>) <span class="sc">==</span> <span class="cn">FALSE</span>){</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>lag_mod_tib <span class="ot">&lt;-</span> lag_mod_tib <span class="sc">%&gt;%</span> <span class="fu">add_column</span>(<span class="at">error_mod_land =</span> <span class="fu">fitted</span>(bio_land_err), <span class="at">error_resid_land =</span> <span class="fu">resid</span>(bio_land_err))</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="co"># running a lag model with the error model</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>lag_mod_err <span class="ot">&lt;-</span> <span class="fu">lag.listw</span>(bee_lw, lag_mod_tib<span class="sc">$</span>error_resid_land)</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a><span class="co"># get moran I for error model</span></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>err_moran <span class="ot">&lt;-</span> <span class="fu">moran</span>(lag_mod_tib<span class="sc">$</span>error_resid_land, <span class="at">listw =</span> bee_lw, <span class="at">n =</span> <span class="fu">length</span>(bee_nb), <span class="at">S0 =</span> <span class="fu">Szero</span>(bee_lw))</span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a><span class="co"># run simulation with error model</span></span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>resid_mc <span class="ot">&lt;-</span> <span class="fu">moran.mc</span>(lag_mod_tib<span class="sc">$</span>error_resid_land, bee_lw, <span class="at">nsim =</span> <span class="dv">999</span>)</span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a><span class="co"># add lag for error to tibble</span></span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="st">'neighborhood_err_land'</span> <span class="sc">%in%</span> <span class="fu">names</span>(lag_mod_tib) <span class="sc">==</span> <span class="cn">FALSE</span>){</span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>lag_mod_tib <span class="ot">&lt;-</span> lag_mod_tib <span class="sc">%&gt;%</span> <span class="fu">add_column</span>(<span class="at">neighborhood_err_land =</span> lag_mod_err)</span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a><span class="co"># run an lm to get p for errors neighborhood ~ resid</span></span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>err_res_lm <span class="ot">&lt;-</span> <span class="fu">lm</span>(lag_mod_tib<span class="sc">$</span>neighborhood_err_land <span class="sc">~</span> lag_mod_tib<span class="sc">$</span>error_resid_land)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<section id="final-figure" class="level3">
+<h3 class="anchored" data-anchor-id="final-figure">Final Figure</h3>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/final_land_fig.png" title="Pesticide Use and Land Cover vs Biodiversity in Error Model" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<p>While our relationship between pesticide use and biodiversity still was not significant, the relationship between biodiversity and land cover was. In this parallel slopes model, the difference between bee habitat land and non bee habitat land is distinct.</p>
+</section>
+<section id="hypothesis-test" class="level3">
+<h3 class="anchored" data-anchor-id="hypothesis-test">Hypothesis Test</h3>
+<p>Despite the result, I will still see if it was a product of chance or not.</p>
+<ol type="1">
+<li>Declare the hypothesis</li>
+</ol>
+<ul>
+<li>H<sub>0</sub> = There is no significant effect of habitat on the relationship between biodiversity and pesticide use.</li>
+<li>H<sub>A</sub> = There is a significant effect of habitat on the relationship between biodiversity and pesticide use.</li>
+</ul>
+<ol start="2" type="1">
+<li>Obtain t-statistic</li>
+</ol>
+<ul>
+<li>Our t-statistic is…
+<ul>
+<li>The difference in y-intercept for the model between habitat and non-habitat land.</li>
+</ul></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># separate land use values</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>biodiversity_hab <span class="ot">&lt;-</span> biodiversity <span class="sc">%&gt;%</span> </span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(land_use <span class="sc">==</span> <span class="dv">1</span>)</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>biodiversity_non_hab <span class="ot">&lt;-</span> biodiversity <span class="sc">%&gt;%</span> </span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(land_use <span class="sc">==</span> <span class="dv">0</span>)</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="co"># make linear models to get y ints from</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>hab_error <span class="ot">&lt;-</span> <span class="fu">lm</span>(sp_richness <span class="sc">~</span> kg_prd_used, biodiversity_hab)</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>non_hab_error <span class="ot">&lt;-</span> <span class="fu">lm</span>(sp_richness <span class="sc">~</span> kg_prd_used, biodiversity_non_hab)</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="co"># get y intercepts</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>t_st_hab <span class="ot">&lt;-</span> <span class="fu">coef</span>(<span class="fu">summary</span>(hab_error))[<span class="dv">1</span>,<span class="dv">1</span>]</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>t_st_non_hab <span class="ot">&lt;-</span> <span class="fu">coef</span>(<span class="fu">summary</span>(non_hab_error))[<span class="dv">1</span>,<span class="dv">1</span>]</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a><span class="co"># get difference</span></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>diff <span class="ot">&lt;-</span> t_st_hab <span class="sc">-</span> t_st_non_hab</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ol start="3" type="1">
+<li>Run a randomization test</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>biodiversity_null <span class="ot">&lt;-</span> <span class="fu">replicate</span>(<span class="dv">1000</span>, {</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co"># shuffle habitat in biodiversity</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>biodiversity_shuffle <span class="ot">&lt;-</span> biodiversity <span class="sc">%&gt;%</span> </span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">land_use =</span> <span class="fu">rbinom</span>(<span class="fu">nrow</span>(biodiversity), <span class="dv">1</span>, <span class="fl">0.5</span>))</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="co"># separate land use values</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>biodiversity_hab <span class="ot">&lt;-</span> biodiversity_shuffle <span class="sc">%&gt;%</span> </span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(land_use <span class="sc">==</span> <span class="dv">1</span>)</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>biodiversity_non_hab <span class="ot">&lt;-</span> biodiversity_shuffle <span class="sc">%&gt;%</span> </span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(land_use <span class="sc">==</span> <span class="dv">0</span>)</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="co"># make error models to get y ints from</span></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>hab_error <span class="ot">&lt;-</span> <span class="fu">lm</span>(sp_richness <span class="sc">~</span> kg_prd_used, biodiversity_hab)</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>non_hab_error <span class="ot">&lt;-</span> <span class="fu">lm</span>(sp_richness <span class="sc">~</span> kg_prd_used, biodiversity_non_hab)</span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a><span class="co"># get y intercepts</span></span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>t_st_hab <span class="ot">&lt;-</span> <span class="fu">coef</span>(<span class="fu">summary</span>(hab_error))[<span class="dv">1</span>,<span class="dv">1</span>]</span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>t_st_non_hab <span class="ot">&lt;-</span> <span class="fu">coef</span>(<span class="fu">summary</span>(non_hab_error))[<span class="dv">1</span>,<span class="dv">1</span>]</span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a><span class="co"># get difference</span></span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>diff <span class="ot">&lt;-</span> t_st_hab <span class="sc">-</span> t_st_non_hab</span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ol start="4" type="1">
+<li>Obtain p-value</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>p_value <span class="ot">&lt;-</span> <span class="fu">sum</span>(biodiversity_null <span class="sc">&gt;</span> diff) <span class="sc">/</span><span class="fu">length</span>(biodiversity_null)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<img src="figs/hypothesis_test.png" title="Hypothesis Test Null Distribution" class="img-fluid quarto-figure quarto-figure-center">
+<figcaption>
+A histogram of a normal distribution for the randomization test. The difference in y intercept was obtained 1000 times when randomly shuffling the land cover variable.
+</figcaption>
+<p><br> 5. Accept or reject the null hypothesis</p>
+<p>Because the p-value is significantly below p = 0.05, we can reject the null.</p>
+<p>This is obviously possibly an erroneous result, as it’s extremely unlikely for our t-statistic to be so far outside the null distribution.</p>
+</section>
+</section>
+<section id="discussion" class="level1">
+<h1>Discussion</h1>
+<section id="reflection" class="level2">
+<h2 class="anchored" data-anchor-id="reflection">Reflection</h2>
+<p>While I hypothesized that we would see a significant effect between biodiversity and pesticide use, we didn’t. There are several possible reasons for this.</p>
+<ol type="1">
+<li>Complexity of ecological forces</li>
+</ol>
+<ul>
+<li>While it remains true that bee populations are in decline, it’s also a somewhat complicated topic. For one, not all bee species are equally vulnerable. Bumblebee’s longer flight ranges and bigger bodies allow them to tough out the dredge of a long flight from one isolate habitat patch to another and the toxicity of pesticides better than honeybees do (Greenleaf et al, 2007). Furthermore, bees have shown to have a significant amount of phenotypic plasticity, in which they are able to modify their behavior according to their environment (Corona, Libbrecht, &amp; Wheeler, 2016). Furthermore, a significant amount of invasive pressure comes from other bees - the European Honeybee.</li>
+</ul>
+<ol start="2" type="1">
+<li>Analysis biases</li>
+</ol>
+<ul>
+<li>Poor data precision
+<ul>
+<li>Disappointingly, the pesticide data, in spite of all it’s detail, did not have a column on it in order to join with the shapefile that came with it by township. This possibly affected the results of this analysis, as all the data, even if it was originally in great detail, had to be aggregated up to the county level.</li>
+</ul></li>
+<li>The hypothesis test was notable as it was likely flawed. For one, I was not able to use an error model due to a strange error in the hypothesis test. Secondly, my p-statistic was suspiciously low.</li>
+</ul>
+<ol start="3" type="1">
+<li>Data biases</li>
+</ol>
+<ul>
+<li>Uneven distribution of data points
+<ul>
+<li>Big Bee, a database that contains data from a multitude of sources is unlikely to have it’s data be distributed evenly in space for if no other reason that data is more likely to be collected where people already are. It has many different partner and sources but it also collects research grade iNaturalist observations meaning it’s possible there will be less observations out in the middle of the desert and more in a popular park and picnic spot.</li>
+</ul></li>
+</ul>
+</section>
+<section id="possible-next-steps" class="level2">
+<h2 class="anchored" data-anchor-id="possible-next-steps">Possible Next Steps</h2>
+<p>Bee ecology and decline is a complex topic and there is still much left to learn. Ways I could continue this analysis include…</p>
+<ol type="1">
+<li>Refine this analysis and correct possible mistakes</li>
+</ol>
+<ul>
+<li>There are a multitude of ways this analysis could be improved.
+<ul>
+<li>How do we visualize the pesticide data with more precision? It’s possible there is something I missed, and the CA DPR may be able to help. Being about to accomplish this could lead to more interesting results than the ones obtained here.</li>
+<li>Another possibility is to apply a logistic regression model to the land_cover variable. Because it’s the variable that appears to be most significantly correlated, it could be investigated further. Because it is such a high resolution dataset with many different land types, it may warrant it’s own analysis.</li>
+</ul></li>
+</ul>
+<ol start="2" type="1">
+<li>Investigate other variables</li>
+</ol>
+<ul>
+<li>Variables such as the influence of parasites and climate change are things that weren’t at all included in this analysis. Invasive parasites have been cited as being a notable contributor to colony collapse disorder (Meeus et al, 2011), and climate change continues to have it’s own negative effects (Soroye, Newbold, &amp; Kerr, 2020).</li>
+</ul>
+<ol start="3" type="1">
+<li>Possible interactions with non-bee factors</li>
+</ol>
+<ul>
+<li>The environment is confusing and wild, and nothing will ever make sense to us but that makes it all the more beautiful. Of course, this won’t stop us from trying. Is sea level rise affecting a particular taxa’s favorite flower? Is there some stochastic connection between bee activity and monarch migration? These are things we can only know if they’re investigated.</li>
+</ul>
+</section>
 </section>
 <section id="citations" class="level1">
 <h1>Citations</h1>
@@ -369,6 +795,10 @@ ul.task-list li input[type="checkbox"] {
 <p>Soroye, P., Newbold, T., &amp; Kerr, J. (2020). Climate change contributes to widespread declines among bumble bees across continents. Science, 367(6478), 685-688.</p>
 <p>Aizen, M. A., &amp; Feinsinger, P. (1994). Habitat fragmentation, native insect pollinators, and feral honey bees in Argentine’Chaco Serrano’. Ecological applications, 4(2), 378-392.</p>
 <p>Arena, M., &amp; Sgolastra, F. (2014). A meta-analysis comparing the sensitivity of bees to pesticides. Ecotoxicology, 23, 324-334.</p>
+<p>Greenleaf, S. S., Williams, N. M., Winfree, R., &amp; Kremen, C. (2007). Bee foraging ranges and their relationship to body size. Oecologia, 153, 589-596.</p>
+<p>Corona, M., Libbrecht, R., &amp; Wheeler, D. E. (2016). Molecular mechanisms of phenotypic plasticity in social insects. Current opinion in insect science, 13, 55-60.</p>
+<p>Meeus, I., Brown, M. J., De Graaf, D. C., &amp; Smagghe, G. U. Y. (2011). Effects of invasive parasites on bumble bee declines. Conservation Biology, 25(4), 662-671.</p>
+<p>Soroye, P., Newbold, T., &amp; Kerr, J. (2020). Climate change contributes to widespread declines among bumble bees across continents. Science, 367(6478), 685-688.</p>
 </section>
 <section id="data-1" class="level3">
 <h3 class="anchored" data-anchor-id="data-1">Data</h3>

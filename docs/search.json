@@ -131,19 +131,5 @@
     "title": "The Scar Left by the 2017 Santa Barbara and Ventura Thomas Fire",
     "section": "Citations",
     "text": "Citations\n\nIn-Text\nCAL FIRE. (2024, November 15). Statistics. State of California. https://www.fire.ca.gov/our-impact/statistics\nMcKenzie, D., Gedalof, Z., Peterson, D.L. and Mote, P. (2004), Climatic Change, Wildfire, and Conservation. Conservation Biology, 18: 890-902. https://doi.org/10.1111/j.1523-1739.2004.00492.x\n\n\nData\nEarth Resources Observation and Science (EROS) Center. (2020). Landsat 8-9 Operational Land Imager / Thermal Infrared Sensor Level-2, Collection 2 [dataset]. U.S. Geological Survey. Link\nCalifornia Department of Forestry and Fire Protection (2024), California Historical Fire Perimeters [dataset]. California Natural Resources Agency.Link\nUS Environmental Protection Agency. Air Quality System Data Mart [internet database] available via https://aqs.epa.gov/aqsweb/airdata/download_files.html. Accessed October 2024."
-  },
-  {
-    "objectID": "posts/eds_222_final_proj_bees/index.html",
-    "href": "posts/eds_222_final_proj_bees/index.html",
-    "title": "Pesticides and Bee Biodiversity at the Golden Coast",
-    "section": "",
-    "text": "Bees and other pollinators are extremely valuable for the ecosystem services they provide. Yet, throughout the past few decades, they have declined in both population and biodiversity (Goulson et al, 2015). Attributed factors are invasive parasites (Meeus et al, 2011), climate change (Soroye, Newbold, & Kerr, 2020), habitat destruction (and fragmentation (Aizen & Feinsinger, 1994), and pesticide use (Arena & Sgolastra, 2014).\nSeveral factor’s make California an ideal microcosm to analyze the effect of pesticides on bee biodiversity. * The state’s 1989 Food Safety Act requires uniquely high standards for reporting (California DPR, 2023). Pesticide use datasets out of CA are therefore large and highly detailed. * CA is size means it has many different ecosystems contained within the same political boundaries. * CA is a agricultural hotspot in the country, meaning there are areas of intensive pesticide use.\nTherefore in this analysis, we will be analyzing pesticide use. Later, we attempt to introduce other variables such as population density, habitat fragmentation, and land use to see if there is a significant effect.\n\n\n\nCreation of an error model between biodiversity and pesticide use.\nCreation of multiple linear models to detect significant correlations between variables."
-  },
-  {
-    "objectID": "posts/eds_222_final_proj_bees/index.html#key-highlights",
-    "href": "posts/eds_222_final_proj_bees/index.html#key-highlights",
-    "title": "Pesticides and Bee Biodiversity at the Golden Coast",
-    "section": "",
-    "text": "Creation of an error model between biodiversity and pesticide use.\nCreation of multiple linear models to detect significant correlations between variables."
   }
 ]

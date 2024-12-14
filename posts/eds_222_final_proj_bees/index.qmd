@@ -115,6 +115,340 @@ Therefore in this analysis, we will be analyzing pesticide use. Later, we attemp
 
 # Analysis Plan
 
+My first question is simply if there is a significant effect of pesticide use on bee biodiversity. The model can be written as:
+
+$$\text{Species Richness} = {\beta}_0 + {\beta}_1\text{Pesticide Amount}$$
+
+<u>Analysis Plan</u>:
+1. Join data
+  + Pesticide data and CA County shapefile is joinable by `county_cd` (county code)
+  + Shapefile and bee occurrence data are joinable by spatial relationship.
+  
+```{r, eval=FALSE}
+#| code-fold: true
+
+# group by county and join population
+counties <- townships %>% 
+  clean_names() %>% 
+  group_by(county_cd) %>% 
+  summarize(geometry = st_union(geometry)) %>% 
+  inner_join(pop_mean, by = join_by('county_cd'))
+
+# get pesticide sum by county
+pesticides_sum <- pesticides %>% 
+  select(lbs_prd_used, county_cd) %>% 
+  group_by(county_cd) %>% 
+  summarize(lbs_prd_used = sum(lbs_prd_used, na.rm = TRUE))
+
+# join by county
+pest_by_county <- left_join(counties, pesticides_sum, by = join_by(county_cd))
+
+# select for rows with ids down to species
+bee_species <- bees %>% 
+  filter(taxonRank == 'Species') %>% 
+  select('id', 'scientificName')
+
+# get species richness, by county
+biodiversity <- st_join(pest_by_county, bee_species) %>% 
+  group_by(county_name) %>% 
+  summarize(lbs_prd_used = first(lbs_prd_used), 
+            sp_richness = n_distinct(scientificName)/n())
+```
+  
+2. Create initial linear model
+
+```{r, eval=FALSE}
+biodiv_lm <- lm(sp_richness ~ kg_prd_used, biodiversity)
+```
+
+![](initial_lm.png "Initial linear model between biodiversity and pesticide use."){fig-align="center"}
+
+3. Diagnose spatial autocorrelation.
+  + Spatial data often violates the homoscedasticity assumption of Only Least Squares (OLS), skewing the results when creating a basic linear model, due to Tobler's first law of geography.
+  
+```{r, eval=FALSE}
+# get linear model
+biodiv_lm <- lm(sp_richness ~ kg_prd_used, biodiversity)
+
+# attach resids to dataset
+biodiversity <- biodiversity %>% mutate(sp_pest_resid = resid(biodiv_lm))
+
+# get centroids of each county polygon
+bio_center <- st_centroid(biodiversity)
+  
+# try and calculate spatial autocorrelation at 50 km
+bee_nb <- dnearneigh(bio_center, d1 = 0, d2 = 100000)
+
+# assign weights to each neighboring object
+bee_lw <- nb2listw(bee_nb, style = 'W', zero.policy = TRUE)
+
+# get moran I
+bee_resid_moran <- moran(biodiversity$sp_pest_resid, 
+                         listw = bee_lw, 
+                         n = length(bee_nb), 
+                         S0 = Szero(bee_lw))
+
+# run 999 simulations
+bee_mc <- moran.mc(biodiversity$sp_pest_resid, bee_lw, nsim = 999)
+
+# running a lag model
+lag_mod <- lag.listw(bee_lw, biodiversity$sp_pest_resid)
+
+# making lag model table
+lag_mod_tib <- tibble(resids = biodiversity$sp_pest_resid, neighborhood = lag_mod)
+
+# lag mod lm
+lag_lm <- lm(neighborhood ~ resids, data = lag_mod_tib)
+```
+
+![](figs/simple_patchwork.png "Effect of Error Model."){fig-align="center"}
+  
+4. If spatial autocorrelation is present, create an error model.
+
+```{r, eval=FALSE}
+bio_err <- errorsarlm(sp_richness ~ kg_prd_used, 
+            data = biodiversity,
+            listw = bee_lw,
+            na.action = na.exclude, 
+            zero.policy = TRUE)
+
+summary(bio_err)
+```
+
+We had run a lag model to correct for the autocorrelation. A lag model is a model in which the variables are offset step by step from one another, and that offset can be plotted on a figure with the lag on the x-axis, and the neighborhood on the y-axis. Variables that have autocorrelation between variables will hang for a while before hovering around the mean, whereas variables with no spatial autocorrelation nearly immediately begin hovering around the mean. 
+
+```{r, eval=FALSE}
+# add model and model residuals column to lag tibble
+if(exists('error_mod') == FALSE){
+lag_mod_tib <- lag_mod_tib %>% add_column(error_mod = fitted(bio_err), error_resid = resid(bio_err))
+}
+
+# running a lag model with the error model
+lag_mod_err <- lag.listw(bee_lw, lag_mod_tib$error_resid)
+
+# get moran I for error model
+err_moran <- moran(lag_mod_tib$error_resid, listw = bee_lw, n = length(bee_nb), S0 = Szero(bee_lw))
+
+# run simulation with error model
+resid_mc <- moran.mc(lag_mod_tib$error_resid, bee_lw, nsim = 999)
+
+# add lag for error to tibble
+if ('neighborhood_err' %in% names(lag_mod_tib) == FALSE){
+lag_mod_tib <- lag_mod_tib %>% add_column(neighborhood_err = lag_mod_err)
+}
+
+# run an lm to get p for errors neighborhood ~ resid
+err_res_lm <- lm(lag_mod_tib$neighborhood_err ~ lag_mod_tib$error_resid)
+```
+
+
+This initial analysis found that there was no significant correlation between biodiversity and pesticide use. There are a variety of possible reasons which I will discuss in a later section. 
+
+Because biodiversity and pesticide use was not significantly correlated, I want to add more variables to see if there is potentially omitted variable bias. The variables I chose are:
+* Population density, due to it's implicit connection with development.
+* habitat fragmentation
+* and land cover, added as a binary variable between habitat and non-habitat cover.
+
+
+<u>From here</u>
+1. I ran several more linear models to check for correlations, in which each new variable was added to the original linear model individually.
+2. The variable that was most correlative with the lowest p-value was land cover, so I decide to test for spatial autocorrelation again, and add to my error model. Our new model is:
+
+$$\text{Species Richness} = {\beta}_0 + {\beta}_1\text{Pesticide Amount} + {\beta}_2\text{Land Cover}$$
+
+![](figs/final_fig.png "Pesticide Use vs Biodiversity in Error Model"){fig-align="center"}
+
+
+![](land_cover_lm.png "Biodiversity Against Pesticide Use and Land Cover"){fig-align="center"}
+
+The code and figures are very similar from before.
+
+```{r, eval=FALSE}
+#| code-fold: true
+
+# new lm w land cover
+land_use_lm <- summary(lm(sp_richness ~ kg_prd_used + land_use, biodiversity))
+
+# attaching resids of new lm to df
+biodiversity <- biodiversity %>% mutate(sp_pest_land_resid = resid(land_use_lm))
+
+# get moran I again for the model with land cover
+bee_resid_moran <- moran(biodiversity$sp_pest_land_resid, 
+                         listw = bee_lw, 
+                         n = length(bee_nb), 
+                         S0 = Szero(bee_lw))
+
+# run 999 simulations
+bee_mc <- moran.mc(biodiversity$sp_pest_land_resid, bee_lw, nsim = 999)
+
+# running a lag model
+lag_mod <- lag.listw(bee_lw, biodiversity$sp_pest_land_resid)
+
+# making lag model table
+lag_mod_tib <- tibble(resids = biodiversity$sp_pest_land_resid, neighborhood = lag_mod)
+
+# lag mod lm
+lag_lm <- lm(neighborhood ~ resids, data = lag_mod_tib)
+```
+
+The neighborhood weighting from the previous error model is already suitable for this one so there's no need to do it again.
+
+There was possibly some autocorrelation. While the r<sup>2</sup> of the residuals is close to 0, the Moran's I was still somewhat off from the null dist.
+
+Making the error model and running the lag model:
+```{r, eval=FALSE}
+#| code-fold: true
+
+bio_land_err <- errorsarlm(sp_richness ~ kg_prd_used + land_use, 
+                data = biodiversity,
+                listw = bee_lw,
+                na.action = na.exclude, 
+                zero.policy = TRUE)
+
+summary(bio_land_err)
+
+# add model and model residuals column to lag tibble
+if(exists('error_mod_land') == FALSE){
+lag_mod_tib <- lag_mod_tib %>% add_column(error_mod_land = fitted(bio_land_err), error_resid_land = resid(bio_land_err))
+}
+
+# running a lag model with the error model
+lag_mod_err <- lag.listw(bee_lw, lag_mod_tib$error_resid_land)
+
+# get moran I for error model
+err_moran <- moran(lag_mod_tib$error_resid_land, listw = bee_lw, n = length(bee_nb), S0 = Szero(bee_lw))
+
+# run simulation with error model
+resid_mc <- moran.mc(lag_mod_tib$error_resid_land, bee_lw, nsim = 999)
+
+# add lag for error to tibble
+if ('neighborhood_err_land' %in% names(lag_mod_tib) == FALSE){
+lag_mod_tib <- lag_mod_tib %>% add_column(neighborhood_err_land = lag_mod_err)
+}
+
+# run an lm to get p for errors neighborhood ~ resid
+err_res_lm <- lm(lag_mod_tib$neighborhood_err_land ~ lag_mod_tib$error_resid_land)
+```
+
+### Final Figure
+![](figs/final_land_fig.png "Pesticide Use and Land Cover vs Biodiversity in Error Model"){fig-align="center"}
+<figcaption>A parallel slopes model for the effect of pesticide use and land cover on species richness. There is more biodiversity in habitat land types such as grasslands and forests than there are in  non-habitat land types such as development. While the pesticide use variable was not significant, the land cover variable was. Species richness has been normalized by sample size.</figcaption>
+<br>
+While our relationship between pesticide use and biodiversity still was not significant, the relationship between biodiversity and land cover was. In this parallel slopes model, the difference between bee habitat land and non bee habitat land is distinct.
+
+### Hypothesis Test
+
+Despite the result, I will still see if it was a product of chance or not.
+
+1. Declare the hypothesis
+  + H<sub>0</sub> = There is no significant effect of habitat on the relationship between biodiversity and pesticide use.
+  + H<sub>A</sub> = There is a significant effect of habitat on the relationship between biodiversity and pesticide use.
+
+2. Obtain t-statistic
+
+* Our t-statistic is...
+  + The difference in y-intercept for the model between habitat and non-habitat land.
+
+```{r, eval=FALSE}
+#| code-fold: false
+
+# separate land use values
+biodiversity_hab <- biodiversity %>% 
+  filter(land_use == 1)
+biodiversity_non_hab <- biodiversity %>% 
+  filter(land_use == 0)
+
+# make linear models to get y ints from
+hab_error <- lm(sp_richness ~ kg_prd_used, biodiversity_hab)
+non_hab_error <- lm(sp_richness ~ kg_prd_used, biodiversity_non_hab)
+
+# get y intercepts
+t_st_hab <- coef(summary(hab_error))[1,1]
+t_st_non_hab <- coef(summary(non_hab_error))[1,1]
+
+# get difference
+diff <- t_st_hab - t_st_non_hab
+```
+  
+3. Run a randomization test
+```{r, eval=FALSE}
+
+biodiversity_null <- replicate(1000, {
+
+# shuffle habitat in biodiversity
+biodiversity_shuffle <- biodiversity %>% 
+  mutate(land_use = rbinom(nrow(biodiversity), 1, 0.5))
+
+# separate land use values
+biodiversity_hab <- biodiversity_shuffle %>% 
+  filter(land_use == 1)
+biodiversity_non_hab <- biodiversity_shuffle %>% 
+  filter(land_use == 0)
+
+# make error models to get y ints from
+hab_error <- lm(sp_richness ~ kg_prd_used, biodiversity_hab)
+
+non_hab_error <- lm(sp_richness ~ kg_prd_used, biodiversity_non_hab)
+
+# get y intercepts
+t_st_hab <- coef(summary(hab_error))[1,1]
+t_st_non_hab <- coef(summary(non_hab_error))[1,1]
+
+# get difference
+diff <- t_st_hab - t_st_non_hab
+
+})
+```
+
+
+4. Obtain p-value
+```{r, eval=FALSE}
+p_value <- sum(biodiversity_null > diff) /length(biodiversity_null)
+```
+```{r, echo=FALSE, results='hide'}
+p_value = 0
+```
+```{r, echo=FALSE, results='hide'}
+cat("p-value is:", p_value)
+```
+![](figs/hypothesis_test.png "Hypothesis Test Null Distribution"){fig-align="center"}
+<figcaption>A histogram of a normal distribution for the randomization test. The difference in y intercept was obtained 1000 times when randomly shuffling the land cover variable.</figcaption>
+</br>
+5. Accept or reject the null hypothesis
+
+Because the p-value is significantly below p = 0.05, we can reject the null.
+
+This is obviously possibly an erroneous result, as it's extremely unlikely for our t-statistic to be so far outside the null distribution.
+
+# Discussion
+
+## Reflection
+
+While I hypothesized that we would see a significant effect between biodiversity and pesticide use, we didn't. There are several possible reasons for this.
+
+1. Complexity of ecological forces
+  + While it remains true that bee populations are in decline, it's also a somewhat complicated topic. For one, not all bee species are equally vulnerable. Bumblebee's longer flight ranges and bigger bodies allow them to tough out the dredge of a long flight from one isolate habitat patch to another and the toxicity of pesticides better than honeybees do (Greenleaf et al, 2007). Furthermore, bees have shown to have a significant amount of phenotypic plasticity, in which they are able to modify their behavior according to their environment (Corona, Libbrecht, & Wheeler, 2016). Furthermore, a significant amount of invasive pressure comes from other bees - the European Honeybee.
+2. Analysis biases
+  + Poor data precision
+    - Disappointingly, the pesticide data, in spite of all it's detail, did not have a column on it in order to join with the shapefile that came with it by township. This possibly affected the results of this analysis, as all the data, even if it was originally in great detail, had to be aggregated up to the county level. 
+  + The hypothesis test was notable as it was likely flawed. For one, I was not able to use an error model due to a strange error in the hypothesis test. Secondly, my p-statistic was suspiciously low.
+3. Data biases
+  + Uneven distribution of data points
+    - Big Bee, a database that contains data from a multitude of sources is unlikely to have it's data be distributed evenly in space for if no other reason that data is more likely to be collected where people already are. It has many different partner and sources but it also collects research grade iNaturalist observations meaning it's possible there will be less observations out in the middle of the desert and more in a popular park and picnic spot.
+
+## Possible Next Steps
+
+Bee ecology and decline is a complex topic and there is still much left to learn. Ways I could continue this analysis include...
+
+1. Refine this analysis and correct possible mistakes
+  + There are a multitude of ways this analysis could be improved.
+    - How do we visualize the pesticide data with more precision? It's possible there is something I missed, and the CA DPR may be able to help. Being about to accomplish this could lead to more interesting results than the ones obtained here.
+    - Another possibility is to apply a logistic regression model to the land_cover variable. Because it's the variable that appears to be most significantly correlated, it could be investigated further. Because it is such a high resolution dataset with many different land types, it may warrant it's own analysis.
+2. Investigate other variables
+  + Variables such as the influence of parasites and climate change are things that weren't at all included in this analysis. Invasive parasites have been cited as being a notable contributor to colony collapse disorder (Meeus et al, 2011), and climate change continues to have it's own negative effects (Soroye, Newbold, & Kerr, 2020).
+3. Possible interactions with non-bee factors
+  + The environment is confusing and wild, and nothing will ever make sense to us but that makes it all the more beautiful. Of course, this won't stop us from trying. Is sea level rise affecting a particular taxa's favorite flower? Is there some stochastic connection between bee activity and monarch migration? These are things we can only know if they're investigated.
+    
 
 # Citations
 
@@ -130,6 +464,14 @@ Soroye, P., Newbold, T., & Kerr, J. (2020). Climate change contributes to widesp
 Aizen, M. A., & Feinsinger, P. (1994). Habitat fragmentation, native insect pollinators, and feral honey bees in Argentine'Chaco Serrano'. Ecological applications, 4(2), 378-392.
 
 Arena, M., & Sgolastra, F. (2014). A meta-analysis comparing the sensitivity of bees to pesticides. Ecotoxicology, 23, 324-334.
+
+Greenleaf, S. S., Williams, N. M., Winfree, R., & Kremen, C. (2007). Bee foraging ranges and their relationship to body size. Oecologia, 153, 589-596.
+
+Corona, M., Libbrecht, R., & Wheeler, D. E. (2016). Molecular mechanisms of phenotypic plasticity in social insects. Current opinion in insect science, 13, 55-60.
+
+Meeus, I., Brown, M. J., De Graaf, D. C., & Smagghe, G. U. Y. (2011). Effects of invasive parasites on bumble bee declines. Conservation Biology, 25(4), 662-671.
+
+Soroye, P., Newbold, T., & Kerr, J. (2020). Climate change contributes to widespread declines among bumble bees across continents. Science, 367(6478), 685-688.
 
 ### Data
 Seltmann KC, Allen J, Brown BV, Carper A, Engel MS, Franz N, Gilbert E, Grinter C, Gonzalez VH, Horsley P, Lee S, Maier C, Miko I, Morris P, Oboyski P, Pierce NE, Poelen J, Scott VL, Smith M, Talamas EJ, Tsutsui ND, Tucker E (2021) Announcing Big-Bee: An initiative to promote understanding of bees through image and trait digitization. Biodiversity Information Science and Standards 5: e74037. https://doi.org/10.3897/biss.5.74037
