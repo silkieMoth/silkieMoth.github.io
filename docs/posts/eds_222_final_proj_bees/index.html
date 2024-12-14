@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Joshua Paul Cohen">
-<meta name="dcterms.date" content="2024-12-13">
+<meta name="dcterms.date" content="2024-12-14">
 <meta name="description" content="A data analysis of the effect of California’s pesticide use on Anthophila richness.">
 
 <title>Pesticides and Bee Biodiversity at the Golden Coast – Joshua Paul Cohen</title>
@@ -106,7 +106,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
-<meta name="quarto:status" content="draft">
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
@@ -143,7 +142,7 @@ window.Quarto = {
 <body class="nav-fixed">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top quarto-banner"><div id="quarto-draft-alert" class="alert alert-warning"><i class="bi bi-pencil-square"></i>Draft</div>
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
@@ -225,7 +224,7 @@ window.Quarto = {
       <div>
       <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">December 13, 2024</p>
+        <p class="date">December 14, 2024</p>
       </div>
     </div>
     
@@ -244,6 +243,7 @@ window.Quarto = {
   <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a>
   <ul class="collapse">
   <li><a href="#key-highlights" id="toc-key-highlights" class="nav-link" data-scroll-target="#key-highlights">Key Highlights</a></li>
+  <li><a href="#repository-link" id="toc-repository-link" class="nav-link" data-scroll-target="#repository-link">Repository Link</a></li>
   </ul></li>
   <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data">Data</a>
   <ul class="collapse">
@@ -251,6 +251,9 @@ window.Quarto = {
   <li><a href="#california-dpr-annual-pesticide-summaries" id="toc-california-dpr-annual-pesticide-summaries" class="nav-link" data-scroll-target="#california-dpr-annual-pesticide-summaries">California DPR Annual Pesticide Summaries</a></li>
   <li><a href="#california-public-land-survey-system" id="toc-california-public-land-survey-system" class="nav-link" data-scroll-target="#california-public-land-survey-system">California Public Land Survey System</a></li>
   <li><a href="#usgs-2023-land-cover-conus" id="toc-usgs-2023-land-cover-conus" class="nav-link" data-scroll-target="#usgs-2023-land-cover-conus">USGS 2023 Land Cover (CONUS)</a></li>
+  </ul></li>
+  <li><a href="#analysis-plan" id="toc-analysis-plan" class="nav-link" data-scroll-target="#analysis-plan">Analysis Plan</a>
+  <ul class="collapse">
   <li><a href="#final-figure" id="toc-final-figure" class="nav-link" data-scroll-target="#final-figure">Final Figure</a></li>
   <li><a href="#hypothesis-test" id="toc-hypothesis-test" class="nav-link" data-scroll-target="#hypothesis-test">Hypothesis Test</a></li>
   </ul></li>
@@ -281,7 +284,7 @@ window.Quarto = {
 <p>Therefore in this analysis, we will be analyzing pesticide use. Later, we introduce another variable, land cover, to see if there is a significant effect.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="bee_pesticide_map.png" title="Bee Pesticide Map" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+<p><img src="figs/bee_pesticide_map.png" title="Bee Pesticide Map" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
 </figure>
 </div>
 <section id="key-highlights" class="level2">
@@ -295,6 +298,10 @@ window.Quarto = {
 <li>Diagnosing spatial autocorrelation in our models by running a lag model on the residuals and finding Moran’s I.</li>
 <li>A hypothesis test for the affect of land cover on the model where we rejected the null.</li>
 </ul>
+</section>
+<section id="repository-link" class="level2">
+<h2 class="anchored" data-anchor-id="repository-link">Repository Link</h2>
+<p>All code for this project <a href="https://github.com/silkieMoth/eds-222-final-project">can be accessed here</a>.</p>
 </section>
 </section>
 <section id="data" class="level1">
@@ -391,10 +398,24 @@ window.Quarto = {
 <figcaption>
 A demonstration of a small subset of the data within the USGS Land Cover Dataset. Cropland and grassland are common land types in Solano County, with development also being notable.
 </figcaption>
-<p><br> # Analysis Plan</p>
+<p><br></p>
+</section>
+</section>
+<section id="analysis-plan" class="level1">
+<h1>Analysis Plan</h1>
 <p>My first question is simply if there is a significant effect of pesticide use on bee biodiversity. The model can be written as:</p>
 <p><span class="math display">\[\text{Species Richness} = {\beta}_0 + {\beta}_1\text{Pesticide Amount}\]</span></p>
-<p><u>Analysis Plan</u>: 1. Join data + Pesticide data and CA County shapefile is joinable by <code>county_cd</code> (county code). - The shapefile contains polygons for every township district in the state, but there is no column in the pesticide data to join on that scale, so we must aggregate up to county. + Shapefile and bee occurrence data are joinable by spatial relationship.</p>
+<p><u>Analysis Plan</u>:</p>
+<ol type="1">
+<li>Join data</li>
+</ol>
+<ul>
+<li>Pesticide data and CA County shapefile is joinable by <code>county_cd</code> (county code).
+<ul>
+<li>The shapefile contains polygons for every township district in the state, but there is no column in the pesticide data to join on that scale, so we must aggregate up to county.</li>
+</ul></li>
+<li>Shapefile and bee occurrence data are joinable by spatial relationship.</li>
+</ul>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
@@ -588,7 +609,6 @@ Adding land use to the model, substantially increased the r<sup>2</sup> and made
 <span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>err_res_lm <span class="ot">&lt;-</span> <span class="fu">lm</span>(lag_mod_tib<span class="sc">$</span>neighborhood_err_land <span class="sc">~</span> lag_mod_tib<span class="sc">$</span>error_resid_land)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-</section>
 <section id="final-figure" class="level3">
 <h3 class="anchored" data-anchor-id="final-figure">Final Figure</h3>
 <img src="figs/final_land_fig.png" title="Pesticide Use and Land Cover vs Biodiversity in Error Model" class="img-fluid quarto-figure quarto-figure-center">
@@ -770,13 +790,13 @@ A histogram of a normal distribution for the randomization test. The difference 
 <div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{paul_cohen2024,
   author = {Paul Cohen, Joshua},
   title = {Pesticides and {Bee} {Biodiversity} at the {Golden} {Coast}},
-  date = {2024-12-13},
+  date = {2024-12-14},
   url = {https://silkiemoth.github.io/},
   langid = {en}
 }
 </code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-paul_cohen2024" class="csl-entry quarto-appendix-citeas" role="listitem">
 Paul Cohen, Joshua. 2024. <span>“Pesticides and Bee Biodiversity at the
-Golden Coast.”</span> December 13, 2024. <a href="https://silkiemoth.github.io/">https://silkiemoth.github.io/</a>.
+Golden Coast.”</span> December 14, 2024. <a href="https://silkiemoth.github.io/">https://silkiemoth.github.io/</a>.
 </div></div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
