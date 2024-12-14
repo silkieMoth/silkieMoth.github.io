@@ -13,7 +13,7 @@ bibliography: references.bib
 image: bee_on_flower.png
 citation:
   url: https://silkiemoth.github.io/
-draft: true
+draft: false
 draft-mode: visible
 highlight-style: github
 theme: cosmo
