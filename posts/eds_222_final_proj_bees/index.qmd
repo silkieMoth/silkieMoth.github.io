@@ -29,11 +29,14 @@ Several factor's make California an ideal microcosm to analyze the effect of pes
 * CA is size means it has many different ecosystems contained within the same political boundaries.
 * CA is a agricultural hotspot in the country, meaning there are areas of intensive pesticide use.
 
-Therefore in this analysis, we will be analyzing pesticide use. Later, we attempt to introduce other variables such as population density, habitat fragmentation, and land use to see if there is a significant effect. 
+Therefore in this analysis, we will be analyzing pesticide use. Later, we introduce another variable, land cover, to see if there is a significant effect. 
 
 ## Key Highlights
-* Creation of an error model between biodiversity and pesticide use.
-* Creation of multiple linear models to detect significant correlations between variables.
+* Creation of two error models
+  + A two variable model between biodiversity and pesticide use.
+  + An extrapolation of the previous model with an added predictor of land cover.
+* Diagnosing spatial autocorrelation in our models by running a lag model on the residuals and finding Moran's I.
+* A hypothesis test for the affect of land cover on the model where we rejected the null.
 
 # Data
 ### Big Bee: Extending Anthophila Research Through Image and Trait Digitization
@@ -75,29 +78,6 @@ Therefore in this analysis, we will be analyzing pesticide use. Later, we attemp
   + Pesticide data does not contains a joinable column for township, only joinable by county.
 * Access
   + See pesticide use data.
-  
-### California County Population Totals
-* Description
-  + Excel file containing population estimates for years 2020 to 2023 by county in CA.
-  + Yearly estimates calculated by last year's census estimate + births - deaths + immigration - emigration, and adjusted for demographic info.
-  + Reported as being very accurate by the Census Bureau
-* Access
-  + Data is downloadable from the [U.S Census Bureau website](https://www.census.gov/data/datasets/time-series/demo/popest/2020s-counties-total.html).
-
-### Magnitude of Habitat Fragmentation by Terrestrial Ecoregion
-* Description
-  + Developed by The Nature Conservancy.
-  + Shapefile delineating "ecoregions" based on "fragmenting features".
-  + Global scale.
-  + Features considered include agriculture, urban development, roads, and railroads.
-  + Contains fields for eco region ID codes, ecoregion type, total area and perimeter, and a habitat fragmentation index.
-  + Contains 827 unique types.
-* Limitations
-  + Polygons are large relative to CA, making analysis on a statewide scale unwieldy.
-* Subset in this analysis
-  + All polygon's intersecting CA.
-* Access
-  + Data is downloadable from [it's page on databasin.org](https://databasin.org/datasets/f88b2b0d922642e689864cbd3409c177/).
 
 ### USGS 2023 Land Cover (CONUS)
 * Description
@@ -112,7 +92,8 @@ Therefore in this analysis, we will be analyzing pesticide use. Later, we attemp
   + It is possible to subset the data by uploading a county shapefile [in the MRLC Viewer](https://www.mrlc.gov/viewer/), then download each county individually, but this was not done due to time restrictions.
   
 ![](figs/solano_land_cover.png "Solano County land type distribution."){fig-align="center"}
-
+<figcaption>A demonstration of a small subset of the data within the USGS Land Cover Dataset. Cropland and grassland are common land types in Solano County, with development also being notable.</figcaption>
+</br>
 # Analysis Plan
 
 My first question is simply if there is a significant effect of pesticide use on bee biodiversity. The model can be written as:
@@ -121,7 +102,8 @@ $$\text{Species Richness} = {\beta}_0 + {\beta}_1\text{Pesticide Amount}$$
 
 <u>Analysis Plan</u>:
 1. Join data
-  + Pesticide data and CA County shapefile is joinable by `county_cd` (county code)
+  + Pesticide data and CA County shapefile is joinable by `county_cd` (county code).
+    - The shapefile contains polygons for every township district in the state, but there is no column in the pesticide data to join on that scale, so we must aggregate up to county.
   + Shapefile and bee occurrence data are joinable by spatial relationship.
   
 ```{r, eval=FALSE}
@@ -162,7 +144,8 @@ biodiv_lm <- lm(sp_richness ~ kg_prd_used, biodiversity)
 ```
 
 ![](initial_lm.png "Initial linear model between biodiversity and pesticide use."){fig-align="center"}
-
+<figcaption>Species richness and pesticide use are not coorelated upon initial inspection, as the R<sup>2</sup> is very low and p-value is above 0.10.</figcaption>
+<br>
 3. Diagnose spatial autocorrelation.
   + Spatial data often violates the homoscedasticity assumption of Only Least Squares (OLS), skewing the results when creating a basic linear model, due to Tobler's first law of geography.
   
@@ -202,7 +185,8 @@ lag_lm <- lm(neighborhood ~ resids, data = lag_mod_tib)
 ```
 
 ![](figs/simple_patchwork.png "Effect of Error Model."){fig-align="center"}
-  
+<figcaption>Demonstration of spatial autocorrelation. On top, Moran's I falls outside the range of the null distribution, while the residuals have a slight positive correlation with the spatial neighborhood. The bottom figures are plotted with a error model, remediating the autocorrelation.</figcaption>
+</br>  
 4. If spatial autocorrelation is present, create an error model.
 
 ```{r, eval=FALSE}
@@ -244,23 +228,19 @@ err_res_lm <- lm(lag_mod_tib$neighborhood_err ~ lag_mod_tib$error_resid)
 
 This initial analysis found that there was no significant correlation between biodiversity and pesticide use. There are a variety of possible reasons which I will discuss in a later section. 
 
-Because biodiversity and pesticide use was not significantly correlated, I want to add more variables to see if there is potentially omitted variable bias. The variables I chose are:
-* Population density, due to it's implicit connection with development.
-* habitat fragmentation
-* and land cover, added as a binary variable between habitat and non-habitat cover.
-
 
 <u>From here</u>
-1. I ran several more linear models to check for correlations, in which each new variable was added to the original linear model individually.
-2. The variable that was most correlative with the lowest p-value was land cover, so I decide to test for spatial autocorrelation again, and add to my error model. Our new model is:
+Because biodiversity and pesticide use was not significantly correlated, I want to add more variables to see if there is potentially omitted variable bias. I decided to add land cover to the model because of it's relation to habitat fragmentation. Land cover was added as a binary variable, in which the land types were classified into being habitat and non-habitat. Our new model is:
 
 $$\text{Species Richness} = {\beta}_0 + {\beta}_1\text{Pesticide Amount} + {\beta}_2\text{Land Cover}$$
 
 ![](figs/final_fig.png "Pesticide Use vs Biodiversity in Error Model"){fig-align="center"}
+<figcaption>Pesticide used has been plotted against Biodiversity in a simple two variable linear model. The variables are not significant, but there is a slight negative slope.</figcaption>
 
-
+</br>
 ![](land_cover_lm.png "Biodiversity Against Pesticide Use and Land Cover"){fig-align="center"}
-
+<figcaption>Adding land use to the model, substantially increased the r<sup>2</sup> and made the p-value significant at p < 0.01.</figcaption>
+</br>
 The code and figures are very similar from before.
 
 ```{r, eval=FALSE}

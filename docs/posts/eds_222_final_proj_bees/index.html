@@ -250,12 +250,7 @@ window.Quarto = {
   <li><a href="#big-bee-extending-anthophila-research-through-image-and-trait-digitization" id="toc-big-bee-extending-anthophila-research-through-image-and-trait-digitization" class="nav-link" data-scroll-target="#big-bee-extending-anthophila-research-through-image-and-trait-digitization">Big Bee: Extending Anthophila Research Through Image and Trait Digitization</a></li>
   <li><a href="#california-dpr-annual-pesticide-summaries" id="toc-california-dpr-annual-pesticide-summaries" class="nav-link" data-scroll-target="#california-dpr-annual-pesticide-summaries">California DPR Annual Pesticide Summaries</a></li>
   <li><a href="#california-public-land-survey-system" id="toc-california-public-land-survey-system" class="nav-link" data-scroll-target="#california-public-land-survey-system">California Public Land Survey System</a></li>
-  <li><a href="#california-county-population-totals" id="toc-california-county-population-totals" class="nav-link" data-scroll-target="#california-county-population-totals">California County Population Totals</a></li>
-  <li><a href="#magnitude-of-habitat-fragmentation-by-terrestrial-ecoregion" id="toc-magnitude-of-habitat-fragmentation-by-terrestrial-ecoregion" class="nav-link" data-scroll-target="#magnitude-of-habitat-fragmentation-by-terrestrial-ecoregion">Magnitude of Habitat Fragmentation by Terrestrial Ecoregion</a></li>
   <li><a href="#usgs-2023-land-cover-conus" id="toc-usgs-2023-land-cover-conus" class="nav-link" data-scroll-target="#usgs-2023-land-cover-conus">USGS 2023 Land Cover (CONUS)</a></li>
-  </ul></li>
-  <li><a href="#analysis-plan" id="toc-analysis-plan" class="nav-link" data-scroll-target="#analysis-plan">Analysis Plan</a>
-  <ul class="collapse">
   <li><a href="#final-figure" id="toc-final-figure" class="nav-link" data-scroll-target="#final-figure">Final Figure</a></li>
   <li><a href="#hypothesis-test" id="toc-hypothesis-test" class="nav-link" data-scroll-target="#hypothesis-test">Hypothesis Test</a></li>
   </ul></li>
@@ -283,12 +278,17 @@ window.Quarto = {
 <h1>Introduction</h1>
 <p>Bees and other pollinators are extremely valuable for the ecosystem services they provide. Yet, throughout the past few decades, they have declined in both population and biodiversity (Goulson et al, 2015). Attributed factors are invasive parasites (Meeus et al, 2011), climate change (Soroye, Newbold, &amp; Kerr, 2020), habitat destruction (and fragmentation (Aizen &amp; Feinsinger, 1994), and pesticide use (Arena &amp; Sgolastra, 2014).</p>
 <p>Several factor’s make California an ideal microcosm to analyze the effect of pesticides on bee biodiversity. * The state’s 1989 Food Safety Act requires uniquely high standards for reporting (California DPR, 2023). Pesticide use datasets out of CA are therefore large and highly detailed. * CA is size means it has many different ecosystems contained within the same political boundaries. * CA is a agricultural hotspot in the country, meaning there are areas of intensive pesticide use.</p>
-<p>Therefore in this analysis, we will be analyzing pesticide use. Later, we attempt to introduce other variables such as population density, habitat fragmentation, and land use to see if there is a significant effect.</p>
+<p>Therefore in this analysis, we will be analyzing pesticide use. Later, we introduce another variable, land cover, to see if there is a significant effect.</p>
 <section id="key-highlights" class="level2">
 <h2 class="anchored" data-anchor-id="key-highlights">Key Highlights</h2>
 <ul>
-<li>Creation of an error model between biodiversity and pesticide use.</li>
-<li>Creation of multiple linear models to detect significant correlations between variables.</li>
+<li>Creation of two error models
+<ul>
+<li>A two variable model between biodiversity and pesticide use.</li>
+<li>An extrapolation of the previous model with an added predictor of land cover.</li>
+</ul></li>
+<li>Diagnosing spatial autocorrelation in our models by running a lag model on the residuals and finding Moran’s I.</li>
+<li>A hypothesis test for the affect of land cover on the model where we rejected the null.</li>
 </ul>
 </section>
 </section>
@@ -362,47 +362,6 @@ window.Quarto = {
 </ul></li>
 </ul>
 </section>
-<section id="california-county-population-totals" class="level3">
-<h3 class="anchored" data-anchor-id="california-county-population-totals">California County Population Totals</h3>
-<ul>
-<li>Description
-<ul>
-<li>Excel file containing population estimates for years 2020 to 2023 by county in CA.</li>
-<li>Yearly estimates calculated by last year’s census estimate + births - deaths + immigration - emigration, and adjusted for demographic info.</li>
-<li>Reported as being very accurate by the Census Bureau</li>
-</ul></li>
-<li>Access
-<ul>
-<li>Data is downloadable from the <a href="https://www.census.gov/data/datasets/time-series/demo/popest/2020s-counties-total.html">U.S Census Bureau website</a>.</li>
-</ul></li>
-</ul>
-</section>
-<section id="magnitude-of-habitat-fragmentation-by-terrestrial-ecoregion" class="level3">
-<h3 class="anchored" data-anchor-id="magnitude-of-habitat-fragmentation-by-terrestrial-ecoregion">Magnitude of Habitat Fragmentation by Terrestrial Ecoregion</h3>
-<ul>
-<li>Description
-<ul>
-<li>Developed by The Nature Conservancy.</li>
-<li>Shapefile delineating “ecoregions” based on “fragmenting features”.</li>
-<li>Global scale.</li>
-<li>Features considered include agriculture, urban development, roads, and railroads.</li>
-<li>Contains fields for eco region ID codes, ecoregion type, total area and perimeter, and a habitat fragmentation index.</li>
-<li>Contains 827 unique types.</li>
-</ul></li>
-<li>Limitations
-<ul>
-<li>Polygons are large relative to CA, making analysis on a statewide scale unwieldy.</li>
-</ul></li>
-<li>Subset in this analysis
-<ul>
-<li>All polygon’s intersecting CA.</li>
-</ul></li>
-<li>Access
-<ul>
-<li>Data is downloadable from <a href="https://databasin.org/datasets/f88b2b0d922642e689864cbd3409c177/">it’s page on databasin.org</a>.</li>
-</ul></li>
-</ul>
-</section>
 <section id="usgs-2023-land-cover-conus" class="level3">
 <h3 class="anchored" data-anchor-id="usgs-2023-land-cover-conus">USGS 2023 Land Cover (CONUS)</h3>
 <ul>
@@ -423,18 +382,14 @@ window.Quarto = {
 <li>It is possible to subset the data by uploading a county shapefile <a href="https://www.mrlc.gov/viewer/">in the MRLC Viewer</a>, then download each county individually, but this was not done due to time restrictions.</li>
 </ul></li>
 </ul>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="figs/solano_land_cover.png" title="Solano County land type distribution." class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
-</figure>
-</div>
-</section>
-</section>
-<section id="analysis-plan" class="level1">
-<h1>Analysis Plan</h1>
+<img src="figs/solano_land_cover.png" title="Solano County land type distribution." class="img-fluid quarto-figure quarto-figure-center">
+<figcaption>
+A demonstration of a small subset of the data within the USGS Land Cover Dataset. Cropland and grassland are common land types in Solano County, with development also being notable.
+</figcaption>
+<p><br> # Analysis Plan</p>
 <p>My first question is simply if there is a significant effect of pesticide use on bee biodiversity. The model can be written as:</p>
 <p><span class="math display">\[\text{Species Richness} = {\beta}_0 + {\beta}_1\text{Pesticide Amount}\]</span></p>
-<p><u>Analysis Plan</u>: 1. Join data + Pesticide data and CA County shapefile is joinable by <code>county_cd</code> (county code) + Shapefile and bee occurrence data are joinable by spatial relationship.</p>
+<p><u>Analysis Plan</u>: 1. Join data + Pesticide data and CA County shapefile is joinable by <code>county_cd</code> (county code). - The shapefile contains polygons for every township district in the state, but there is no column in the pesticide data to join on that scale, so we must aggregate up to county. + Shapefile and bee occurrence data are joinable by spatial relationship.</p>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
@@ -472,17 +427,11 @@ window.Quarto = {
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>biodiv_lm <span class="ot">&lt;-</span> <span class="fu">lm</span>(sp_richness <span class="sc">~</span> kg_prd_used, biodiversity)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="initial_lm.png" title="Initial linear model between biodiversity and pesticide use." class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
-</figure>
-</div>
-<ol start="3" type="1">
-<li>Diagnose spatial autocorrelation.</li>
-</ol>
-<ul>
-<li>Spatial data often violates the homoscedasticity assumption of Only Least Squares (OLS), skewing the results when creating a basic linear model, due to Tobler’s first law of geography.</li>
-</ul>
+<img src="initial_lm.png" title="Initial linear model between biodiversity and pesticide use." class="img-fluid quarto-figure quarto-figure-center">
+<figcaption>
+Species richness and pesticide use are not coorelated upon initial inspection, as the R<sup>2</sup> is very low and p-value is above 0.10.
+</figcaption>
+<p><br> 3. Diagnose spatial autocorrelation. + Spatial data often violates the homoscedasticity assumption of Only Least Squares (OLS), skewing the results when creating a basic linear model, due to Tobler’s first law of geography.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># get linear model</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>biodiv_lm <span class="ot">&lt;-</span> <span class="fu">lm</span>(sp_richness <span class="sc">~</span> kg_prd_used, biodiversity)</span>
@@ -517,14 +466,12 @@ window.Quarto = {
 <span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a><span class="co"># lag mod lm</span></span>
 <span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>lag_lm <span class="ot">&lt;-</span> <span class="fu">lm</span>(neighborhood <span class="sc">~</span> resids, <span class="at">data =</span> lag_mod_tib)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="figs/simple_patchwork.png" title="Effect of Error Model." class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
-</figure>
-</div>
-<ol start="4" type="1">
-<li>If spatial autocorrelation is present, create an error model.</li>
-</ol>
+<img src="figs/simple_patchwork.png" title="Effect of Error Model." class="img-fluid quarto-figure quarto-figure-center">
+<figcaption>
+Demonstration of spatial autocorrelation. On top, Moran’s I falls outside the range of the null distribution, while the residuals have a slight positive correlation with the spatial neighborhood. The bottom figures are plotted with a error model, remediating the autocorrelation.
+</figcaption>
+<p><br><br>
+4. If spatial autocorrelation is present, create an error model.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>bio_err <span class="ot">&lt;-</span> <span class="fu">errorsarlm</span>(sp_richness <span class="sc">~</span> kg_prd_used, </span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>            <span class="at">data =</span> biodiversity,</span>
@@ -559,20 +506,17 @@ window.Quarto = {
 <span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>err_res_lm <span class="ot">&lt;-</span> <span class="fu">lm</span>(lag_mod_tib<span class="sc">$</span>neighborhood_err <span class="sc">~</span> lag_mod_tib<span class="sc">$</span>error_resid)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>This initial analysis found that there was no significant correlation between biodiversity and pesticide use. There are a variety of possible reasons which I will discuss in a later section.</p>
-<p>Because biodiversity and pesticide use was not significantly correlated, I want to add more variables to see if there is potentially omitted variable bias. The variables I chose are: * Population density, due to it’s implicit connection with development. * habitat fragmentation * and land cover, added as a binary variable between habitat and non-habitat cover.</p>
-<p><u>From here</u> 1. I ran several more linear models to check for correlations, in which each new variable was added to the original linear model individually. 2. The variable that was most correlative with the lowest p-value was land cover, so I decide to test for spatial autocorrelation again, and add to my error model. Our new model is:</p>
+<p><u>From here</u> Because biodiversity and pesticide use was not significantly correlated, I want to add more variables to see if there is potentially omitted variable bias. I decided to add land cover to the model because of it’s relation to habitat fragmentation. Land cover was added as a binary variable, in which the land types were classified into being habitat and non-habitat. Our new model is:</p>
 <p><span class="math display">\[\text{Species Richness} = {\beta}_0 + {\beta}_1\text{Pesticide Amount} + {\beta}_2\text{Land Cover}\]</span></p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="figs/final_fig.png" title="Pesticide Use vs Biodiversity in Error Model" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
-</figure>
-</div>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="land_cover_lm.png" title="Biodiversity Against Pesticide Use and Land Cover" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
-</figure>
-</div>
-<p>The code and figures are very similar from before.</p>
+<img src="figs/final_fig.png" title="Pesticide Use vs Biodiversity in Error Model" class="img-fluid quarto-figure quarto-figure-center">
+<figcaption>
+Pesticide used has been plotted against Biodiversity in a simple two variable linear model. The variables are not significant, but there is a slight negative slope.
+</figcaption>
+<br> <img src="land_cover_lm.png" title="Biodiversity Against Pesticide Use and Land Cover" class="img-fluid quarto-figure quarto-figure-center">
+<figcaption>
+Adding land use to the model, substantially increased the r<sup>2</sup> and made the p-value significant at p &lt; 0.01.
+</figcaption>
+<p><br> The code and figures are very similar from before.</p>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
@@ -638,6 +582,7 @@ window.Quarto = {
 <span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>err_res_lm <span class="ot">&lt;-</span> <span class="fu">lm</span>(lag_mod_tib<span class="sc">$</span>neighborhood_err_land <span class="sc">~</span> lag_mod_tib<span class="sc">$</span>error_resid_land)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
+</section>
 <section id="final-figure" class="level3">
 <h3 class="anchored" data-anchor-id="final-figure">Final Figure</h3>
 <img src="figs/final_land_fig.png" title="Pesticide Use and Land Cover vs Biodiversity in Error Model" class="img-fluid quarto-figure quarto-figure-center">

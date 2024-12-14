@@ -74,7 +74,7 @@
     "href": "posts.html",
     "title": "Blog",
     "section": "",
-    "text": "Pesticides and Bee Biodiversity at the Golden Coast\n\n\n\nBees\n\n\nPesticides\n\n\nR\n\n\nGeospatial\n\n\nStatistics\n\n\n\nA data analysis of the effect of California’s pesticide use on Anthophila richness.\n\n\n\nJoshua Paul Cohen\n\n\nDec 13, 2024\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThe Scar Left by the 2017 Santa Barbara and Ventura Thomas Fire\n\n\n\nWildfire\n\n\nPython\n\n\nPandas\n\n\nGeopandas\n\n\nXarray\n\n\n\nFinal project for EDS 220 @ Bren School UCSB\n\n\n\nJoshua Paul Cohen\n\n\nDec 12, 2024\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTest blog post\n\n\n\nQuarto\n\n\nMEDS\n\n\nidk\n\n\n\nTemp blog post for testing\n\n\n\nJoshua Paul Cohen\n\n\nOct 18, 2024\n\n\n\n\n\n\n\n\nNo matching items"
+    "text": "No matching items"
   },
   {
     "objectID": "posts/eds_220_final_proj/index.html",
@@ -137,14 +137,14 @@
     "href": "posts/eds_222_final_proj_bees/index.html",
     "title": "Pesticides and Bee Biodiversity at the Golden Coast",
     "section": "",
-    "text": "Bees and other pollinators are extremely valuable for the ecosystem services they provide. Yet, throughout the past few decades, they have declined in both population and biodiversity (Goulson et al, 2015). Attributed factors are invasive parasites (Meeus et al, 2011), climate change (Soroye, Newbold, & Kerr, 2020), habitat destruction (and fragmentation (Aizen & Feinsinger, 1994), and pesticide use (Arena & Sgolastra, 2014).\nSeveral factor’s make California an ideal microcosm to analyze the effect of pesticides on bee biodiversity. * The state’s 1989 Food Safety Act requires uniquely high standards for reporting (California DPR, 2023). Pesticide use datasets out of CA are therefore large and highly detailed. * CA is size means it has many different ecosystems contained within the same political boundaries. * CA is a agricultural hotspot in the country, meaning there are areas of intensive pesticide use.\nTherefore in this analysis, we will be analyzing pesticide use. Later, we attempt to introduce other variables such as population density, habitat fragmentation, and land use to see if there is a significant effect.\n\n\n\nCreation of an error model between biodiversity and pesticide use.\nCreation of multiple linear models to detect significant correlations between variables."
+    "text": "Bees and other pollinators are extremely valuable for the ecosystem services they provide. Yet, throughout the past few decades, they have declined in both population and biodiversity (Goulson et al, 2015). Attributed factors are invasive parasites (Meeus et al, 2011), climate change (Soroye, Newbold, & Kerr, 2020), habitat destruction (and fragmentation (Aizen & Feinsinger, 1994), and pesticide use (Arena & Sgolastra, 2014).\nSeveral factor’s make California an ideal microcosm to analyze the effect of pesticides on bee biodiversity. * The state’s 1989 Food Safety Act requires uniquely high standards for reporting (California DPR, 2023). Pesticide use datasets out of CA are therefore large and highly detailed. * CA is size means it has many different ecosystems contained within the same political boundaries. * CA is a agricultural hotspot in the country, meaning there are areas of intensive pesticide use.\nTherefore in this analysis, we will be analyzing pesticide use. Later, we introduce another variable, land cover, to see if there is a significant effect.\n\n\n\nCreation of two error models\n\nA two variable model between biodiversity and pesticide use.\nAn extrapolation of the previous model with an added predictor of land cover.\n\nDiagnosing spatial autocorrelation in our models by running a lag model on the residuals and finding Moran’s I.\nA hypothesis test for the affect of land cover on the model where we rejected the null."
   },
   {
     "objectID": "posts/eds_222_final_proj_bees/index.html#key-highlights",
     "href": "posts/eds_222_final_proj_bees/index.html#key-highlights",
     "title": "Pesticides and Bee Biodiversity at the Golden Coast",
     "section": "",
-    "text": "Creation of an error model between biodiversity and pesticide use.\nCreation of multiple linear models to detect significant correlations between variables."
+    "text": "Creation of two error models\n\nA two variable model between biodiversity and pesticide use.\nAn extrapolation of the previous model with an added predictor of land cover.\n\nDiagnosing spatial autocorrelation in our models by running a lag model on the residuals and finding Moran’s I.\nA hypothesis test for the affect of land cover on the model where we rejected the null."
   },
   {
     "objectID": "posts/eds_222_final_proj_bees/index.html#reflection",
