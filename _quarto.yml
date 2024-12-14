@@ -7,7 +7,7 @@ website:
   favicon: images/my-favicon.png
   navbar:
     logo: website_icon_cropped.PNG
-    #title: false
+    title: false
     logo-alt: "cute silk moth"
     right:
       - href: index.qmd
@@ -15,7 +15,7 @@ website:
       - about.qmd
       - href: resources.qmd
         text: Resources
-      #- text: Resume
+      - text: Resume
       - href: posts.qmd
         text: Posts
   page-footer:
