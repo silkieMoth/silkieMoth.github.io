@@ -40,6 +40,10 @@ Therefore in this analysis, we will be analyzing pesticide use. Later, we introd
 * Diagnosing spatial autocorrelation in our models by running a lag model on the residuals and finding Moran's I.
 * A hypothesis test for the affect of land cover on the model where we rejected the null.
 
+## Repository Link
+
+All code for this project [can be accessed here](https://github.com/silkieMoth/eds-222-final-project).
+
 # Data
 ### Big Bee: Extending Anthophila Research Through Image and Trait Digitization
 * Description
