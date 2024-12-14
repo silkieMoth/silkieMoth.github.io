@@ -96,6 +96,7 @@ Therefore in this analysis, we will be analyzing pesticide use. Later, we introd
 ![](figs/solano_land_cover.png "Solano County land type distribution."){fig-align="center"}
 <figcaption>A demonstration of a small subset of the data within the USGS Land Cover Dataset. Cropland and grassland are common land types in Solano County, with development also being notable.</figcaption>
 </br>
+
 # Analysis Plan
 
 My first question is simply if there is a significant effect of pesticide use on bee biodiversity. The model can be written as:
@@ -103,6 +104,7 @@ My first question is simply if there is a significant effect of pesticide use on
 $$\text{Species Richness} = {\beta}_0 + {\beta}_1\text{Pesticide Amount}$$
 
 <u>Analysis Plan</u>:
+
 1. Join data
   + Pesticide data and CA County shapefile is joinable by `county_cd` (county code).
     - The shapefile contains polygons for every township district in the state, but there is no column in the pesticide data to join on that scale, so we must aggregate up to county.
