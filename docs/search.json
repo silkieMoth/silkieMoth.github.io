@@ -7,76 +7,6 @@
     "text": "This page is currently empty, but will continue to be developed as I continue in my career."
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Joshua Paul Cohen",
-    "section": "",
-    "text": "Hi there! I’m Joshua. I’m currently a Environmental Data Science student at the UCSN Bren School. But I also like bugs, music, hiking, rock climbing, and all the cool stuff."
-  },
-  {
-    "objectID": "index.html#education",
-    "href": "index.html#education",
-    "title": "Joshua Paul Cohen",
-    "section": "Education",
-    "text": "Education\nMaster of Environmental Data Science (Expected June 2025) Bren School of Environmental Science & Management – University of California, Santa Barbara (UCSB)\nBachelor of Science in Environmental Science (May 2020)  Minors in Chesapeake Regional Studies, Music  Washington College (WAC), Chestertown, MD \n\nI’m currently looking to be hired!\nI have significant GIS experience, did my undergrad along the Cheaspeake Bay, and am motivated to use my skills to preserve the environment.\n\nSend me questions and inquiries at the below links if interested!"
-  },
-  {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "About",
-    "section": "",
-    "text": "I’ve done all these things!\n\nCorps Member with Americorps NCCC SW Region (Aurora, CO)\nCorps Member with CB Trust’s Chesapeake Conservation Corps, at my host org Interfaith Partner’s for the Chesapeake (Salisbury, MD)\nEnvironmental Technician with Maryland DNR (Swanton, MD)\nLand Steward with Friends of Hopewell Valley Open Space (Titusville, NJ)\nTortoise Transect Technician with Great Basin Institute (Las Vegas, NV)\nPinyon-Juniper Field Technician with UNLV and USFWS (Las Vegas, NV)"
-  },
-  {
-    "objectID": "about.html#what-ive-done-for-work",
-    "href": "about.html#what-ive-done-for-work",
-    "title": "About",
-    "section": "",
-    "text": "I’ve done all these things!\n\nCorps Member with Americorps NCCC SW Region (Aurora, CO)\nCorps Member with CB Trust’s Chesapeake Conservation Corps, at my host org Interfaith Partner’s for the Chesapeake (Salisbury, MD)\nEnvironmental Technician with Maryland DNR (Swanton, MD)\nLand Steward with Friends of Hopewell Valley Open Space (Titusville, NJ)\nTortoise Transect Technician with Great Basin Institute (Las Vegas, NV)\nPinyon-Juniper Field Technician with UNLV and USFWS (Las Vegas, NV)"
-  },
-  {
-    "objectID": "about.html#what-i-do-for-fun",
-    "href": "about.html#what-i-do-for-fun",
-    "title": "About",
-    "section": "What I do for fun",
-    "text": "What I do for fun\n\nI love whenever I can get some time with my guitar, maybe with some paper and a pencil to strech my creative side. I also love trying things I’ve never tried before, or getting outside and exploring places I have never seen or been to.\n\n\nAnyone is free to reach out if they ever want to go hiking or rock climbing!"
-  },
-  {
-    "objectID": "about - Copy.html",
-    "href": "about - Copy.html",
-    "title": "About",
-    "section": "",
-    "text": "I’ve done all these things!\n\nCorps Member with Americorps NCCC SW Region (Aurora, CO)\nCorps Member with CB Trust’s Chesapeake Conservation Corps, at my host org Interfaith Partner’s for the Chesapeake (Salisbury, MD)\nEnvironmental Technician with Maryland DNR (Swanton, MD)\nLand Steward with Friends of Hopewell Valley Open Space (Titusville, NJ)\nTortoise Transect Technician with Great Basin Institute (Las Vegas, NV)\nPinyon-Juniper Field Technician with UNLV and USFWS (Las Vegas, NV)"
-  },
-  {
-    "objectID": "about - Copy.html#what-ive-done-for-work",
-    "href": "about - Copy.html#what-ive-done-for-work",
-    "title": "About",
-    "section": "",
-    "text": "I’ve done all these things!\n\nCorps Member with Americorps NCCC SW Region (Aurora, CO)\nCorps Member with CB Trust’s Chesapeake Conservation Corps, at my host org Interfaith Partner’s for the Chesapeake (Salisbury, MD)\nEnvironmental Technician with Maryland DNR (Swanton, MD)\nLand Steward with Friends of Hopewell Valley Open Space (Titusville, NJ)\nTortoise Transect Technician with Great Basin Institute (Las Vegas, NV)\nPinyon-Juniper Field Technician with UNLV and USFWS (Las Vegas, NV)"
-  },
-  {
-    "objectID": "about - Copy.html#what-i-do-for-fun",
-    "href": "about - Copy.html#what-i-do-for-fun",
-    "title": "About",
-    "section": "What I do for fun",
-    "text": "What I do for fun\n\nfun stuff\n\nhere is some more text\n\nhere is a line\nanother"
-  },
-  {
-    "objectID": "DELETE_LATER/practice.html",
-    "href": "DELETE_LATER/practice.html",
-    "title": "practice",
-    "section": "",
-    "text": "Here is my level one header\nHere is my first paragraph\nHere is my second paragraph, where you can read more about MEDS.\nThis is very important text!"
-  },
-  {
-    "objectID": "posts.html",
-    "href": "posts.html",
-    "title": "Blog",
-    "section": "",
-    "text": "Pesticides and Bee Biodiversity at the Golden Coast\n\n\n\nBees\n\n\nPesticides\n\n\nR\n\n\nGeospatial\n\n\nStatistics\n\n\n\nA data analysis of the effect of California’s pesticide use on Anthophila richness.\n\n\n\nJoshua Paul Cohen\n\n\nDec 14, 2024\n\n\n\n\n\n\n\n\nNo matching items"
-  },
-  {
     "objectID": "posts/eds_222_final_proj_bees/index.html",
     "href": "posts/eds_222_final_proj_bees/index.html",
     "title": "Pesticides and Bee Biodiversity at the Golden Coast",
@@ -110,5 +40,75 @@
     "title": "Pesticides and Bee Biodiversity at the Golden Coast",
     "section": "Possible Next Steps",
     "text": "Possible Next Steps\nBee ecology and decline is a complex topic and there is still much left to learn. Ways I could continue this analysis include…\n\nRefine this analysis and correct possible mistakes\n\n\nThere are a multitude of ways this analysis could be improved.\n\nHow do we visualize the pesticide data with more precision? It’s possible there is something I missed, and the CA DPR may be able to help. Being about to accomplish this could lead to more interesting results than the ones obtained here.\nAnother possibility is to apply a logistic regression model to the land_cover variable. Because it’s the variable that appears to be most significantly correlated, it could be investigated further. Because it is such a high resolution dataset with many different land types, it may warrant it’s own analysis.\n\n\n\nInvestigate other variables\n\n\nVariables such as the influence of parasites and climate change are things that weren’t at all included in this analysis. Invasive parasites have been cited as being a notable contributor to colony collapse disorder (Meeus et al, 2011), and climate change continues to have it’s own negative effects (Soroye, Newbold, & Kerr, 2020).\n\n\nPossible interactions with non-bee factors\n\n\nThe environment is confusing and wild, and nothing will ever make sense to us but that makes it all the more beautiful. Of course, this won’t stop us from trying. Is sea level rise affecting a particular taxa’s favorite flower? Is there some stochastic connection between bee activity and monarch migration? These are things we can only know if they’re investigated."
+  },
+  {
+    "objectID": "DELETE_LATER/practice.html",
+    "href": "DELETE_LATER/practice.html",
+    "title": "practice",
+    "section": "",
+    "text": "Here is my level one header\nHere is my first paragraph\nHere is my second paragraph, where you can read more about MEDS.\nThis is very important text!"
+  },
+  {
+    "objectID": "about - Copy.html",
+    "href": "about - Copy.html",
+    "title": "About",
+    "section": "",
+    "text": "I’ve done all these things!\n\nCorps Member with Americorps NCCC SW Region (Aurora, CO)\nCorps Member with CB Trust’s Chesapeake Conservation Corps, at my host org Interfaith Partner’s for the Chesapeake (Salisbury, MD)\nEnvironmental Technician with Maryland DNR (Swanton, MD)\nLand Steward with Friends of Hopewell Valley Open Space (Titusville, NJ)\nTortoise Transect Technician with Great Basin Institute (Las Vegas, NV)\nPinyon-Juniper Field Technician with UNLV and USFWS (Las Vegas, NV)"
+  },
+  {
+    "objectID": "about - Copy.html#what-ive-done-for-work",
+    "href": "about - Copy.html#what-ive-done-for-work",
+    "title": "About",
+    "section": "",
+    "text": "I’ve done all these things!\n\nCorps Member with Americorps NCCC SW Region (Aurora, CO)\nCorps Member with CB Trust’s Chesapeake Conservation Corps, at my host org Interfaith Partner’s for the Chesapeake (Salisbury, MD)\nEnvironmental Technician with Maryland DNR (Swanton, MD)\nLand Steward with Friends of Hopewell Valley Open Space (Titusville, NJ)\nTortoise Transect Technician with Great Basin Institute (Las Vegas, NV)\nPinyon-Juniper Field Technician with UNLV and USFWS (Las Vegas, NV)"
+  },
+  {
+    "objectID": "about - Copy.html#what-i-do-for-fun",
+    "href": "about - Copy.html#what-i-do-for-fun",
+    "title": "About",
+    "section": "What I do for fun",
+    "text": "What I do for fun\n\nfun stuff\n\nhere is some more text\n\nhere is a line\nanother"
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "I’ve done all these things!\n\nCorps Member with Americorps NCCC SW Region (Aurora, CO)\nCorps Member with CB Trust’s Chesapeake Conservation Corps, at my host org Interfaith Partner’s for the Chesapeake (Salisbury, MD)\nEnvironmental Technician with Maryland DNR (Swanton, MD)\nLand Steward with Friends of Hopewell Valley Open Space (Titusville, NJ)\nTortoise Transect Technician with Great Basin Institute (Las Vegas, NV)\nPinyon-Juniper Field Technician with UNLV and USFWS (Las Vegas, NV)"
+  },
+  {
+    "objectID": "about.html#what-ive-done-for-work",
+    "href": "about.html#what-ive-done-for-work",
+    "title": "About",
+    "section": "",
+    "text": "I’ve done all these things!\n\nCorps Member with Americorps NCCC SW Region (Aurora, CO)\nCorps Member with CB Trust’s Chesapeake Conservation Corps, at my host org Interfaith Partner’s for the Chesapeake (Salisbury, MD)\nEnvironmental Technician with Maryland DNR (Swanton, MD)\nLand Steward with Friends of Hopewell Valley Open Space (Titusville, NJ)\nTortoise Transect Technician with Great Basin Institute (Las Vegas, NV)\nPinyon-Juniper Field Technician with UNLV and USFWS (Las Vegas, NV)"
+  },
+  {
+    "objectID": "about.html#what-i-do-for-fun",
+    "href": "about.html#what-i-do-for-fun",
+    "title": "About",
+    "section": "What I do for fun",
+    "text": "What I do for fun\n\nI love whenever I can get some time with my guitar, maybe with some paper and a pencil to strech my creative side. I also love trying things I’ve never tried before, or getting outside and exploring places I have never seen or been to.\n\n\nAnyone is free to reach out if they ever want to go hiking or rock climbing!"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Joshua Paul Cohen",
+    "section": "",
+    "text": "Hi there! I’m Joshua. I’m currently a Environmental Data Science student at the UCSN Bren School. But I also like bugs, music, hiking, rock climbing, and all the cool stuff."
+  },
+  {
+    "objectID": "index.html#education",
+    "href": "index.html#education",
+    "title": "Joshua Paul Cohen",
+    "section": "Education",
+    "text": "Education\nMaster of Environmental Data Science (Expected June 2025) Bren School of Environmental Science & Management – University of California, Santa Barbara (UCSB)\nBachelor of Science in Environmental Science (May 2020)  Minors in Chesapeake Regional Studies, Music  Washington College (WAC), Chestertown, MD \n\nI’m currently looking to be hired!\nI have significant GIS experience, did my undergrad along the Cheaspeake Bay, and am motivated to use my skills to preserve the environment.\n\nSend me questions and inquiries at the below links if interested!"
+  },
+  {
+    "objectID": "posts.html",
+    "href": "posts.html",
+    "title": "Blog",
+    "section": "",
+    "text": "Pesticides and Bee Biodiversity at the Golden Coast\n\n\n\nBees\n\n\nPesticides\n\n\nR\n\n\nGeospatial\n\n\nStatistics\n\n\n\nA data analysis of the effect of California’s pesticide use on Anthophila richness.\n\n\n\nJoshua Paul Cohen\n\n\nDec 14, 2024\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThe Scar Left by the 2017 Santa Barbara and Ventura Thomas Fire\n\n\n\nWildfire\n\n\nPython\n\n\nPandas\n\n\nGeopandas\n\n\nXarray\n\n\n\nFinal project for EDS 220 @ Bren School UCSB\n\n\n\nJoshua Paul Cohen\n\n\nDec 12, 2024\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTest blog post\n\n\n\nQuarto\n\n\nMEDS\n\n\nidk\n\n\n\nTemp blog post for testing\n\n\n\nJoshua Paul Cohen\n\n\nOct 18, 2024\n\n\n\n\n\n\n\n\nNo matching items"
   }
 ]
