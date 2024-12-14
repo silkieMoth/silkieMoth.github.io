@@ -31,7 +31,7 @@ Several factor's make California an ideal microcosm to analyze the effect of pes
 
 Therefore in this analysis, we will be analyzing pesticide use. Later, we introduce another variable, land cover, to see if there is a significant effect. 
 
-![](bee_pesticide_map.png "Bee Pesticide Map"){fig-align="center"}
+![](figs/bee_pesticide_map.png "Bee Pesticide Map"){fig-align="center"}
 
 ## Key Highlights
 * Creation of two error models
