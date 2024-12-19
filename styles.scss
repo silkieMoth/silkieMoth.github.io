@@ -11,12 +11,14 @@ $black: #000;
 $white: #fff;
 
 // Quarto Sass Variables
-$body-bg: $stone;
-$navbar-bg: $black;
+$body-bg: $black;
+$navbar-bg: $stone;
 $navbar-fg: $pumpkin;
 $navbar-hl: $marshmallow;
 $toc-color: $marshmallow;
-$code-block-bg: $black;
+$code-block-bg: $peach;
+$body-color: $white;
+$input-bg: $white;
 
 h1, h2 {
   letter-spacing: 5px;
