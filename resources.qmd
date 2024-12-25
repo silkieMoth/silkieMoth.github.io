@@ -1,5 +1,16 @@
 ---
-title: "the resources page"
+title: "The Resources Page."
 ---
 
-<p class=white-text> This page is currently empty, but will continue to be developed as I continue in my career.<p>
+<p class=white-text> This page will continue to be developed as I continue in my career.<p>
+
+::: white-text
+-   As I am currently in training, my current project is titled "Remote Sensing of Brush Clearance to Enhance Wildfire Preparedness".
+    -   Identify defensible space from wildfires.
+        -   Create machine learning algorithm.
+    -   Enhance wildfire preparedness.
+    -   Reduce inequity in wildfire impact.
+    -   Utilize remote sensing techniques.
+        -   Utilize Landsat 8 & Landsat 9 imagery.
+        -   Compute NDVI
+:::

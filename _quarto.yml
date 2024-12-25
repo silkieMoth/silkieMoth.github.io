@@ -4,7 +4,7 @@ project:
 
 website:
   title: "Joshua Paul Cohen"
-  favicon: images/my-favicon.png
+  #favicon: website_icon_cropped.png
   navbar:
     logo: website_icon_cropped.PNG
     title: false
@@ -15,7 +15,8 @@ website:
       - about.qmd
       - href: resources.qmd
         text: Resources
-      - text: Resume
+      - href: MEDS_Master_Resume.pdf
+        text: Resume
       - href: posts.qmd
         text: Posts
   page-footer:
@@ -30,5 +31,5 @@ format:
     toc: false
     page-layout: full
 
-editor: visual
+editor: source
 

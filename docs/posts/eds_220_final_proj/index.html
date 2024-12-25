@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Joshua Paul Cohen">
-<meta name="dcterms.date" content="2024-12-12">
+<meta name="dcterms.date" content="2024-12-25">
 <meta name="description" content="Final project for EDS 220 @ Bren School UCSB">
 
 <title>The Scar Left by the 2017 Santa Barbara and Ventura Thomas Fire – Joshua Paul Cohen</title>
@@ -141,9 +141,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="menu-text">Resources</span></a>
   </li>  
   <li class="nav-item">
-    <span class="nav-link">
-<span class="menu-text">Resume</span>
-    </span>
+    <a class="nav-link" href="../../MEDS_Master_Resume.pdf"> 
+<span class="menu-text">Resume</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="../../posts.html"> 
@@ -196,7 +195,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div>
       <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">December 12, 2024</p>
+        <p class="date">December 25, 2024</p>
       </div>
     </div>
     
@@ -241,7 +240,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="github" class="level2">
 <h2 class="anchored" data-anchor-id="github">GitHub</h2>
-<p>All relevant files and figures can be found here: <br><a href="https://github.com/silkieMoth/eds220-hwk4">https://github.com/silkieMoth/eds220-hwk4</a></p>
+<p>All relevant files and figures can be found here: <br><a href="https://github.com/silkieMoth/eds220-hwk4" class="uri">https://github.com/silkieMoth/eds220-hwk4</a></p>
 </section>
 <section id="about" class="level2">
 <h2 class="anchored" data-anchor-id="about">About</h2>
@@ -251,7 +250,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <figcaption>Helicopter surveys wildfire damage in CA</figcaption>
 </figure>
 </div>
-<p>Forest fires are a whale in the California ecosystem with 7,668 wildland fires occurring each year (CAL FIRE, 2024) with the impacts of wildfires becoming greater with climate change (McKenzie et al., 2004). <br> The Thomas Fire was a wildfire that was particularly notable for it’s sheer size. In 2017 when it burned through 281,893, it asserted itself as the largest CA wildfire in history at the time. To this day, even as wildfires increase in severity, it still remains the 8<sub>th</sub> largest wildfire to date as of December 12, 2024. <br> The goal of this analysis is to map the impact of the 2017 Thomas Fire relative to the rest of Santa Barbara County. Because the fire left a ‘scar’ that is visible from space, it shows up in satellite imagery. Landsat data can capture this damage, as the infrared reluctance of burned land is high.</p>
+<p>Forest fires are a whale in the California ecosystem with 7,668 wildland fires occurring each year (CAL FIRE, 2024) with the impacts of wildfires becoming greater with climate change (McKenzie et al., 2004). <br> The Thomas Fire was a wildfire that was particularly notable for it’s sheer size. In 2017 when it burned through 281,893, it asserted itself as the largest CA wildfire in history at the time. To this day, even as wildfires increase in severity, it still remains the 8<sub>th</sub> largest wildfire to date as of December 25, 2024. <br> The goal of this analysis is to map the impact of the 2017 Thomas Fire relative to the rest of Santa Barbara County. Because the fire left a ‘scar’ that is visible from space, it shows up in satellite imagery. Landsat data can capture this damage, as the infrared reluctance of burned land is high.</p>
 <p>Cross-referencing the Thomas Fire perimeter and the Landsat imagery allows us to visualize the scar left behind. Furthermore, we can see the effect of the fire on air quality by visualizing the AQI (Air Quality Index) in the region. AQI is a measure of air quality as it relates to human health, with a focus on O<sub>3</sub>, PM<sub>2.5</sub>, PM<sub>10</sub>, CO, SO<sub>2</sub>, and NO<sub>2</sub>.</p>
 </section>
 <section id="highlights-of-analysis" class="level2">
@@ -369,7 +368,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="subset-and-saving-of-the-2017-thomas-fire-shapefile" class="level4">
 <h4 class="anchored" data-anchor-id="subset-and-saving-of-the-2017-thomas-fire-shapefile">Subset and saving of the 2017 Thomas Fire shapefile</h4>
 <p>Subset for the 2017 Thomas Fire record and save to <code>.shp</code> format.</p>
-<div id="8bd5c129" class="cell">
+<div id="0fda51ea" class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Subset for 2017 Thomas Fire</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>thomas_perim <span class="op">=</span> fire_perim[(fire_perim[<span class="st">'fire_name'</span>].<span class="bu">str</span>.contains(<span class="st">'thomas'</span>)) <span class="op">&amp;</span> </span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>           (fire_perim[<span class="st">'year'</span>] <span class="op">==</span> <span class="dv">2017</span>)]</span>
@@ -388,7 +387,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="landsat-data-cleaning" class="level4">
 <h4 class="anchored" data-anchor-id="landsat-data-cleaning">Landsat data cleaning</h4>
 <p>Because there is only one band in the <code>dataArray</code>, we can drop the <code>band</code> dimension. This will prevent plotting errors.</p>
-<div id="73e54f22" class="cell">
+<div id="7d9f1e82" class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Drop `band` dimension</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>landsat_bandless <span class="op">=</span> landsat.squeeze().drop_vars(<span class="st">'band'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -399,7 +398,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="concatenation-of-the-2017-and-2018-aqi-datasets." class="level4">
 <h4 class="anchored" data-anchor-id="concatenation-of-the-2017-and-2018-aqi-datasets.">Concatenation of the 2017 and 2018 AQI datasets.</h4>
 <p>The 2017 and 2018 datasets could only be downloaded separately, and in order to create a visualization of both years, we must combine them</p>
-<div id="61850f4f" class="cell">
+<div id="752f16f7" class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Append 2018 air quality data to 2017 data</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>aqi <span class="op">=</span> pd.concat([aqi_17, aqi_18])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -407,7 +406,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="subsetting-aqi-for-the-area-of-analysis" class="level4">
 <h4 class="anchored" data-anchor-id="subsetting-aqi-for-the-area-of-analysis">Subsetting AQI for the area of analysis</h4>
 <p>The dataset contains an associated county for every record. Therefore we can subset for the county most effected by the Thomas Fire, being Santa Barbara.</p>
-<div id="2ebe0a2b" class="cell">
+<div id="5a1d31a3" class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Subset for data in Santa Barbara and drop unneeded cols</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>aqi_sb <span class="op">=</span> (aqi[aqi[<span class="st">'county_name'</span>] <span class="op">==</span> <span class="st">'Santa Barbara'</span>]</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>          .drop([<span class="st">'state_name'</span>, <span class="st">'county_name'</span>, <span class="st">'state_code'</span>, <span class="st">'county_code'</span>], axis <span class="op">=</span> <span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -416,7 +415,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="setting-the-date-column-as-index" class="level4">
 <h4 class="anchored" data-anchor-id="setting-the-date-column-as-index">Setting the date column as index</h4>
 <p>This allows for plotting datetime on the x axis.</p>
-<div id="5fa60dab" class="cell">
+<div id="0a140836" class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert 'date' col to datetime</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>aqi_sb.date <span class="op">=</span> pd.to_datetime(arg <span class="op">=</span> aqi_sb.date)</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -428,7 +427,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h4 class="anchored" data-anchor-id="calculating-the-5-day-average">Calculating the 5 day average</h4>
 <p>The <code>rolling</code> method runs a window of values across the rows of a series or data_frame column, and moves that window down one with each iteration. By applying a summarizing method like <code>mean</code>, we can average every value in the window and apply a mean value for each row.</p>
 <p><code>rolling</code> is used here to create the <code>five_day_average</code> column in our AQI data_frame.</p>
-<div id="bdc5ab6f" class="cell">
+<div id="54e7258e" class="cell">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate AQI rolling average over 5 days</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>rolling_average <span class="op">=</span> aqi_sb.aqi.rolling(<span class="st">'5D'</span>).mean()</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -442,7 +441,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="true-color-visualization-of-santa-barbara-county" class="level4">
 <h4 class="anchored" data-anchor-id="true-color-visualization-of-santa-barbara-county">True color visualization of Santa Barbara County</h4>
 <p>Landsat imagery contains standard RGB bands, allowing true color plotting.</p>
-<div id="a178eba8" class="cell">
+<div id="87dde274" class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create false color dataArray</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>true_col <span class="op">=</span> landsat_bandless[[<span class="st">'red'</span>, <span class="st">'green'</span>, <span class="st">'blue'</span>]]</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -468,7 +467,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="false-color-visualization-of-thomas-fire-damage-with-infrared-reflectance-and-fire-perimeter" class="level4">
 <h4 class="anchored" data-anchor-id="false-color-visualization-of-thomas-fire-damage-with-infrared-reflectance-and-fire-perimeter">False color visualization of Thomas Fire damage with infrared reflectance and fire perimeter</h4>
 <p>Placing short-wave infrared and near infrared over red and green highlights freshly burned patches of land.</p>
-<div id="e0165752" class="cell">
+<div id="010d8911" class="cell">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create false color dataArray</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>false_col <span class="op">=</span> landsat_bandless[[<span class="st">'swir22'</span>, <span class="st">'nir08'</span>, <span class="st">'red'</span>]]</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -508,7 +507,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="plotting-daily-aqi-and-5-year-average-for-santa-barbara-ca-2017-2018" class="level4">
 <h4 class="anchored" data-anchor-id="plotting-daily-aqi-and-5-year-average-for-santa-barbara-ca-2017-2018">Plotting daily AQI and 5 year average for Santa Barbara, CA (2017-2018)</h4>
 <p>This plot shows a sharp rise in AQI at the time of the 2017 Thomas Fire.</p>
-<div id="003212cd" class="cell">
+<div id="a313efe3" class="cell">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the base line graph</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> aqi_sb.plot.line(use_index <span class="op">=</span> <span class="va">True</span>,</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>                     y <span class="op">=</span> [<span class="st">'aqi'</span>, <span class="st">'five_day_average'</span>],</span>
@@ -577,13 +576,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   author = {Paul Cohen, Joshua},
   title = {The {Scar} {Left} by the 2017 {Santa} {Barbara} and {Ventura}
     {Thomas} {Fire}},
-  date = {2024-12-12},
+  date = {2024-12-25},
   url = {https://silkiemoth.github.io/},
   langid = {en}
 }
 </code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-paul_cohen2024" class="csl-entry quarto-appendix-citeas" role="listitem">
 Paul Cohen, Joshua. 2024. <span>“The Scar Left by the 2017 Santa Barbara
-and Ventura Thomas Fire.”</span> December 12, 2024. <a href="https://silkiemoth.github.io/">https://silkiemoth.github.io/</a>.
+and Ventura Thomas Fire.”</span> December 25, 2024. <a href="https://silkiemoth.github.io/">https://silkiemoth.github.io/</a>.
 </div></div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {

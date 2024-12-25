@@ -16,45 +16,42 @@ citation:
 draft: true
 draft-mode: visible
 highlight-style: github
-theme: cosmo
+#theme: cosmo
 execute: 
   enabled: false
 ---
-## GitHub
-All relevant files and figures can be found here: </br>[https://github.com/silkieMoth/eds220-hwk4](https://github.com/silkieMoth/eds220-hwk4)
 
+## GitHub
+
+All relevant files and figures can be found here: </br><https://github.com/silkieMoth/eds220-hwk4>
 
 ## About
 
 ![Helicopter surveys wildfire damage in CA](helicopter.jpg)
 
-Forest fires are a whale in the California ecosystem with 7,668 wildland fires occurring each year (CAL FIRE, 2024) with the impacts of wildfires becoming greater with climate change (McKenzie et al., 2004). </br>
-The Thomas Fire was a wildfire that was particularly notable for it's sheer size. In 2017 when it burned through 281,893, it asserted itself as the largest CA wildfire in history at the time. To this day, even as wildfires increase in severity, it still remains the 8~th~ largest wildfire to date as of {{< meta date >}}. </br>
-The goal of this analysis is to map the impact of the 2017 Thomas Fire relative to the rest of Santa Barbara County. Because the fire left a 'scar' that is visible from space, it shows up in satellite imagery. Landsat data can capture this damage, as the infrared reluctance of burned land is high.
-
+Forest fires are a whale in the California ecosystem with 7,668 wildland fires occurring each year (CAL FIRE, 2024) with the impacts of wildfires becoming greater with climate change (McKenzie et al., 2004). </br> The Thomas Fire was a wildfire that was particularly notable for it's sheer size. In 2017 when it burned through 281,893, it asserted itself as the largest CA wildfire in history at the time. To this day, even as wildfires increase in severity, it still remains the 8~th~ largest wildfire to date as of {{< meta date >}}. </br> The goal of this analysis is to map the impact of the 2017 Thomas Fire relative to the rest of Santa Barbara County. Because the fire left a 'scar' that is visible from space, it shows up in satellite imagery. Landsat data can capture this damage, as the infrared reluctance of burned land is high.
 
 Cross-referencing the Thomas Fire perimeter and the Landsat imagery allows us to visualize the scar left behind. Furthermore, we can see the effect of the fire on air quality by visualizing the AQI (Air Quality Index) in the region. AQI is a measure of air quality as it relates to human health, with a focus on O<sub>3</sub>, PM<sub>2.5</sub>, PM<sub>10</sub>, CO, SO<sub>2</sub>, and NO<sub>2</sub>.
 
 ## Highlights of Analysis
 
 ::: {center-text}
-* Subsetting of of CA fire perimeter dataset
-    + Selected for 2017 Thomas Fire
-    + Saved out to new shapefile
-* Initial processing of Landsat imagery
-    + NetCDF file only had one band
-        - Therefore, utilizing `squeeze()` and `drop_vars`,the 'band' dimension was removed
-* Mapping of the Landsat imagery in true color
-    + The red, green, and blue bands were fitted accordingly
-* False color mapping of Landsat imagery with infrared
-    + Plotting with infrared in colored bands allows visualization of Thomas Fire damage
-        - Short-wave infrared in red band
-            * SWIR's reflectance correlates with moisture in plants and soil. A dry environment like a newly burned forest will reflect greatly.
-        - Near Infrared in green band
-            * This is useful for analysis as much like plants reflect green light, they reflect NIR very strongly, particularly healthy vegetation.
-* Plotting of Santa Barbara AQI: daily & 5 day average
-    + The 2017 and 2018 AQI datasets were combined, subsetted, and averaged.
-            
+-   Subsetting of of CA fire perimeter dataset
+    -   Selected for 2017 Thomas Fire
+    -   Saved out to new shapefile
+-   Initial processing of Landsat imagery
+    -   NetCDF file only had one band
+        -   Therefore, utilizing `squeeze()` and `drop_vars`,the 'band' dimension was removed
+-   Mapping of the Landsat imagery in true color
+    -   The red, green, and blue bands were fitted accordingly
+-   False color mapping of Landsat imagery with infrared
+    -   Plotting with infrared in colored bands allows visualization of Thomas Fire damage
+        -   Short-wave infrared in red band
+            -   SWIR's reflectance correlates with moisture in plants and soil. A dry environment like a newly burned forest will reflect greatly.
+        -   Near Infrared in green band
+            -   This is useful for analysis as much like plants reflect green light, they reflect NIR very strongly, particularly healthy vegetation.
+-   Plotting of Santa Barbara AQI: daily & 5 day average
+    -   The 2017 and 2018 AQI datasets were combined, subsetted, and averaged.
 :::
 
 ## Dataset Descriptions
@@ -62,43 +59,41 @@ Cross-referencing the Thomas Fire perimeter and the Landsat imagery allows us to
 ::: {center-text}
 #### This analysis incorporates two datasets:
 
-* California Historical Fire Perimeters
-    + Acquired from the California Natural Resources Agency
-    + Data on fires dating back to 1898.
-    + Over 15000 entries.
-    + Each row corresponds to single polygon representing a perimeter for a given fire.
-* Landsat imagery of Santa Barbara County
-    + Data array from Landsat Collection 2 Level-2.
-    + Collected on January 26, 2018.
-    + Pre-processed, reduced resolution and extent to Santa Barbara County.
-    + Included variables:
-        - Visible light spectrum
-            * RGB
-        - Infrared
-            * NIR08 (Near)
-            * SWIR22 (Short-Wave)
-    + Included dimensions
-        - band
-            * Notes number of bands
-            * Length = 1
-        - x
-            * Longitude
-            * Length = 870
-        - y
-            * Latitude
-            * Length = 731
-* Daily AQI by county 2017 and 2018
-    + Datasets produced by the Environmental Protection Agency
-    + Each record contains a state, county, date, level of concern, and defining pollutant.
-    + Combined datasets contain over 650000 entries.
-    
-        
+-   California Historical Fire Perimeters
+    -   Acquired from the California Natural Resources Agency
+    -   Data on fires dating back to 1898.
+    -   Over 15000 entries.
+    -   Each row corresponds to single polygon representing a perimeter for a given fire.
+-   Landsat imagery of Santa Barbara County
+    -   Data array from Landsat Collection 2 Level-2.
+    -   Collected on January 26, 2018.
+    -   Pre-processed, reduced resolution and extent to Santa Barbara County.
+    -   Included variables:
+        -   Visible light spectrum
+            -   RGB
+        -   Infrared
+            -   NIR08 (Near)
+            -   SWIR22 (Short-Wave)
+    -   Included dimensions
+        -   band
+            -   Notes number of bands
+            -   Length = 1
+        -   x
+            -   Longitude
+            -   Length = 870
+        -   y
+            -   Latitude
+            -   Length = 731
+-   Daily AQI by county 2017 and 2018
+    -   Datasets produced by the Environmental Protection Agency
+    -   Each record contains a state, county, date, level of concern, and defining pollutant.
+    -   Combined datasets contain over 650000 entries.
+
 ### Data Access
 
-- `California_Fire_Perimeters_(1950+)` can be downloaded from [California Natural Resources agency](https://gis.data.cnra.ca.gov/datasets/CALFIRE-Forestry::california-fire-perimeters-1950-1/explore) website.
-- `landsat8-2018-01-26-sb-simplified` is a pre-processed file and the only way to access it is through University of California, Santa Barbara's Posit Workbench server. However, a similar Landsat image of Santa Barbara can be downloaded from the [Microsoft Planetary Computer](https://planetarycomputer.microsoft.com/dataset/landsat-c2-l2) data catalogue.
-- `daily_aqi_by_county_2017.zip` and `daily_aqi_by_county_2018.zip` are acquirable from the [Environmental Protection Agency website](https://aqs.epa.gov/aqsweb/airdata/download_files.html) under the 'Daily AQI' section.
-        
+-   `California_Fire_Perimeters_(1950+)` can be downloaded from [California Natural Resources agency](https://gis.data.cnra.ca.gov/datasets/CALFIRE-Forestry::california-fire-perimeters-1950-1/explore) website.
+-   `landsat8-2018-01-26-sb-simplified` is a pre-processed file and the only way to access it is through University of California, Santa Barbara's Posit Workbench server. However, a similar Landsat image of Santa Barbara can be downloaded from the [Microsoft Planetary Computer](https://planetarycomputer.microsoft.com/dataset/landsat-c2-l2) data catalogue.
+-   `daily_aqi_by_county_2017.zip` and `daily_aqi_by_county_2018.zip` are acquirable from the [Environmental Protection Agency website](https://aqs.epa.gov/aqsweb/airdata/download_files.html) under the 'Daily AQI' section.
 :::
 
 ## Analysis
@@ -168,7 +163,7 @@ aqi_sb = aqi_sb.set_index('date')
 
 #### Calculating the 5 day average
 
-The `rolling` method runs a window of values across the rows of a series or data_frame column, and moves that window down one with each iteration. By applying a summarizing method like `mean`, we can average every value in the window and apply a mean value for each row. 
+The `rolling` method runs a window of values across the rows of a series or data_frame column, and moves that window down one with each iteration. By applying a summarizing method like `mean`, we can average every value in the window and apply a mean value for each row.
 
 `rolling` is used here to create the `five_day_average` column in our AQI data_frame.
 
@@ -305,8 +300,8 @@ McKenzie, D., Gedalof, Z., Peterson, D.L. and Mote, P. (2004), Climatic Change, 
 
 ### Data
 
-Earth Resources Observation and Science (EROS) Center. (2020). Landsat 8-9 Operational Land Imager / Thermal Infrared Sensor Level-2, Collection 2 [dataset]. U.S. Geological Survey. [Link](https://planetarycomputer.microsoft.com/dataset/landsat-c2-l2)
+Earth Resources Observation and Science (EROS) Center. (2020). Landsat 8-9 Operational Land Imager / Thermal Infrared Sensor Level-2, Collection 2 \[dataset\]. U.S. Geological Survey. [Link](https://planetarycomputer.microsoft.com/dataset/landsat-c2-l2)
 
-California Department of Forestry and Fire Protection (2024), California Historical Fire Perimeters [dataset]. California Natural Resources Agency.[Link](https://gis.data.cnra.ca.gov/maps/CALFIRE-Forestry::california-historical-fire-perimeters/about)
+California Department of Forestry and Fire Protection (2024), California Historical Fire Perimeters \[dataset\]. California Natural Resources Agency.[Link](https://gis.data.cnra.ca.gov/maps/CALFIRE-Forestry::california-historical-fire-perimeters/about)
 
-US Environmental Protection Agency. Air Quality System Data Mart [internet database] available via https://aqs.epa.gov/aqsweb/airdata/download_files.html. Accessed October 2024.
+US Environmental Protection Agency. Air Quality System Data Mart \[internet database\] available via https://aqs.epa.gov/aqsweb/airdata/download_files.html. Accessed October 2024.

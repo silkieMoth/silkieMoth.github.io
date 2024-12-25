@@ -2,9 +2,9 @@
   {
     "objectID": "resources.html",
     "href": "resources.html",
-    "title": "the resources page",
+    "title": "The Resources Page.",
     "section": "",
-    "text": "This page is currently empty, but will continue to be developed as I continue in my career."
+    "text": "This page will continue to be developed as I continue in my career.\n\n\n\nAs I am currently in training, my current project is titled “Remote Sensing of Brush Clearance to Enhance Wildfire Preparedness”.\n\nIdentify defensible space from wildfires.\n\nCreate machine learning algorithm.\n\nEnhance wildfire preparedness.\nReduce inequity in wildfire impact.\nUtilize remote sensing techniques.\n\nUtilize Landsat 8 & Landsat 9 imagery.\nCompute NDVI"
   },
   {
     "objectID": "posts/eds_222_final_proj_bees/index.html",
@@ -109,6 +109,6 @@
     "href": "posts.html",
     "title": "Blog",
     "section": "",
-    "text": "Pesticides and Bee Biodiversity at the Golden Coast\n\n\n\nBees\n\n\nPesticides\n\n\nR\n\n\nGeospatial\n\n\nStatistics\n\n\n\nA data analysis of the effect of California’s pesticide use on Anthophila richness.\n\n\n\nJoshua Paul Cohen\n\n\nDec 19, 2024\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThe Scar Left by the 2017 Santa Barbara and Ventura Thomas Fire\n\n\n\nWildfire\n\n\nPython\n\n\nPandas\n\n\nGeopandas\n\n\nXarray\n\n\n\nFinal project for EDS 220 @ Bren School UCSB\n\n\n\nJoshua Paul Cohen\n\n\nDec 12, 2024\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTest blog post\n\n\n\nQuarto\n\n\nMEDS\n\n\nidk\n\n\n\nTemp blog post for testing\n\n\n\nJoshua Paul Cohen\n\n\nOct 18, 2024\n\n\n\n\n\n\n\n\nNo matching items"
+    "text": "The Scar Left by the 2017 Santa Barbara and Ventura Thomas Fire\n\n\n\nWildfire\n\n\nPython\n\n\nPandas\n\n\nGeopandas\n\n\nXarray\n\n\n\nFinal project for EDS 220 @ Bren School UCSB\n\n\n\nJoshua Paul Cohen\n\n\nDec 25, 2024\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nPesticides and Bee Biodiversity at the Golden Coast\n\n\n\nBees\n\n\nPesticides\n\n\nR\n\n\nGeospatial\n\n\nStatistics\n\n\n\nA data analysis of the effect of California’s pesticide use on Anthophila richness.\n\n\n\nJoshua Paul Cohen\n\n\nDec 19, 2024\n\n\n\n\n\n\n\n\nNo matching items"
   }
 ]

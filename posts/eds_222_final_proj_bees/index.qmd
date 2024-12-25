@@ -9,7 +9,7 @@ author:
 date: last-modified
 categories: [Bees, Pesticides, R, Geospatial, Statistics]
 toc: true
-#bibliography: references.bib
+bibliography: references.bib
 image: bee_on_flower.png
 citation:
   url: https://silkiemoth.github.io/
@@ -18,7 +18,7 @@ draft-mode: visible
 highlight-style: github
 format: 
   html: 
-    css: custom.css
+    css: bib.css
 execute: 
   enabled: false
 ---
