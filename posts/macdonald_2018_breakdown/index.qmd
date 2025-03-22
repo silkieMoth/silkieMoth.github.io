@@ -1,0 +1,807 @@
+---
+title: "MacDonald et al. (2018) Breakdown"
+author: "Joshua Paul Cohen, Josh Mull, Amanda Overbye"
+format: html
+execute: 
+  warning: false
+  error: false
+---
+
+When it comes to insect and invert borne zoonotic diseases, edge forest habitat is thought of in the literature to be high risk. But because the worlds forests are only getting more fragmented, the area of edge forest is increasing. Lyme disease particularly, has been found to be a major offender, as the land type lends itself well to strong tick vectors like deer. 
+
+This has been a strong motivator for studying Lyme disease incidence. If the wildlife-urban interface (WUI) is getting larger, it's likely a result of people to live in those areas, and we may expect the rate of Lyme disease to rise. It's for this reason that habitat fragmentation has logically been used as an indicator for incidence. But studies on this topic, while generally supporting this idea, have been inconsistent.
+
+MacDonald et al. (2018), suggests that the reason for this inconsistency could be an endogeneity bias, in which as much as habitat fragmentation influences Lyme prevalence, it also works the other way around, in which Lyme incidence influences where people choose to live, which ironically can lead to more fragmentation. This violates a very important assumption that makes most statistical models work, in which the predictor variables must not be correlated with the error term. Because this is the method used in most other studies on this topic, this suggest some bias in the literature.
+
+They therefore try a different approach, and instead use an instrumental variable (IV) model. An IV is a variable that correlates with the predictor variable in a model. We refer to this as endogeneity, and the variable as our endogenous variable. This method can be used to predict Lyme disease by proximity, as habitat fragmentation on it's own is unreliable. 
+
+MacDonald et al. (2018) utilizes this concept by including a density restriction index, which indicates lot size regulation in an area. The thing about the instrumental variable approach to modeling is that it's a 2 stage process where first, the instrument is regressed on our habitat fragmentation (our endogenous variable), and second, the the endogenous variable is regressed on the dependent variable (Lyme disease incidence). This is a very robust way performing this analysis.
+
+Using this strategy, the paper attempts to model Lyme disease incidence in the WUI of the US northeastern deciduous forests. Along, with and IV approach, it uses a fixed effects approach and checks for robustness with several F-tests.
+
+
+```{r}
+library(tidyverse)
+library(ivreg)
+library(plm)
+library(jtools)
+library(sandwich)
+library(lmtest)
+library(fixest)
+library(kableExtra)
+library(ivDiag)
+
+lyme <- read_csv(here::here('data', 'MacDonaldetal_JAE_2018.csv'))
+lyme_na <- lyme %>% filter(is.na(DensityResIndex) == FALSE)
+```
+
+## Workflow
+
+
+### Variable names
+
+| Variable      | Role in Model |  Description  |
+| ------------- | ------------- | ------------- |
+| DensityResIndex|     IV       |   Density restriction index, indicates the average lot size regulation for a given observation  |
+| PercWuiPop | Endogenous Variable | Percent of county population residing in WUI |
+| LogLyme0103_1113 | Dependent Variable | Lyme disease incidence |
+| MeanPatchArea | Exogenous Covariate | Average forest patch area by county |
+| EdgeDensity | Exogenous Covariate | Forest edge density by county |
+| PercLandForest | Exogenous Covariate | % forested area in county |
+| StateYrGroup | Fixed Variable | Identifier for each observation based on state and year |
+| AgStatDistrict | Clustering Variable (for CMSE) | USDA agricultural statistics districts |
+
+
+### First and second stage IV regression
+
+A general overview of the methods employed in the paper...
+
+The instrument is first regressed on the endogenous variable
+```{r, eval = FALSE}
+stage_1 <- lm(PercWuiPop ~ DensityResIndex,
+              data = lyme_na)
+
+```
+
+Then the first stage fitted values are regressed against the dependant variable.
+```{r, eval = FALSE}
+stage_2 <- lm(LogLyme0103_1113 ~ PercWuiPop, 
+              data = lyme_na)
+
+```
+
+Both stages include covariates, although the strength of them will be tested later on.
+```{r, eval = FALSE}
+stage_1 <- lm(PercWuiPop ~ DensityResIndex +
+              MeanPatchArea + EdgeDensity + PercLandForest, 
+              data = lyme_na)
+
+stage_2 <- lm(LogLyme0103_1113 ~ PercWuiPop +
+              MeanPatchArea + EdgeDensity + PercLandForest, 
+              data = lyme_na)
+
+```
+
+
+The `ivreg` package can run both the stage 1 and stage 2 regressions intertwined in a single function, making this process easy.
+```{r}
+lyme_iv <- ivreg(LogLyme0103_1113 ~ MeanPatchArea + EdgeDensity + PercLandForest | # covariates
+                 PercWuiPop | # endogenous variable
+                 DensityResIndex, # instrumental variable
+  data = lyme_na)
+
+summary(lyme_iv)
+```
+
+
+### Fixed effects
+
+The authors also ran the second stage as a fixed effects model. This approach is one where you group your data to account for unobserved differences between them. It does this by using a dummy variable (0 or 1) for each class for a group to indicate which data are from which class.
+
+Here, the models were fixed by year or state & year.
+```{r}
+fixed_effects <- lm(LogLyme0103_1113 ~ PercWuiPop + as_factor(StateYrGroup) - 1, data = lyme_na)
+
+summary(fixed_effects)
+```
+
+The paper states that the fixed-effects had very little to know effect on the estimate, only changing it by +-0.002.
+
+### F-test and Robustness Checks
+
+In the most general sense, a F-test looks for statistical significance by comparing variances. But in a modeling context, a F-test can be used to estimate how much the addition of 1 or more variables improves the model. We do this by comparing our *restricted* and *unrestricted* models.
+
+The general equation: 
+
+
+$F = \frac{\text{SSE}_R - \text{SSE}_{UR} / e}{\text{SSE}_{UR} / (n - k)}$
+
+Where:
+
+* $\text{SSE}_{UR}$ is the full model with every variable.
+* $\text{SSE}_{R}$ is a model with one or more variables excluded. The excluded variables are being tested for their strength.
+* $\text e$ is the *restrictions* or the total number of omitted variables
+* $\text k$ is the total number of variables in the regression, including the intercept.
+* $\text n$ is the sample size.
+
+They performed this test on the first stage of the IV approach. To accomplish this manually in R...
+```{r}
+# get unrestricted model
+ur_model <- lm(PercWuiPop ~ DensityResIndex
+               + MeanPatchArea + EdgeDensity + PercLandForest 
+              ,data = lyme_na)
+
+# sse unrestricted
+sse_ur <- sum((fitted(ur_model) - lyme_na$PercWuiPop)^2)
+
+# restricted models
+r_model <- lm(PercWuiPop ~ MeanPatchArea + EdgeDensity + PercLandForest 
+              ,data = lyme_na)
+
+# sse restricted
+sse_r <- sum((fitted(r_model) - lyme_na$PercWuiPop)^2)
+
+# non-robust f test
+F_std <- ((sse_r - sse_ur) / 1) / 
+           (sse_ur / (nrow(lyme_na) - 5))
+
+cat("F value: ", F_std, "\n")
+
+
+```
+
+This can also be accomplished with an ANOVA...
+```{r}
+f_stat <- anova(r_model, ur_model)
+cat("F value with ANOVA: ", f_stat$F[2])
+```
+A F-value above 10 indicates a strong instrument, and this F is significantly above 10.
+
+You would then obtain a critical value. 
+
+* $\text ResDF_{UR}$ is derived from sample size of dataset - total num of variables in model 
+* $\text ResDF_{R}$ is derived from the previously calculated Residual Df, minus the number of restrictions.
+* $\text {Df}_1$ is therefore derived from ResDF_UR - variables in model.
+* $\text {Df}_2$ is k - $\text {Df}_1$ - 1
+
+We will just use the `qf()` function to calculate it.
+
+With a df<sub>2</sub> this large, it would be approximately 2.20. But we can also calculate it with `qf()`:
+
+```{r}
+df1 <- summary(ur_model)$coefficients %>% nrow()
+
+cat("F distribution critical value: ", qf(0.95, f_stat$Df[2], df1 - f_stat$Df[2] - 1))
+```
+
+The problem with doing the F-test this way, is that it's not robust. It assumes homoscedasticity and i.i.d, which because the data has both a time and spatial component, likely isn't true. To account for this, the paper also performs a more robust version of the F-test called the effective F, from Olea & Pflueger (2013). This test balances the instrumental variables and endogenous variables by a weighted covariance matrix. The matrix accounts for unequal variance and clustering. Although clustering was already accounted for as the error term for these models are clustered mean squared errors (CMSE).
+
+
+$F_{\text{eff}} = \frac{(Y'X) \hat{W}^{-1}_2 (Z'X)}{K \cdot n}$
+
+
+$\text Z$ is an instrumental variable vector.
+$\text X$ is an endogenous variable vector. 
+$\text Z', X'$ are transposes of the prior variables (as in row to column, or vise versa)
+$\hat{W}^{-1}_2$ is the covariance matrix
+$\text K$ is number of instruments
+$\text n$ is sample size
+
+The crux of effective F is the $\tau$ parameter. A higher tau means lower critical values and less strict criteria. For lower $\tau$s, the opposite is true. A generally accepted $\tau$ is 10%.
+
+This can be done simply with `eff_F()` from the `ivDiag` package:
+```{r}
+effective_f <- eff_F(lyme_na, Y = "LogLyme0103_1113", D = "PercWuiPop", Z = "DensityResIndex", controls = c("PercLandForest", "EdgeDensity", "MeanPatchArea"), cl = "AgStatDistrict")
+
+cat("Effective F Stat:", effective_f)
+```
+
+### Clustered Mean Squared Errors
+
+I had mentioned earlier in this blog that clustering should not be a problem when doing the non-robust F-test. This is because this study uses clustered mean squared errors (CMSE) as it's error term. We can calculate them with `vcovCL()` from the `sandwich` package, and get a summary/hypothesis test with the `coeftest()` from the `lmtest` package.
+
+You funnel in a model and a clustering variable within the dataset:
+```{r}
+# Calculate clustered standard errors
+clustered_se <- vcovCL(ur_model, cluster = ~ AgStatDistrict)
+# Hypothesis testing with clustered standard errors
+coeftest(ur_model, vcov = clustered_se)
+```
+
+## Results
+
+This study created a variety of different models and tested different combinations of covariates. The models used were:
+
+* OLS
+* Year Fixed Effects
+* State * Year Fixed Effects
+* IV
+* IV with Year Fixed Effects
+
+And the different combinations of covariates were:
+* None (Bivariate model)
+* % Forest & Edge Density
+* % Forest & Mean Patch Size
+* Mean Patch Size & Edge Density
+* All covariates
+
+Here, we run all models...
+
+```{r}
+#| code-fold: true
+
+
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+##                                                                            ~~
+##                                    OLS                                   ----
+##                                                                            ~~
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+##                            Bivariate models                              ----
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+ols_biv <- lm(LogLyme0103_1113 ~ PercWuiPop, data = lyme)
+ols_biv_clust <- ols_biv %>% 
+    vcovCL(cluster = ~ AgStatDistrict) %>% 
+    coeftest(ols_biv, vcov = .)
+
+
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+##                            Multivariate models                           ----
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+# %forest + edge
+ols_multi_1 <- lm(LogLyme0103_1113 ~ PercWuiPop + EdgeDensity + PercLandForest, data = lyme)
+ols_multi_1_clust <- ols_multi_1 %>% 
+    vcovCL(cluster = ~ AgStatDistrict) %>% 
+    coeftest(ols_multi_1, vcov = .)
+
+# %Forest + patch area
+ols_multi_2 <- lm(LogLyme0103_1113 ~ PercWuiPop + MeanPatchArea + PercLandForest, data = lyme)
+ols_multi_2_clust <- ols_multi_2 %>% 
+    vcovCL(cluster = ~ AgStatDistrict) %>% 
+    coeftest(ols_multi_2, vcov = .)
+
+# mean patch + edge
+ols_multi_3 <- lm(LogLyme0103_1113 ~ PercWuiPop + MeanPatchArea + EdgeDensity, data = lyme)
+ols_multi_3_clust <- ols_multi_3 %>% 
+    vcovCL(cluster = ~ AgStatDistrict) %>% 
+    coeftest(ols_multi_3, vcov = .)
+
+# %Forest + mean patch + edge
+ols_multi_4 <- lm(LogLyme0103_1113 ~ PercWuiPop + MeanPatchArea + EdgeDensity + PercLandForest, data = lyme)
+ols_multi_4_clust <- ols_multi_4 %>% 
+    vcovCL(cluster = ~ AgStatDistrict) %>% 
+    coeftest(ols_multi_4, vcov = .)
+
+     #                Combine all models into list                 ~~~
+     #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+ols_models <- list(ols_biv = ols_biv_clust[2,1:2], 
+                ols_multi_1 = ols_multi_1_clust[2:nrow(ols_multi_1_clust),1:2], 
+                ols_multi_2 = ols_multi_2_clust[2:nrow(ols_multi_2_clust),1:2], 
+                ols_multi_3 = ols_multi_3_clust[2:nrow(ols_multi_3_clust),1:2], 
+                ols_multi_4 = ols_multi_4_clust[2:nrow(ols_multi_4_clust),1:2])
+
+
+
+
+
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+##                                                                            ~~
+##                                  YEAR FE                                 ----
+##                                                                            ~~
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+
+
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+##                            Bivariate models                              ----
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+yearfe_biv <- lm(LogLyme0103_1113 ~ PercWuiPop + as_factor(Year) - 1, data = lyme)
+yearfe_biv_clust <- yearfe_biv %>% 
+    vcovCL(cluster = ~ AgStatDistrict) %>% 
+    coeftest(yearfe_biv, vcov = .)
+
+
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+##                            Multivariate models                           ----
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+# %forest + edge
+yearfe_multi_1 <- lm(LogLyme0103_1113 ~ PercWuiPop + EdgeDensity + PercLandForest + as_factor(Year) - 1, data = lyme)
+yearfe_multi_1_clust <- yearfe_multi_1 %>% 
+    vcovCL(cluster = ~ AgStatDistrict) %>% 
+    coeftest(yearfe_multi_1, vcov = .)
+
+# %Forest + patch area
+yearfe_multi_2 <- lm(LogLyme0103_1113 ~ PercWuiPop + MeanPatchArea + PercLandForest + as_factor(Year) - 1, data = lyme)
+yearfe_multi_2_clust <- yearfe_multi_2 %>% 
+    vcovCL(cluster = ~ AgStatDistrict) %>% 
+    coeftest(yearfe_multi_2, vcov = .)
+
+# mean patch + edge
+yearfe_multi_3 <- lm(LogLyme0103_1113 ~ PercWuiPop + MeanPatchArea + EdgeDensity + as_factor(Year) - 1, data = lyme)
+yearfe_multi_3_clust <- yearfe_multi_3 %>% 
+    vcovCL(cluster = ~ AgStatDistrict) %>% 
+    coeftest(yearfe_multi_3, vcov = .)
+
+# %Forest + mean patch + edge
+yearfe_multi_4 <- lm(LogLyme0103_1113 ~ PercWuiPop + MeanPatchArea + EdgeDensity + PercLandForest + as_factor(Year) - 1, data = lyme)
+yearfe_multi_4_clust <- yearfe_multi_4 %>% 
+    vcovCL(cluster = ~ AgStatDistrict) %>% 
+    coeftest(yearfe_multi_4, vcov = .)
+
+
+
+     #                Combine all models into list                 ~~~
+     #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+year_fe_models <- list(yearfe_biv = yearfe_biv_clust[1, c("Estimate", "Std. Error")], 
+                yearfe_multi_1 = yearfe_multi_1_clust[1:3, c("Estimate", "Std. Error")], 
+                yearfe_multi_2 = yearfe_multi_2_clust[1:3, c("Estimate", "Std. Error")], 
+                yearfe_multi_3 = yearfe_multi_3_clust[1:3, c("Estimate", "Std. Error")], 
+                yearfe_multi_4 = yearfe_multi_4_clust[1:4, c("Estimate", "Std. Error")])
+
+
+
+
+
+
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+##                                                                            ~~
+##                              STATE + YEAR FE                             ----
+##                                                                            ~~
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+
+
+
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+##                            Bivariate models                              ----
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+stateyearfe_biv <- lm(LogLyme0103_1113 ~ PercWuiPop + as_factor(StateYrGroup) - 1, data = lyme)
+stateyearfe_biv_clust <- stateyearfe_biv %>% 
+    vcovCL(cluster = ~ AgStatDistrict) %>% 
+    coeftest(stateyearfe_biv, vcov = .)
+
+
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+##                            Multivariate models                           ----
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+# %forest + edge
+stateyearfe_multi_1 <- lm(LogLyme0103_1113 ~ PercWuiPop + EdgeDensity + PercLandForest + as_factor(StateYrGroup) - 1, data = lyme)
+stateyearfe_multi_1_clust <- stateyearfe_multi_1 %>% 
+    vcovCL(cluster = ~ AgStatDistrict) %>% 
+    coeftest(stateyearfe_multi_1, vcov = .)
+
+# %Forest + patch area
+stateyearfe_multi_2 <- lm(LogLyme0103_1113 ~ PercWuiPop + MeanPatchArea + PercLandForest + as_factor(StateYrGroup) - 1, data = lyme)
+stateyearfe_multi_2_clust <- stateyearfe_multi_2 %>% 
+    vcovCL(cluster = ~ AgStatDistrict) %>% 
+    coeftest(stateyearfe_multi_2, vcov = .)
+
+# mean patch + edge
+stateyearfe_multi_3 <- lm(LogLyme0103_1113 ~ PercWuiPop + MeanPatchArea + EdgeDensity + as_factor(StateYrGroup) - 1, data = lyme)
+stateyearfe_multi_3_clust <- stateyearfe_multi_3 %>% 
+    vcovCL(cluster = ~ AgStatDistrict) %>% 
+    coeftest(stateyearfe_multi_3, vcov = .)
+
+# %Forest + mean patch + edge
+stateyearfe_multi_4 <- lm(LogLyme0103_1113 ~ PercWuiPop + MeanPatchArea + EdgeDensity + PercLandForest + as_factor(StateYrGroup) - 1, data = lyme)
+stateyearfe_multi_4_clust <- stateyearfe_multi_4 %>% 
+    vcovCL(cluster = ~ AgStatDistrict) %>% 
+    coeftest(stateyearfe_multi_4, vcov = .)
+
+
+
+     #                Combine all models into list                 ~~~
+     #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+stateyearfe_models <- list(stateyearfe_biv = stateyearfe_biv_clust[1, c("Estimate", "Std. Error")], 
+                stateyearfe_multi_1 = stateyearfe_multi_1_clust[1:3, 1:2], 
+                stateyearfe_multi_2 = stateyearfe_multi_2_clust[1:3, 1:2], 
+                stateyearfe_multi_3 = stateyearfe_multi_3_clust[1:3, 1:2], 
+                stateyearfe_multi_4 = stateyearfe_multi_4_clust[1:4, 1:2])
+
+
+
+
+
+
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+##                                                                            ~~
+##                                     IV                                   ----
+##                                                                            ~~
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+
+
+
+
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+##                            Bivariate models                              ----
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+iv_biv <- ivreg(LogLyme0103_1113 ~ PercWuiPop |
+  DensityResIndex,
+  data = lyme_na)
+iv_biv_clust <- iv_biv %>% 
+    vcovCL(cluster = ~ AgStatDistrict) %>% 
+    coeftest(iv_biv, vcov = .)
+
+
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+##                            Multivariate models                           ----
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+# %forest + edge
+iv_multi_1 <- ivreg(LogLyme0103_1113 ~ EdgeDensity + PercLandForest | 
+                        PercWuiPop | 
+                        DensityResIndex, 
+                    data = lyme_na)
+iv_multi_1_clust <- iv_multi_1 %>% 
+    vcovCL(cluster = ~ AgStatDistrict) %>% 
+    coeftest(iv_multi_1, vcov = .)
+
+# %Forest + patch area
+iv_multi_2 <- ivreg(LogLyme0103_1113 ~ MeanPatchArea + PercLandForest | 
+                        PercWuiPop | 
+                        DensityResIndex, 
+                    data = lyme_na)
+iv_multi_2_clust <- iv_multi_2 %>% 
+    vcovCL(cluster = ~ AgStatDistrict) %>% 
+    coeftest(iv_multi_2, vcov = .)
+
+# mean patch + edge
+iv_multi_3 <- ivreg(LogLyme0103_1113 ~ MeanPatchArea + EdgeDensity | 
+                        PercWuiPop | 
+                        DensityResIndex, 
+                    data = lyme_na)
+iv_multi_3_clust <- iv_multi_3 %>% 
+    vcovCL(cluster = ~ AgStatDistrict) %>% 
+    coeftest(iv_multi_3, vcov = .)
+
+# %Forest + mean patch + edge
+iv_multi_4 <- ivreg(LogLyme0103_1113 ~ MeanPatchArea + EdgeDensity + PercLandForest | 
+                        PercWuiPop | 
+                        DensityResIndex, 
+                    data = lyme_na)
+iv_multi_4_clust <- iv_multi_4 %>% 
+    vcovCL(cluster = ~ AgStatDistrict) %>% 
+    coeftest(iv_multi_4, vcov = .)
+
+
+     #                Combine all models into list                 ~~~
+     #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+iv_models <- list(iv_biv = iv_biv_clust[1, c("Estimate", "Std. Error")], 
+                iv_multi_1 = iv_multi_1_clust[2:4, 1:2], 
+                iv_multi_2 = iv_multi_2_clust[2:4, 1:2], 
+                iv_multi_3 = iv_multi_3_clust[2:4, 1:2], 
+                iv_multi_4 = iv_multi_4_clust[2:5, 1:2])
+
+
+
+
+
+
+
+
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+##                                                                            ~~
+##                                IV + YEAR FE                              ----
+##                                                                            ~~
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+
+
+
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+##                            Bivariate models                              ----
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+iv_yearfe_biv <- ivreg(LogLyme0103_1113 ~ PercWuiPop  + as_factor(Year) - 1 | 
+                           DensityResIndex + as_factor(Year) - 1, 
+                       data = lyme_na
+  )
+iv_yearfe_biv_clust <- iv_yearfe_biv %>% 
+    vcovCL(cluster = ~ AgStatDistrict) %>%
+    coeftest(iv_yearfe_biv, vcov = .)
+
+
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+##                            Multivariate models                           ----
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+# %forest + edge
+iv_yearfe_multi_1 <- ivreg(
+    LogLyme0103_1113 ~ PercWuiPop + PercLandForest + EdgeDensity + as_factor(Year) - 1 | 
+                       DensityResIndex + PercLandForest + EdgeDensity + as_factor(Year) - 1, 
+                       data = lyme_na
+  )
+iv_yearfe_multi_1_clust <- iv_yearfe_multi_1 %>% 
+    vcovCL(cluster = ~ AgStatDistrict) %>% 
+    coeftest(iv_yearfe_multi_1, vcov = .)
+
+# %Forest + patch area
+iv_yearfe_multi_2 <- ivreg(
+    LogLyme0103_1113 ~ PercWuiPop + PercLandForest + MeanPatchArea + as_factor(Year) - 1 | 
+                       DensityResIndex + PercLandForest + MeanPatchArea + as_factor(Year) - 1, 
+                       data = lyme_na
+  )
+iv_yearfe_multi_2_clust <- iv_yearfe_multi_2 %>% 
+    vcovCL(cluster = ~ AgStatDistrict) %>% 
+    coeftest(iv_yearfe_multi_2, vcov = .)
+
+# mean patch + edge
+iv_yearfe_multi_3 <- ivreg(
+    LogLyme0103_1113 ~ PercWuiPop + EdgeDensity + MeanPatchArea + as_factor(Year) - 1 | 
+                       DensityResIndex + EdgeDensity + MeanPatchArea + as_factor(Year) - 1 , 
+                       data = lyme_na
+  )
+iv_yearfe_multi_3_clust <- iv_yearfe_multi_3 %>% 
+    vcovCL(cluster = ~ AgStatDistrict) %>% 
+    coeftest(iv_yearfe_multi_3, vcov = .)
+
+# %Forest + mean patch + edge
+iv_yearfe_multi_4 <- ivreg(
+    LogLyme0103_1113 ~ PercWuiPop + PercLandForest + EdgeDensity + MeanPatchArea + as_factor(Year) - 1| 
+                       DensityResIndex + PercLandForest + EdgeDensity + MeanPatchArea + as_factor(Year) - 1, 
+                       data = lyme_na
+  )
+iv_yearfe_multi_4_clust <- iv_yearfe_multi_4 %>% 
+    vcovCL(cluster = ~ AgStatDistrict) %>% 
+    coeftest(iv_yearfe_multi_4, vcov = .)
+
+
+
+     #                Combine all models into list                 ~~~
+     #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+iv_yearfe_models <- list(iv_yearfe_biv = iv_yearfe_biv_clust[1, c("Estimate", "Std. Error")], 
+                iv_yearfe_multi_1 = iv_yearfe_multi_1_clust[1:3, 1:2], 
+                iv_yearfe_multi_2 = iv_yearfe_multi_2_clust[1:3, 1:2], 
+                iv_yearfe_multi_3 = iv_yearfe_multi_3_clust[1:3, 1:2], 
+                iv_yearfe_multi_4 = iv_yearfe_multi_4_clust[1:4, 1:2])
+
+
+
+
+
+
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+##                                                                            ~~
+##                          FUNCTION TO CREATE MODELS                       ----
+##                                                                            ~~
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+
+
+make_table <- function(models, type_label){
+
+    table_output = data_frame()
+    
+    for(i in 1:length(models)){
+        
+        if(length(models[[i]]) < 3){
+            
+            table_output <- table_output %>% 
+                bind_rows(models[[i]]) %>% 
+              mutate(model = type_label, 
+                     type = "bivariate",
+                     covariate = "PercWuiPop",
+                     num = 0)
+        }
+        else{
+            table_output <- table_output %>% 
+                 bind_rows(
+            models[[i]] %>% as_tibble()
+         %>%
+              mutate(model = type_label,
+                     type = "multivariate",
+                     covariate = names(models[[i]][,1]),
+                     num = i - 1
+                     )
+                 )
+        }
+    }
+    
+    return(table_output)
+
+}
+
+
+
+
+ols_table <- make_table(ols_models, "OLS") %>% 
+    select(-model) %>% 
+    rename(Std_Error = "Std. Error") %>%
+    mutate(Estimate = Estimate %>% signif(2), 
+           Std_Error = Std_Error %>% signif(2))
+
+year_fe_table <- make_table(year_fe_models, "Year FE") %>% 
+    select(-model) %>% 
+    rename(Std_Error = "Std. Error") %>%
+    mutate(Estimate = Estimate %>% signif(2), 
+           Std_Error = Std_Error %>% signif(2))
+
+stateyearfe_table <- make_table(stateyearfe_models, "State + Year FE") %>% 
+    select(-model) %>% 
+    rename(Std_Error = "Std. Error") %>%
+    mutate(Estimate = Estimate %>% signif(2), 
+           Std_Error = Std_Error %>% signif(2))
+
+iv_table <- make_table(iv_models, "IV") %>% 
+    select(-model) %>% 
+    rename(Std_Error = "Std. Error") %>%
+    mutate(Estimate = Estimate %>% signif(2), 
+           Std_Error = Std_Error %>% signif(2))
+
+iv_yearfe_table <- make_table(iv_yearfe_models, "IV + Year FE") %>% 
+    select(-model) %>% 
+    rename(Std_Error = "Std. Error") %>%
+    mutate(Estimate = Estimate %>% signif(2), 
+           Std_Error = Std_Error %>% signif(2))
+```
+
+#### Table creation for every model
+```{r table1, echo=FALSE}
+options(dplyr.print_max = 1e9)
+
+print(ols_table)
+print(year_fe_table)
+print(stateyearfe_table)
+print(iv_table)
+print(iv_yearfe_table)
+```
+
+
+These tables contain all estimates and errors for every tested model.
+
+A series of robust checks were also performed on the first stage for 5 different models containing the different combinations of covariates specified previously. These tests are the non-robust F test, the Effective F test, and the Specification test. Although here I will just perform the Effective F Weak Instruments Test.
+```{r}
+#| code-fold: true
+
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+##  ~ Model 1: No Covariates  ----
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+no_covariates <- eff_F(lyme_na, Y = "LogLyme0103_1113", D = "PercWuiPop", Z = "DensityResIndex", cl = "AgStatDistrict", FE = "as_factor(Year)")
+
+
+
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+##  ~ Model 2: % Forest + Edge Density  ----
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+forest_edge <- eff_F(lyme_na, Y = "LogLyme0103_1113", D = "PercWuiPop", Z = "DensityResIndex", controls = c("PercLandForest", "EdgeDensity"), cl = "AgStatDistrict")
+
+
+
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+##  ~ Model 3: % Forest + Mean Patch Area  ----
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+forest_patch <- eff_F(lyme_na, Y = "LogLyme0103_1113", D = "PercWuiPop", Z = "DensityResIndex", controls = c("PercLandForest", "MeanPatchArea"), cl = "AgStatDistrict")
+
+
+
+
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+##  ~ Model 4: Edge Density + Mean Patch Area  ----
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+edge_patch <- eff_F(lyme_na, Y = "LogLyme0103_1113", D = "PercWuiPop", Z = "DensityResIndex", controls = c("EdgeDensity", "MeanPatchArea"), cl = "AgStatDistrict")
+
+
+
+
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+##  ~ Model 5: All Covariates  ----
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+all_covariates <- eff_F(lyme_na, Y = "LogLyme0103_1113", D = "PercWuiPop", Z = "DensityResIndex", controls = c("PercLandForest", "EdgeDensity", "MeanPatchArea"), cl = "AgStatDistrict")
+
+
+
+
+#....................Printing the F statistics...................
+cat(" No covariates effective F stat: ", no_covariates, "**", "\n", 
+    "% forest + edge density effective F stat: ", forest_edge, "\n", 
+    "% forest + Mean Patch Area effective F stat: ", forest_patch, "\n", 
+    "Edge density + mean match area effective F stat: ", edge_patch, "\n", 
+    "All covariates effective F stat: ", all_covariates, "\n"
+    )
+
+```
+
+The only model that is significant to $\alpha < 0.05$ is the no covariates model. The other models would be significant if we accept $\tau < 0.30$, but that is very low precision.
+
+The other robustness tests were not performed because I could not replicate their values, likely due to my own error. This being said, we can still check the F statistic of each of the models, as it is build into `summary()`.
+
+```{r}
+#| code-fold: true
+
+no_covariates_f <- lm(PercWuiPop ~ DensityResIndex + # instrumental variable
+       as_factor(Year), # fixed effects
+  data = lyme_na) %>% 
+    summary()
+
+forest_edge_f <- lm(PercWuiPop ~ DensityResIndex + # instrumental variable
+       MeanPatchArea + EdgeDensity + # covariates
+       as_factor(Year), # fixed effects
+  data = lyme_na) %>% 
+    summary()
+
+forest_patch_f <- lm(PercWuiPop ~ DensityResIndex + # instrumental variable
+       MeanPatchArea + PercLandForest + # covariates
+       as_factor(Year), # fixed effects
+  data = lyme_na) %>% 
+    summary()
+
+edge_patch_f <- lm(PercWuiPop ~ DensityResIndex + # instrumental variable
+       MeanPatchArea + EdgeDensity + # covariates
+       as_factor(Year), # fixed effects
+  data = lyme_na) %>% 
+    summary()
+
+
+all_covariates_f <- lm(PercWuiPop ~ DensityResIndex + # instrumental variable
+       MeanPatchArea + EdgeDensity + PercLandForest + # covariates
+       as_factor(Year), # fixed effects
+  data = lyme_na) %>% 
+    summary()
+
+
+cat(" No covariates non-robust F stat: ", no_covariates_f$fstatistic[1], "**", "\n", 
+    "% forest + edge density non-robust F stat: ", forest_edge_f$fstatistic[1], "\n", 
+    "% forest + Mean Patch Area non-robust F stat: ", forest_patch_f$fstatistic[1], "\n", 
+    "Edge density + mean match area non-robust F stat: ", edge_patch_f$fstatistic[1], "\n", 
+    "All covariates non-robust F stat: ", all_covariates_f$fstatistic[1]
+    )
+```
+
+These F statistics are likely very overinflated, but are significantly above 10.
+
+
+## Conclusion
+
+The study seems pretty rock solid in terms of validating the assumptions of the model, as CMSE accounts for clustering and biases, the effective F accounts for potential heteroscedasticity, and the fixed effects account for any autocorrelation issues (even though it didn't have much of an effect). Furthermore, the IV approach potentially mitigated any endogeneity bias. 
+
+The only mark against the study is that the effective F was not significant when adding the covariates at a $\tau$ of 10%. It was significant without them, but omitting them could lead of omitted variable bias. 
+
+This study possibly suggests that lot size regulations are a good instrument to measure Lyme incidence. At the very least, it suggests that this methodology could be more effective than previously used ones, as the endogeneity bias makes directly using habitat fragmentation as a predictor unreliable.
+
