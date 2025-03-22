@@ -1,0 +1,1642 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.57">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Joshua Paul Cohen, Josh Mull, Amanda Overbye">
+
+<title>MacDonald et al.&nbsp;(2018) Breakdown – Joshua Paul Cohen</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
+<link href="../../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../website_icon_cropped.PNG" alt="cute silk moth" class="navbar-logo">
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../resources.html"> 
+<span class="menu-text">Resources</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../MEDS_Master_Resume.pdf"> 
+<span class="menu-text">Resume</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../posts.html"> 
+<span class="menu-text">Posts</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-page">
+      <h1 class="title">MacDonald et al.&nbsp;(2018) Breakdown</h1>
+                      </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta column-page">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Joshua Paul Cohen, Josh Mull, Amanda Overbye </p>
+            </div>
+    </div>
+      
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content quarto-banner-title-block column-page" id="quarto-document-content">
+
+
+
+
+
+<p>When it comes to insect and invert borne zoonotic diseases, edge forest habitat is thought of in the literature to be high risk. But because the worlds forests are only getting more fragmented, the area of edge forest is increasing. Lyme disease particularly, has been found to be a major offender, as the land type lends itself well to strong tick vectors like deer.</p>
+<p>This has been a strong motivator for studying Lyme disease incidence. If the wildlife-urban interface (WUI) is getting larger, it’s likely a result of people to live in those areas, and we may expect the rate of Lyme disease to rise. It’s for this reason that habitat fragmentation has logically been used as an indicator for incidence. But studies on this topic, while generally supporting this idea, have been inconsistent.</p>
+<p>MacDonald et al.&nbsp;(2018), suggests that the reason for this inconsistency could be an endogeneity bias, in which as much as habitat fragmentation influences Lyme prevalence, it also works the other way around, in which Lyme incidence influences where people choose to live, which ironically can lead to more fragmentation. This violates a very important assumption that makes most statistical models work, in which the predictor variables must not be correlated with the error term. Because this is the method used in most other studies on this topic, this suggest some bias in the literature.</p>
+<p>They therefore try a different approach, and instead use an instrumental variable (IV) model. An IV is a variable that correlates with the predictor variable in a model. We refer to this as endogeneity, and the variable as our endogenous variable. This method can be used to predict Lyme disease by proximity, as habitat fragmentation on it’s own is unreliable.</p>
+<p>MacDonald et al.&nbsp;(2018) utilizes this concept by including a density restriction index, which indicates lot size regulation in an area. The thing about the instrumental variable approach to modeling is that it’s a 2 stage process where first, the instrument is regressed on our habitat fragmentation (our endogenous variable), and second, the the endogenous variable is regressed on the dependent variable (Lyme disease incidence). This is a very robust way performing this analysis.</p>
+<p>Using this strategy, the paper attempts to model Lyme disease incidence in the WUI of the US northeastern deciduous forests. Along, with and IV approach, it uses a fixed effects approach and checks for robustness with several F-tests.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ivreg)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(plm)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(jtools)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sandwich)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lmtest)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(fixest)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(kableExtra)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ivDiag)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>lyme <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">'posts'</span>, </span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>                            <span class="st">'macdonald_2018_breakdown'</span>, </span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>                            <span class="st">'data'</span>, </span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>                            <span class="st">'MacDonaldetal_JAE_2018.csv'</span>))</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>lyme_na <span class="ot">&lt;-</span> lyme <span class="sc">%&gt;%</span> <span class="fu">filter</span>(<span class="fu">is.na</span>(DensityResIndex) <span class="sc">==</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="workflow" class="level2">
+<h2 class="anchored" data-anchor-id="workflow">Workflow</h2>
+<section id="variable-names" class="level3">
+<h3 class="anchored" data-anchor-id="variable-names">Variable names</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Variable</th>
+<th>Role in Model</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>DensityResIndex</td>
+<td>IV</td>
+<td>Density restriction index, indicates the average lot size regulation for a given observation</td>
+</tr>
+<tr class="even">
+<td>PercWuiPop</td>
+<td>Endogenous Variable</td>
+<td>Percent of county population residing in WUI</td>
+</tr>
+<tr class="odd">
+<td>LogLyme0103_1113</td>
+<td>Dependent Variable</td>
+<td>Lyme disease incidence</td>
+</tr>
+<tr class="even">
+<td>MeanPatchArea</td>
+<td>Exogenous Covariate</td>
+<td>Average forest patch area by county</td>
+</tr>
+<tr class="odd">
+<td>EdgeDensity</td>
+<td>Exogenous Covariate</td>
+<td>Forest edge density by county</td>
+</tr>
+<tr class="even">
+<td>PercLandForest</td>
+<td>Exogenous Covariate</td>
+<td>% forested area in county</td>
+</tr>
+<tr class="odd">
+<td>StateYrGroup</td>
+<td>Fixed Variable</td>
+<td>Identifier for each observation based on state and year</td>
+</tr>
+<tr class="even">
+<td>AgStatDistrict</td>
+<td>Clustering Variable (for CMSE)</td>
+<td>USDA agricultural statistics districts</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="first-and-second-stage-iv-regression" class="level3">
+<h3 class="anchored" data-anchor-id="first-and-second-stage-iv-regression">First and second stage IV regression</h3>
+<p>A general overview of the methods employed in the paper…</p>
+<p>The instrument is first regressed on the endogenous variable</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>stage_1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(PercWuiPop <span class="sc">~</span> DensityResIndex,</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>              <span class="at">data =</span> lyme_na)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Then the first stage fitted values are regressed against the dependant variable.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>stage_2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(LogLyme0103_1113 <span class="sc">~</span> PercWuiPop, </span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>              <span class="at">data =</span> lyme_na)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Both stages include covariates, although the strength of them will be tested later on.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>stage_1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(PercWuiPop <span class="sc">~</span> DensityResIndex <span class="sc">+</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>              MeanPatchArea <span class="sc">+</span> EdgeDensity <span class="sc">+</span> PercLandForest, </span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>              <span class="at">data =</span> lyme_na)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>stage_2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(LogLyme0103_1113 <span class="sc">~</span> PercWuiPop <span class="sc">+</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>              MeanPatchArea <span class="sc">+</span> EdgeDensity <span class="sc">+</span> PercLandForest, </span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>              <span class="at">data =</span> lyme_na)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The <code>ivreg</code> package can run both the stage 1 and stage 2 regressions intertwined in a single function, making this process easy.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>lyme_iv <span class="ot">&lt;-</span> <span class="fu">ivreg</span>(LogLyme0103_1113 <span class="sc">~</span> MeanPatchArea <span class="sc">+</span> EdgeDensity <span class="sc">+</span> PercLandForest <span class="sc">|</span> <span class="co"># covariates</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>                 PercWuiPop <span class="sc">|</span> <span class="co"># endogenous variable</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>                 DensityResIndex, <span class="co"># instrumental variable</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> lyme_na)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(lyme_iv)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+ivreg(formula = LogLyme0103_1113 ~ MeanPatchArea + EdgeDensity + 
+    PercLandForest | PercWuiPop | DensityResIndex, data = lyme_na)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-4.5836 -0.9984  0.1557  1.0503  3.3776 
+
+Coefficients:
+                Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)     1.789588   0.186272   9.607  &lt; 2e-16 ***
+PercWuiPop      0.037167   0.008414   4.417 1.22e-05 ***
+MeanPatchArea  -0.042153   0.017051  -2.472   0.0138 *  
+EdgeDensity    -0.002510   0.007850  -0.320   0.7493    
+PercLandForest  0.007982   0.018260   0.437   0.6622    
+
+Diagnostic tests:
+                 df1 df2 statistic  p-value    
+Weak instruments   1 509     62.97 1.35e-14 ***
+Wu-Hausman         1 508     17.09 4.17e-05 ***
+Sargan             0  NA        NA       NA    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 1.459 on 509 degrees of freedom
+Multiple R-Squared: -0.005559,  Adjusted R-squared: -0.01346 
+Wald test: 28.41 on 4 and 509 DF,  p-value: &lt; 2.2e-16 </code></pre>
+</div>
+</div>
+</section>
+<section id="fixed-effects" class="level3">
+<h3 class="anchored" data-anchor-id="fixed-effects">Fixed effects</h3>
+<p>The authors also ran the second stage as a fixed effects model. This approach is one where you group your data to account for unobserved differences between them. It does this by using a dummy variable (0 or 1) for each class for a group to indicate which data are from which class.</p>
+<p>Here, the models were fixed by year or state &amp; year.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>fixed_effects <span class="ot">&lt;-</span> <span class="fu">lm</span>(LogLyme0103_1113 <span class="sc">~</span> PercWuiPop <span class="sc">+</span> <span class="fu">as_factor</span>(StateYrGroup) <span class="sc">-</span> <span class="dv">1</span>, <span class="at">data =</span> lyme_na)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fixed_effects)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = LogLyme0103_1113 ~ PercWuiPop + as_factor(StateYrGroup) - 
+    1, data = lyme_na)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-4.2041 -0.6909 -0.0239  0.6520  4.9930 
+
+Coefficients:
+                          Estimate Std. Error t value Pr(&gt;|t|)    
+PercWuiPop                0.017941   0.001989   9.022  &lt; 2e-16 ***
+as_factor(StateYrGroup)1  3.454231   0.420940   8.206 2.04e-15 ***
+as_factor(StateYrGroup)2  2.879821   0.421244   6.836 2.43e-11 ***
+as_factor(StateYrGroup)3  2.920626   0.648817   4.501 8.44e-06 ***
+as_factor(StateYrGroup)4  3.983158   0.648824   6.139 1.72e-09 ***
+as_factor(StateYrGroup)5  0.598705   0.340043   1.761   0.0789 .  
+as_factor(StateYrGroup)6  2.711908   0.342733   7.913 1.70e-14 ***
+as_factor(StateYrGroup)7  2.458755   0.328560   7.483 3.39e-13 ***
+as_factor(StateYrGroup)8  3.046376   0.328395   9.277  &lt; 2e-16 ***
+as_factor(StateYrGroup)9  2.471677   0.322881   7.655 1.04e-13 ***
+as_factor(StateYrGroup)10 3.369002   0.321252  10.487  &lt; 2e-16 ***
+as_factor(StateYrGroup)11 1.505099   0.178967   8.410 4.53e-16 ***
+as_factor(StateYrGroup)12 2.742846   0.179086  15.316  &lt; 2e-16 ***
+as_factor(StateYrGroup)13 0.968439   0.455144   2.128   0.0339 *  
+as_factor(StateYrGroup)14 3.004004   0.456960   6.574 1.26e-10 ***
+as_factor(StateYrGroup)15 2.364315   0.267596   8.835  &lt; 2e-16 ***
+as_factor(StateYrGroup)16 3.100802   0.266760  11.624  &lt; 2e-16 ***
+as_factor(StateYrGroup)17 0.980690   0.188115   5.213 2.74e-07 ***
+as_factor(StateYrGroup)18 2.117406   0.187057  11.320  &lt; 2e-16 ***
+as_factor(StateYrGroup)19 1.807620   0.198379   9.112  &lt; 2e-16 ***
+as_factor(StateYrGroup)20 2.624127   0.197436  13.291  &lt; 2e-16 ***
+as_factor(StateYrGroup)21 0.442376   0.381141   1.161   0.2463    
+as_factor(StateYrGroup)22 2.936382   0.383114   7.665 9.74e-14 ***
+as_factor(StateYrGroup)23 1.525581   0.185235   8.236 1.64e-15 ***
+as_factor(StateYrGroup)24 3.005449   0.185549  16.198  &lt; 2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 1.123 on 489 degrees of freedom
+Multiple R-squared:  0.8878,    Adjusted R-squared:  0.8821 
+F-statistic: 154.8 on 25 and 489 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+</div>
+<p>The paper states that the fixed-effects had very little to know effect on the estimate, only changing it by +-0.002.</p>
+</section>
+<section id="f-test-and-robustness-checks" class="level3">
+<h3 class="anchored" data-anchor-id="f-test-and-robustness-checks">F-test and Robustness Checks</h3>
+<p>In the most general sense, a F-test looks for statistical significance by comparing variances. But in a modeling context, a F-test can be used to estimate how much the addition of 1 or more variables improves the model. We do this by comparing our <em>restricted</em> and <em>unrestricted</em> models.</p>
+<p>The general equation:</p>
+<p><span class="math inline">\(F = \frac{\text{SSE}_R - \text{SSE}_{UR} / e}{\text{SSE}_{UR} / (n - k)}\)</span></p>
+<p>Where:</p>
+<ul>
+<li><span class="math inline">\(\text{SSE}_{UR}\)</span> is the full model with every variable.</li>
+<li><span class="math inline">\(\text{SSE}_{R}\)</span> is a model with one or more variables excluded. The excluded variables are being tested for their strength.</li>
+<li><span class="math inline">\(\text e\)</span> is the <em>restrictions</em> or the total number of omitted variables</li>
+<li><span class="math inline">\(\text k\)</span> is the total number of variables in the regression, including the intercept.</li>
+<li><span class="math inline">\(\text n\)</span> is the sample size.</li>
+</ul>
+<p>They performed this test on the first stage of the IV approach. To accomplish this manually in R…</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># get unrestricted model</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>ur_model <span class="ot">&lt;-</span> <span class="fu">lm</span>(PercWuiPop <span class="sc">~</span> DensityResIndex</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>               <span class="sc">+</span> MeanPatchArea <span class="sc">+</span> EdgeDensity <span class="sc">+</span> PercLandForest </span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>              ,<span class="at">data =</span> lyme_na)</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="co"># sse unrestricted</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>sse_ur <span class="ot">&lt;-</span> <span class="fu">sum</span>((<span class="fu">fitted</span>(ur_model) <span class="sc">-</span> lyme_na<span class="sc">$</span>PercWuiPop)<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="co"># restricted models</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>r_model <span class="ot">&lt;-</span> <span class="fu">lm</span>(PercWuiPop <span class="sc">~</span> MeanPatchArea <span class="sc">+</span> EdgeDensity <span class="sc">+</span> PercLandForest </span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>              ,<span class="at">data =</span> lyme_na)</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="co"># sse restricted</span></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>sse_r <span class="ot">&lt;-</span> <span class="fu">sum</span>((<span class="fu">fitted</span>(r_model) <span class="sc">-</span> lyme_na<span class="sc">$</span>PercWuiPop)<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a><span class="co"># non-robust f test</span></span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>F_std <span class="ot">&lt;-</span> ((sse_r <span class="sc">-</span> sse_ur) <span class="sc">/</span> <span class="dv">1</span>) <span class="sc">/</span> </span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>           (sse_ur <span class="sc">/</span> (<span class="fu">nrow</span>(lyme_na) <span class="sc">-</span> <span class="dv">5</span>))</span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"F value: "</span>, F_std, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>F value:  62.96987 </code></pre>
+</div>
+</div>
+<p>This can also be accomplished with an ANOVA…</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>f_stat <span class="ot">&lt;-</span> <span class="fu">anova</span>(r_model, ur_model)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"F value with ANOVA: "</span>, f_stat<span class="sc">$</span>F[<span class="dv">2</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>F value with ANOVA:  62.96987</code></pre>
+</div>
+</div>
+<p>A F-value above 10 indicates a strong instrument, and this F is significantly above 10.</p>
+<p>You would then obtain a critical value.</p>
+<ul>
+<li><span class="math inline">\(\text ResDF_{UR}\)</span> is derived from sample size of dataset - total num of variables in model</li>
+<li><span class="math inline">\(\text ResDF_{R}\)</span> is derived from the previously calculated Residual Df, minus the number of restrictions.</li>
+<li><span class="math inline">\(\text {Df}_1\)</span> is therefore derived from ResDF_UR - variables in model.</li>
+<li><span class="math inline">\(\text {Df}_2\)</span> is k - <span class="math inline">\(\text {Df}_1\)</span> - 1</li>
+</ul>
+<p>We will just use the <code>qf()</code> function to calculate it.</p>
+<p>With a df<sub>2</sub> this large, it would be approximately 2.20. But we can also calculate it with <code>qf()</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>df1 <span class="ot">&lt;-</span> <span class="fu">summary</span>(ur_model)<span class="sc">$</span>coefficients <span class="sc">%&gt;%</span> <span class="fu">nrow</span>()</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"F distribution critical value: "</span>, <span class="fu">qf</span>(<span class="fl">0.95</span>, f_stat<span class="sc">$</span>Df[<span class="dv">2</span>], df1 <span class="sc">-</span> f_stat<span class="sc">$</span>Df[<span class="dv">2</span>] <span class="sc">-</span> <span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>F distribution critical value:  10.12796</code></pre>
+</div>
+</div>
+<p>The problem with doing the F-test this way, is that it’s not robust. It assumes homoscedasticity and i.i.d, which because the data has both a time and spatial component, likely isn’t true. To account for this, the paper also performs a more robust version of the F-test called the effective F, from Olea &amp; Pflueger (2013). This test balances the instrumental variables and endogenous variables by a weighted covariance matrix. The matrix accounts for unequal variance and clustering. Although clustering was already accounted for as the error term for these models are clustered mean squared errors (CMSE).</p>
+<p><span class="math inline">\(F_{\text{eff}} = \frac{(Y'X) \hat{W}^{-1}_2 (Z'X)}{K \cdot n}\)</span></p>
+<p><span class="math inline">\(\text Z\)</span> is an instrumental variable vector. <span class="math inline">\(\text X\)</span> is an endogenous variable vector. <span class="math inline">\(\text Z', X'\)</span> are transposes of the prior variables (as in row to column, or vise versa) <span class="math inline">\(\hat{W}^{-1}_2\)</span> is the covariance matrix <span class="math inline">\(\text K\)</span> is number of instruments <span class="math inline">\(\text n\)</span> is sample size</p>
+<p>The crux of effective F is the <span class="math inline">\(\tau\)</span> parameter. A higher tau means lower critical values and less strict criteria. For lower <span class="math inline">\(\tau\)</span>s, the opposite is true. A generally accepted <span class="math inline">\(\tau\)</span> is 10%.</p>
+<p>This can be done simply with <code>eff_F()</code> from the <code>ivDiag</code> package:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>effective_f <span class="ot">&lt;-</span> <span class="fu">eff_F</span>(lyme_na, <span class="at">Y =</span> <span class="st">"LogLyme0103_1113"</span>, <span class="at">D =</span> <span class="st">"PercWuiPop"</span>, <span class="at">Z =</span> <span class="st">"DensityResIndex"</span>, <span class="at">controls =</span> <span class="fu">c</span>(<span class="st">"PercLandForest"</span>, <span class="st">"EdgeDensity"</span>, <span class="st">"MeanPatchArea"</span>), <span class="at">cl =</span> <span class="st">"AgStatDistrict"</span>)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Effective F Stat:"</span>, effective_f)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Effective F Stat: 11.4094</code></pre>
+</div>
+</div>
+</section>
+<section id="clustered-mean-squared-errors" class="level3">
+<h3 class="anchored" data-anchor-id="clustered-mean-squared-errors">Clustered Mean Squared Errors</h3>
+<p>I had mentioned earlier in this blog that clustering should not be a problem when doing the non-robust F-test. This is because this study uses clustered mean squared errors (CMSE) as it’s error term. We can calculate them with <code>vcovCL()</code> from the <code>sandwich</code> package, and get a summary/hypothesis test with the <code>coeftest()</code> from the <code>lmtest</code> package.</p>
+<p>You funnel in a model and a clustering variable within the dataset:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate clustered standard errors</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>clustered_se <span class="ot">&lt;-</span> <span class="fu">vcovCL</span>(ur_model, <span class="at">cluster =</span> <span class="sc">~</span> AgStatDistrict)</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Hypothesis testing with clustered standard errors</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="fu">coeftest</span>(ur_model, <span class="at">vcov =</span> clustered_se)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+t test of coefficients:
+
+                Estimate Std. Error t value  Pr(&gt;|t|)    
+(Intercept)     -4.42576    3.44729 -1.2838 0.1997827    
+DensityResIndex 23.08206    6.83351  3.3778 0.0007867 ***
+MeanPatchArea   -0.14486    0.37884 -0.3824 0.7023420    
+EdgeDensity      0.35138    0.18181  1.9326 0.0538361 .  
+PercLandForest   0.80993    0.45888  1.7650 0.0781565 .  
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="results" class="level2">
+<h2 class="anchored" data-anchor-id="results">Results</h2>
+<p>This study created a variety of different models and tested different combinations of covariates. The models used were:</p>
+<ul>
+<li>OLS</li>
+<li>Year Fixed Effects</li>
+<li>State * Year Fixed Effects</li>
+<li>IV</li>
+<li>IV with Year Fixed Effects</li>
+</ul>
+<p>And the different combinations of covariates were: * None (Bivariate model) * % Forest &amp; Edge Density * % Forest &amp; Mean Patch Size * Mean Patch Size &amp; Edge Density * All covariates</p>
+<p>Here, we run all models…</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="do">##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="do">##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="do">##                                                                            ~~</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="do">##                                    OLS                                   ----</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="do">##                                                                            ~~</span></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a><span class="do">##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a><span class="do">##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a><span class="do">##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span></span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a><span class="do">##                            Bivariate models                              ----</span></span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a><span class="do">##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span></span>
+<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a>ols_biv <span class="ot">&lt;-</span> <span class="fu">lm</span>(LogLyme0103_1113 <span class="sc">~</span> PercWuiPop, <span class="at">data =</span> lyme)</span>
+<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a>ols_biv_clust <span class="ot">&lt;-</span> ols_biv <span class="sc">%&gt;%</span> </span>
+<span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">vcovCL</span>(<span class="at">cluster =</span> <span class="sc">~</span> AgStatDistrict) <span class="sc">%&gt;%</span> </span>
+<span id="cb19-19"><a href="#cb19-19" aria-hidden="true" tabindex="-1"></a>    <span class="fu">coeftest</span>(ols_biv, <span class="at">vcov =</span> .)</span>
+<span id="cb19-20"><a href="#cb19-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-21"><a href="#cb19-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-22"><a href="#cb19-22" aria-hidden="true" tabindex="-1"></a><span class="do">##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span></span>
+<span id="cb19-23"><a href="#cb19-23" aria-hidden="true" tabindex="-1"></a><span class="do">##                            Multivariate models                           ----</span></span>
+<span id="cb19-24"><a href="#cb19-24" aria-hidden="true" tabindex="-1"></a><span class="do">##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span></span>
+<span id="cb19-25"><a href="#cb19-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-26"><a href="#cb19-26" aria-hidden="true" tabindex="-1"></a><span class="co"># %forest + edge</span></span>
+<span id="cb19-27"><a href="#cb19-27" aria-hidden="true" tabindex="-1"></a>ols_multi_1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(LogLyme0103_1113 <span class="sc">~</span> PercWuiPop <span class="sc">+</span> EdgeDensity <span class="sc">+</span> PercLandForest, <span class="at">data =</span> lyme)</span>
+<span id="cb19-28"><a href="#cb19-28" aria-hidden="true" tabindex="-1"></a>ols_multi_1_clust <span class="ot">&lt;-</span> ols_multi_1 <span class="sc">%&gt;%</span> </span>
+<span id="cb19-29"><a href="#cb19-29" aria-hidden="true" tabindex="-1"></a>    <span class="fu">vcovCL</span>(<span class="at">cluster =</span> <span class="sc">~</span> AgStatDistrict) <span class="sc">%&gt;%</span> </span>
+<span id="cb19-30"><a href="#cb19-30" aria-hidden="true" tabindex="-1"></a>    <span class="fu">coeftest</span>(ols_multi_1, <span class="at">vcov =</span> .)</span>
+<span id="cb19-31"><a href="#cb19-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-32"><a href="#cb19-32" aria-hidden="true" tabindex="-1"></a><span class="co"># %Forest + patch area</span></span>
+<span id="cb19-33"><a href="#cb19-33" aria-hidden="true" tabindex="-1"></a>ols_multi_2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(LogLyme0103_1113 <span class="sc">~</span> PercWuiPop <span class="sc">+</span> MeanPatchArea <span class="sc">+</span> PercLandForest, <span class="at">data =</span> lyme)</span>
+<span id="cb19-34"><a href="#cb19-34" aria-hidden="true" tabindex="-1"></a>ols_multi_2_clust <span class="ot">&lt;-</span> ols_multi_2 <span class="sc">%&gt;%</span> </span>
+<span id="cb19-35"><a href="#cb19-35" aria-hidden="true" tabindex="-1"></a>    <span class="fu">vcovCL</span>(<span class="at">cluster =</span> <span class="sc">~</span> AgStatDistrict) <span class="sc">%&gt;%</span> </span>
+<span id="cb19-36"><a href="#cb19-36" aria-hidden="true" tabindex="-1"></a>    <span class="fu">coeftest</span>(ols_multi_2, <span class="at">vcov =</span> .)</span>
+<span id="cb19-37"><a href="#cb19-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-38"><a href="#cb19-38" aria-hidden="true" tabindex="-1"></a><span class="co"># mean patch + edge</span></span>
+<span id="cb19-39"><a href="#cb19-39" aria-hidden="true" tabindex="-1"></a>ols_multi_3 <span class="ot">&lt;-</span> <span class="fu">lm</span>(LogLyme0103_1113 <span class="sc">~</span> PercWuiPop <span class="sc">+</span> MeanPatchArea <span class="sc">+</span> EdgeDensity, <span class="at">data =</span> lyme)</span>
+<span id="cb19-40"><a href="#cb19-40" aria-hidden="true" tabindex="-1"></a>ols_multi_3_clust <span class="ot">&lt;-</span> ols_multi_3 <span class="sc">%&gt;%</span> </span>
+<span id="cb19-41"><a href="#cb19-41" aria-hidden="true" tabindex="-1"></a>    <span class="fu">vcovCL</span>(<span class="at">cluster =</span> <span class="sc">~</span> AgStatDistrict) <span class="sc">%&gt;%</span> </span>
+<span id="cb19-42"><a href="#cb19-42" aria-hidden="true" tabindex="-1"></a>    <span class="fu">coeftest</span>(ols_multi_3, <span class="at">vcov =</span> .)</span>
+<span id="cb19-43"><a href="#cb19-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-44"><a href="#cb19-44" aria-hidden="true" tabindex="-1"></a><span class="co"># %Forest + mean patch + edge</span></span>
+<span id="cb19-45"><a href="#cb19-45" aria-hidden="true" tabindex="-1"></a>ols_multi_4 <span class="ot">&lt;-</span> <span class="fu">lm</span>(LogLyme0103_1113 <span class="sc">~</span> PercWuiPop <span class="sc">+</span> MeanPatchArea <span class="sc">+</span> EdgeDensity <span class="sc">+</span> PercLandForest, <span class="at">data =</span> lyme)</span>
+<span id="cb19-46"><a href="#cb19-46" aria-hidden="true" tabindex="-1"></a>ols_multi_4_clust <span class="ot">&lt;-</span> ols_multi_4 <span class="sc">%&gt;%</span> </span>
+<span id="cb19-47"><a href="#cb19-47" aria-hidden="true" tabindex="-1"></a>    <span class="fu">vcovCL</span>(<span class="at">cluster =</span> <span class="sc">~</span> AgStatDistrict) <span class="sc">%&gt;%</span> </span>
+<span id="cb19-48"><a href="#cb19-48" aria-hidden="true" tabindex="-1"></a>    <span class="fu">coeftest</span>(ols_multi_4, <span class="at">vcov =</span> .)</span>
+<span id="cb19-49"><a href="#cb19-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-50"><a href="#cb19-50" aria-hidden="true" tabindex="-1"></a>     <span class="co">#                Combine all models into list                 ~~~</span></span>
+<span id="cb19-51"><a href="#cb19-51" aria-hidden="true" tabindex="-1"></a>     <span class="co">#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span></span>
+<span id="cb19-52"><a href="#cb19-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-53"><a href="#cb19-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-54"><a href="#cb19-54" aria-hidden="true" tabindex="-1"></a>ols_models <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">ols_biv =</span> ols_biv_clust[<span class="dv">2</span>,<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>], </span>
+<span id="cb19-55"><a href="#cb19-55" aria-hidden="true" tabindex="-1"></a>                <span class="at">ols_multi_1 =</span> ols_multi_1_clust[<span class="dv">2</span><span class="sc">:</span><span class="fu">nrow</span>(ols_multi_1_clust),<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>], </span>
+<span id="cb19-56"><a href="#cb19-56" aria-hidden="true" tabindex="-1"></a>                <span class="at">ols_multi_2 =</span> ols_multi_2_clust[<span class="dv">2</span><span class="sc">:</span><span class="fu">nrow</span>(ols_multi_2_clust),<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>], </span>
+<span id="cb19-57"><a href="#cb19-57" aria-hidden="true" tabindex="-1"></a>                <span class="at">ols_multi_3 =</span> ols_multi_3_clust[<span class="dv">2</span><span class="sc">:</span><span class="fu">nrow</span>(ols_multi_3_clust),<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>], </span>
+<span id="cb19-58"><a href="#cb19-58" aria-hidden="true" tabindex="-1"></a>                <span class="at">ols_multi_4 =</span> ols_multi_4_clust[<span class="dv">2</span><span class="sc">:</span><span class="fu">nrow</span>(ols_multi_4_clust),<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>])</span>
+<span id="cb19-59"><a href="#cb19-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-60"><a href="#cb19-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-61"><a href="#cb19-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-62"><a href="#cb19-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-63"><a href="#cb19-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-64"><a href="#cb19-64" aria-hidden="true" tabindex="-1"></a><span class="do">##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span></span>
+<span id="cb19-65"><a href="#cb19-65" aria-hidden="true" tabindex="-1"></a><span class="do">##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span></span>
+<span id="cb19-66"><a href="#cb19-66" aria-hidden="true" tabindex="-1"></a><span class="do">##                                                                            ~~</span></span>
+<span id="cb19-67"><a href="#cb19-67" aria-hidden="true" tabindex="-1"></a><span class="do">##                                  YEAR FE                                 ----</span></span>
+<span id="cb19-68"><a href="#cb19-68" aria-hidden="true" tabindex="-1"></a><span class="do">##                                                                            ~~</span></span>
+<span id="cb19-69"><a href="#cb19-69" aria-hidden="true" tabindex="-1"></a><span class="do">##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span></span>
+<span id="cb19-70"><a href="#cb19-70" aria-hidden="true" tabindex="-1"></a><span class="do">##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span></span>
+<span id="cb19-71"><a href="#cb19-71" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-72"><a href="#cb19-72" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-73"><a href="#cb19-73" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-74"><a href="#cb19-74" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-75"><a href="#cb19-75" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-76"><a href="#cb19-76" aria-hidden="true" tabindex="-1"></a><span class="do">##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span></span>
+<span id="cb19-77"><a href="#cb19-77" aria-hidden="true" tabindex="-1"></a><span class="do">##                            Bivariate models                              ----</span></span>
+<span id="cb19-78"><a href="#cb19-78" aria-hidden="true" tabindex="-1"></a><span class="do">##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span></span>
+<span id="cb19-79"><a href="#cb19-79" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-80"><a href="#cb19-80" aria-hidden="true" tabindex="-1"></a>yearfe_biv <span class="ot">&lt;-</span> <span class="fu">lm</span>(LogLyme0103_1113 <span class="sc">~</span> PercWuiPop <span class="sc">+</span> <span class="fu">as_factor</span>(Year) <span class="sc">-</span> <span class="dv">1</span>, <span class="at">data =</span> lyme)</span>
+<span id="cb19-81"><a href="#cb19-81" aria-hidden="true" tabindex="-1"></a>yearfe_biv_clust <span class="ot">&lt;-</span> yearfe_biv <span class="sc">%&gt;%</span> </span>
+<span id="cb19-82"><a href="#cb19-82" aria-hidden="true" tabindex="-1"></a>    <span class="fu">vcovCL</span>(<span class="at">cluster =</span> <span class="sc">~</span> AgStatDistrict) <span class="sc">%&gt;%</span> </span>
+<span id="cb19-83"><a href="#cb19-83" aria-hidden="true" tabindex="-1"></a>    <span class="fu">coeftest</span>(yearfe_biv, <span class="at">vcov =</span> .)</span>
+<span id="cb19-84"><a href="#cb19-84" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-85"><a href="#cb19-85" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-86"><a href="#cb19-86" aria-hidden="true" tabindex="-1"></a><span class="do">##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span></span>
+<span id="cb19-87"><a href="#cb19-87" aria-hidden="true" tabindex="-1"></a><span class="do">##                            Multivariate models                           ----</span></span>
+<span id="cb19-88"><a href="#cb19-88" aria-hidden="true" tabindex="-1"></a><span class="do">##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span></span>
+<span id="cb19-89"><a href="#cb19-89" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-90"><a href="#cb19-90" aria-hidden="true" tabindex="-1"></a><span class="co"># %forest + edge</span></span>
+<span id="cb19-91"><a href="#cb19-91" aria-hidden="true" tabindex="-1"></a>yearfe_multi_1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(LogLyme0103_1113 <span class="sc">~</span> PercWuiPop <span class="sc">+</span> EdgeDensity <span class="sc">+</span> PercLandForest <span class="sc">+</span> <span class="fu">as_factor</span>(Year) <span class="sc">-</span> <span class="dv">1</span>, <span class="at">data =</span> lyme)</span>
+<span id="cb19-92"><a href="#cb19-92" aria-hidden="true" tabindex="-1"></a>yearfe_multi_1_clust <span class="ot">&lt;-</span> yearfe_multi_1 <span class="sc">%&gt;%</span> </span>
+<span id="cb19-93"><a href="#cb19-93" aria-hidden="true" tabindex="-1"></a>    <span class="fu">vcovCL</span>(<span class="at">cluster =</span> <span class="sc">~</span> AgStatDistrict) <span class="sc">%&gt;%</span> </span>
+<span id="cb19-94"><a href="#cb19-94" aria-hidden="true" tabindex="-1"></a>    <span class="fu">coeftest</span>(yearfe_multi_1, <span class="at">vcov =</span> .)</span>
+<span id="cb19-95"><a href="#cb19-95" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-96"><a href="#cb19-96" aria-hidden="true" tabindex="-1"></a><span class="co"># %Forest + patch area</span></span>
+<span id="cb19-97"><a href="#cb19-97" aria-hidden="true" tabindex="-1"></a>yearfe_multi_2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(LogLyme0103_1113 <span class="sc">~</span> PercWuiPop <span class="sc">+</span> MeanPatchArea <span class="sc">+</span> PercLandForest <span class="sc">+</span> <span class="fu">as_factor</span>(Year) <span class="sc">-</span> <span class="dv">1</span>, <span class="at">data =</span> lyme)</span>
+<span id="cb19-98"><a href="#cb19-98" aria-hidden="true" tabindex="-1"></a>yearfe_multi_2_clust <span class="ot">&lt;-</span> yearfe_multi_2 <span class="sc">%&gt;%</span> </span>
+<span id="cb19-99"><a href="#cb19-99" aria-hidden="true" tabindex="-1"></a>    <span class="fu">vcovCL</span>(<span class="at">cluster =</span> <span class="sc">~</span> AgStatDistrict) <span class="sc">%&gt;%</span> </span>
+<span id="cb19-100"><a href="#cb19-100" aria-hidden="true" tabindex="-1"></a>    <span class="fu">coeftest</span>(yearfe_multi_2, <span class="at">vcov =</span> .)</span>
+<span id="cb19-101"><a href="#cb19-101" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-102"><a href="#cb19-102" aria-hidden="true" tabindex="-1"></a><span class="co"># mean patch + edge</span></span>
+<span id="cb19-103"><a href="#cb19-103" aria-hidden="true" tabindex="-1"></a>yearfe_multi_3 <span class="ot">&lt;-</span> <span class="fu">lm</span>(LogLyme0103_1113 <span class="sc">~</span> PercWuiPop <span class="sc">+</span> MeanPatchArea <span class="sc">+</span> EdgeDensity <span class="sc">+</span> <span class="fu">as_factor</span>(Year) <span class="sc">-</span> <span class="dv">1</span>, <span class="at">data =</span> lyme)</span>
+<span id="cb19-104"><a href="#cb19-104" aria-hidden="true" tabindex="-1"></a>yearfe_multi_3_clust <span class="ot">&lt;-</span> yearfe_multi_3 <span class="sc">%&gt;%</span> </span>
+<span id="cb19-105"><a href="#cb19-105" aria-hidden="true" tabindex="-1"></a>    <span class="fu">vcovCL</span>(<span class="at">cluster =</span> <span class="sc">~</span> AgStatDistrict) <span class="sc">%&gt;%</span> </span>
+<span id="cb19-106"><a href="#cb19-106" aria-hidden="true" tabindex="-1"></a>    <span class="fu">coeftest</span>(yearfe_multi_3, <span class="at">vcov =</span> .)</span>
+<span id="cb19-107"><a href="#cb19-107" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-108"><a href="#cb19-108" aria-hidden="true" tabindex="-1"></a><span class="co"># %Forest + mean patch + edge</span></span>
+<span id="cb19-109"><a href="#cb19-109" aria-hidden="true" tabindex="-1"></a>yearfe_multi_4 <span class="ot">&lt;-</span> <span class="fu">lm</span>(LogLyme0103_1113 <span class="sc">~</span> PercWuiPop <span class="sc">+</span> MeanPatchArea <span class="sc">+</span> EdgeDensity <span class="sc">+</span> PercLandForest <span class="sc">+</span> <span class="fu">as_factor</span>(Year) <span class="sc">-</span> <span class="dv">1</span>, <span class="at">data =</span> lyme)</span>
+<span id="cb19-110"><a href="#cb19-110" aria-hidden="true" tabindex="-1"></a>yearfe_multi_4_clust <span class="ot">&lt;-</span> yearfe_multi_4 <span class="sc">%&gt;%</span> </span>
+<span id="cb19-111"><a href="#cb19-111" aria-hidden="true" tabindex="-1"></a>    <span class="fu">vcovCL</span>(<span class="at">cluster =</span> <span class="sc">~</span> AgStatDistrict) <span class="sc">%&gt;%</span> </span>
+<span id="cb19-112"><a href="#cb19-112" aria-hidden="true" tabindex="-1"></a>    <span class="fu">coeftest</span>(yearfe_multi_4, <span class="at">vcov =</span> .)</span>
+<span id="cb19-113"><a href="#cb19-113" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-114"><a href="#cb19-114" aria-hidden="true" tabindex="-1"></a>     <span class="co">#                Combine all models into list                 ~~~</span></span>
+<span id="cb19-115"><a href="#cb19-115" aria-hidden="true" tabindex="-1"></a>     <span class="co">#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span></span>
+<span id="cb19-116"><a href="#cb19-116" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-117"><a href="#cb19-117" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-118"><a href="#cb19-118" aria-hidden="true" tabindex="-1"></a>year_fe_models <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">yearfe_biv =</span> yearfe_biv_clust[<span class="dv">1</span>, <span class="fu">c</span>(<span class="st">"Estimate"</span>, <span class="st">"Std. Error"</span>)], </span>
+<span id="cb19-119"><a href="#cb19-119" aria-hidden="true" tabindex="-1"></a>                <span class="at">yearfe_multi_1 =</span> yearfe_multi_1_clust[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="fu">c</span>(<span class="st">"Estimate"</span>, <span class="st">"Std. Error"</span>)], </span>
+<span id="cb19-120"><a href="#cb19-120" aria-hidden="true" tabindex="-1"></a>                <span class="at">yearfe_multi_2 =</span> yearfe_multi_2_clust[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="fu">c</span>(<span class="st">"Estimate"</span>, <span class="st">"Std. Error"</span>)], </span>
+<span id="cb19-121"><a href="#cb19-121" aria-hidden="true" tabindex="-1"></a>                <span class="at">yearfe_multi_3 =</span> yearfe_multi_3_clust[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="fu">c</span>(<span class="st">"Estimate"</span>, <span class="st">"Std. Error"</span>)], </span>
+<span id="cb19-122"><a href="#cb19-122" aria-hidden="true" tabindex="-1"></a>                <span class="at">yearfe_multi_4 =</span> yearfe_multi_4_clust[<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>, <span class="fu">c</span>(<span class="st">"Estimate"</span>, <span class="st">"Std. Error"</span>)])</span>
+<span id="cb19-123"><a href="#cb19-123" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-124"><a href="#cb19-124" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-125"><a href="#cb19-125" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-126"><a href="#cb19-126" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-127"><a href="#cb19-127" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-128"><a href="#cb19-128" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-129"><a href="#cb19-129" aria-hidden="true" tabindex="-1"></a><span class="do">##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span></span>
+<span id="cb19-130"><a href="#cb19-130" aria-hidden="true" tabindex="-1"></a><span class="do">##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span></span>
+<span id="cb19-131"><a href="#cb19-131" aria-hidden="true" tabindex="-1"></a><span class="do">##                                                                            ~~</span></span>
+<span id="cb19-132"><a href="#cb19-132" aria-hidden="true" tabindex="-1"></a><span class="do">##                              STATE + YEAR FE                             ----</span></span>
+<span id="cb19-133"><a href="#cb19-133" aria-hidden="true" tabindex="-1"></a><span class="do">##                                                                            ~~</span></span>
+<span id="cb19-134"><a href="#cb19-134" aria-hidden="true" tabindex="-1"></a><span class="do">##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span></span>
+<span id="cb19-135"><a href="#cb19-135" aria-hidden="true" tabindex="-1"></a><span class="do">##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span></span>
+<span id="cb19-136"><a href="#cb19-136" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-137"><a href="#cb19-137" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-138"><a href="#cb19-138" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-139"><a href="#cb19-139" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-140"><a href="#cb19-140" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-141"><a href="#cb19-141" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-142"><a href="#cb19-142" aria-hidden="true" tabindex="-1"></a><span class="do">##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span></span>
+<span id="cb19-143"><a href="#cb19-143" aria-hidden="true" tabindex="-1"></a><span class="do">##                            Bivariate models                              ----</span></span>
+<span id="cb19-144"><a href="#cb19-144" aria-hidden="true" tabindex="-1"></a><span class="do">##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span></span>
+<span id="cb19-145"><a href="#cb19-145" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-146"><a href="#cb19-146" aria-hidden="true" tabindex="-1"></a>stateyearfe_biv <span class="ot">&lt;-</span> <span class="fu">lm</span>(LogLyme0103_1113 <span class="sc">~</span> PercWuiPop <span class="sc">+</span> <span class="fu">as_factor</span>(StateYrGroup) <span class="sc">-</span> <span class="dv">1</span>, <span class="at">data =</span> lyme)</span>
+<span id="cb19-147"><a href="#cb19-147" aria-hidden="true" tabindex="-1"></a>stateyearfe_biv_clust <span class="ot">&lt;-</span> stateyearfe_biv <span class="sc">%&gt;%</span> </span>
+<span id="cb19-148"><a href="#cb19-148" aria-hidden="true" tabindex="-1"></a>    <span class="fu">vcovCL</span>(<span class="at">cluster =</span> <span class="sc">~</span> AgStatDistrict) <span class="sc">%&gt;%</span> </span>
+<span id="cb19-149"><a href="#cb19-149" aria-hidden="true" tabindex="-1"></a>    <span class="fu">coeftest</span>(stateyearfe_biv, <span class="at">vcov =</span> .)</span>
+<span id="cb19-150"><a href="#cb19-150" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-151"><a href="#cb19-151" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-152"><a href="#cb19-152" aria-hidden="true" tabindex="-1"></a><span class="do">##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span></span>
+<span id="cb19-153"><a href="#cb19-153" aria-hidden="true" tabindex="-1"></a><span class="do">##                            Multivariate models                           ----</span></span>
+<span id="cb19-154"><a href="#cb19-154" aria-hidden="true" tabindex="-1"></a><span class="do">##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span></span>
+<span id="cb19-155"><a href="#cb19-155" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-156"><a href="#cb19-156" aria-hidden="true" tabindex="-1"></a><span class="co"># %forest + edge</span></span>
+<span id="cb19-157"><a href="#cb19-157" aria-hidden="true" tabindex="-1"></a>stateyearfe_multi_1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(LogLyme0103_1113 <span class="sc">~</span> PercWuiPop <span class="sc">+</span> EdgeDensity <span class="sc">+</span> PercLandForest <span class="sc">+</span> <span class="fu">as_factor</span>(StateYrGroup) <span class="sc">-</span> <span class="dv">1</span>, <span class="at">data =</span> lyme)</span>
+<span id="cb19-158"><a href="#cb19-158" aria-hidden="true" tabindex="-1"></a>stateyearfe_multi_1_clust <span class="ot">&lt;-</span> stateyearfe_multi_1 <span class="sc">%&gt;%</span> </span>
+<span id="cb19-159"><a href="#cb19-159" aria-hidden="true" tabindex="-1"></a>    <span class="fu">vcovCL</span>(<span class="at">cluster =</span> <span class="sc">~</span> AgStatDistrict) <span class="sc">%&gt;%</span> </span>
+<span id="cb19-160"><a href="#cb19-160" aria-hidden="true" tabindex="-1"></a>    <span class="fu">coeftest</span>(stateyearfe_multi_1, <span class="at">vcov =</span> .)</span>
+<span id="cb19-161"><a href="#cb19-161" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-162"><a href="#cb19-162" aria-hidden="true" tabindex="-1"></a><span class="co"># %Forest + patch area</span></span>
+<span id="cb19-163"><a href="#cb19-163" aria-hidden="true" tabindex="-1"></a>stateyearfe_multi_2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(LogLyme0103_1113 <span class="sc">~</span> PercWuiPop <span class="sc">+</span> MeanPatchArea <span class="sc">+</span> PercLandForest <span class="sc">+</span> <span class="fu">as_factor</span>(StateYrGroup) <span class="sc">-</span> <span class="dv">1</span>, <span class="at">data =</span> lyme)</span>
+<span id="cb19-164"><a href="#cb19-164" aria-hidden="true" tabindex="-1"></a>stateyearfe_multi_2_clust <span class="ot">&lt;-</span> stateyearfe_multi_2 <span class="sc">%&gt;%</span> </span>
+<span id="cb19-165"><a href="#cb19-165" aria-hidden="true" tabindex="-1"></a>    <span class="fu">vcovCL</span>(<span class="at">cluster =</span> <span class="sc">~</span> AgStatDistrict) <span class="sc">%&gt;%</span> </span>
+<span id="cb19-166"><a href="#cb19-166" aria-hidden="true" tabindex="-1"></a>    <span class="fu">coeftest</span>(stateyearfe_multi_2, <span class="at">vcov =</span> .)</span>
+<span id="cb19-167"><a href="#cb19-167" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-168"><a href="#cb19-168" aria-hidden="true" tabindex="-1"></a><span class="co"># mean patch + edge</span></span>
+<span id="cb19-169"><a href="#cb19-169" aria-hidden="true" tabindex="-1"></a>stateyearfe_multi_3 <span class="ot">&lt;-</span> <span class="fu">lm</span>(LogLyme0103_1113 <span class="sc">~</span> PercWuiPop <span class="sc">+</span> MeanPatchArea <span class="sc">+</span> EdgeDensity <span class="sc">+</span> <span class="fu">as_factor</span>(StateYrGroup) <span class="sc">-</span> <span class="dv">1</span>, <span class="at">data =</span> lyme)</span>
+<span id="cb19-170"><a href="#cb19-170" aria-hidden="true" tabindex="-1"></a>stateyearfe_multi_3_clust <span class="ot">&lt;-</span> stateyearfe_multi_3 <span class="sc">%&gt;%</span> </span>
+<span id="cb19-171"><a href="#cb19-171" aria-hidden="true" tabindex="-1"></a>    <span class="fu">vcovCL</span>(<span class="at">cluster =</span> <span class="sc">~</span> AgStatDistrict) <span class="sc">%&gt;%</span> </span>
+<span id="cb19-172"><a href="#cb19-172" aria-hidden="true" tabindex="-1"></a>    <span class="fu">coeftest</span>(stateyearfe_multi_3, <span class="at">vcov =</span> .)</span>
+<span id="cb19-173"><a href="#cb19-173" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-174"><a href="#cb19-174" aria-hidden="true" tabindex="-1"></a><span class="co"># %Forest + mean patch + edge</span></span>
+<span id="cb19-175"><a href="#cb19-175" aria-hidden="true" tabindex="-1"></a>stateyearfe_multi_4 <span class="ot">&lt;-</span> <span class="fu">lm</span>(LogLyme0103_1113 <span class="sc">~</span> PercWuiPop <span class="sc">+</span> MeanPatchArea <span class="sc">+</span> EdgeDensity <span class="sc">+</span> PercLandForest <span class="sc">+</span> <span class="fu">as_factor</span>(StateYrGroup) <span class="sc">-</span> <span class="dv">1</span>, <span class="at">data =</span> lyme)</span>
+<span id="cb19-176"><a href="#cb19-176" aria-hidden="true" tabindex="-1"></a>stateyearfe_multi_4_clust <span class="ot">&lt;-</span> stateyearfe_multi_4 <span class="sc">%&gt;%</span> </span>
+<span id="cb19-177"><a href="#cb19-177" aria-hidden="true" tabindex="-1"></a>    <span class="fu">vcovCL</span>(<span class="at">cluster =</span> <span class="sc">~</span> AgStatDistrict) <span class="sc">%&gt;%</span> </span>
+<span id="cb19-178"><a href="#cb19-178" aria-hidden="true" tabindex="-1"></a>    <span class="fu">coeftest</span>(stateyearfe_multi_4, <span class="at">vcov =</span> .)</span>
+<span id="cb19-179"><a href="#cb19-179" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-180"><a href="#cb19-180" aria-hidden="true" tabindex="-1"></a>     <span class="co">#                Combine all models into list                 ~~~</span></span>
+<span id="cb19-181"><a href="#cb19-181" aria-hidden="true" tabindex="-1"></a>     <span class="co">#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span></span>
+<span id="cb19-182"><a href="#cb19-182" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-183"><a href="#cb19-183" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-184"><a href="#cb19-184" aria-hidden="true" tabindex="-1"></a>stateyearfe_models <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">stateyearfe_biv =</span> stateyearfe_biv_clust[<span class="dv">1</span>, <span class="fu">c</span>(<span class="st">"Estimate"</span>, <span class="st">"Std. Error"</span>)], </span>
+<span id="cb19-185"><a href="#cb19-185" aria-hidden="true" tabindex="-1"></a>                <span class="at">stateyearfe_multi_1 =</span> stateyearfe_multi_1_clust[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>], </span>
+<span id="cb19-186"><a href="#cb19-186" aria-hidden="true" tabindex="-1"></a>                <span class="at">stateyearfe_multi_2 =</span> stateyearfe_multi_2_clust[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>], </span>
+<span id="cb19-187"><a href="#cb19-187" aria-hidden="true" tabindex="-1"></a>                <span class="at">stateyearfe_multi_3 =</span> stateyearfe_multi_3_clust[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>], </span>
+<span id="cb19-188"><a href="#cb19-188" aria-hidden="true" tabindex="-1"></a>                <span class="at">stateyearfe_multi_4 =</span> stateyearfe_multi_4_clust[<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>])</span>
+<span id="cb19-189"><a href="#cb19-189" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-190"><a href="#cb19-190" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-191"><a href="#cb19-191" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-192"><a href="#cb19-192" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-193"><a href="#cb19-193" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-194"><a href="#cb19-194" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-195"><a href="#cb19-195" aria-hidden="true" tabindex="-1"></a><span class="do">##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span></span>
+<span id="cb19-196"><a href="#cb19-196" aria-hidden="true" tabindex="-1"></a><span class="do">##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span></span>
+<span id="cb19-197"><a href="#cb19-197" aria-hidden="true" tabindex="-1"></a><span class="do">##                                                                            ~~</span></span>
+<span id="cb19-198"><a href="#cb19-198" aria-hidden="true" tabindex="-1"></a><span class="do">##                                     IV                                   ----</span></span>
+<span id="cb19-199"><a href="#cb19-199" aria-hidden="true" tabindex="-1"></a><span class="do">##                                                                            ~~</span></span>
+<span id="cb19-200"><a href="#cb19-200" aria-hidden="true" tabindex="-1"></a><span class="do">##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span></span>
+<span id="cb19-201"><a href="#cb19-201" aria-hidden="true" tabindex="-1"></a><span class="do">##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span></span>
+<span id="cb19-202"><a href="#cb19-202" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-203"><a href="#cb19-203" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-204"><a href="#cb19-204" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-205"><a href="#cb19-205" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-206"><a href="#cb19-206" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-207"><a href="#cb19-207" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-208"><a href="#cb19-208" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-209"><a href="#cb19-209" aria-hidden="true" tabindex="-1"></a><span class="do">##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span></span>
+<span id="cb19-210"><a href="#cb19-210" aria-hidden="true" tabindex="-1"></a><span class="do">##                            Bivariate models                              ----</span></span>
+<span id="cb19-211"><a href="#cb19-211" aria-hidden="true" tabindex="-1"></a><span class="do">##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span></span>
+<span id="cb19-212"><a href="#cb19-212" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-213"><a href="#cb19-213" aria-hidden="true" tabindex="-1"></a>iv_biv <span class="ot">&lt;-</span> <span class="fu">ivreg</span>(LogLyme0103_1113 <span class="sc">~</span> PercWuiPop <span class="sc">|</span></span>
+<span id="cb19-214"><a href="#cb19-214" aria-hidden="true" tabindex="-1"></a>  DensityResIndex,</span>
+<span id="cb19-215"><a href="#cb19-215" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> lyme_na)</span>
+<span id="cb19-216"><a href="#cb19-216" aria-hidden="true" tabindex="-1"></a>iv_biv_clust <span class="ot">&lt;-</span> iv_biv <span class="sc">%&gt;%</span> </span>
+<span id="cb19-217"><a href="#cb19-217" aria-hidden="true" tabindex="-1"></a>    <span class="fu">vcovCL</span>(<span class="at">cluster =</span> <span class="sc">~</span> AgStatDistrict) <span class="sc">%&gt;%</span> </span>
+<span id="cb19-218"><a href="#cb19-218" aria-hidden="true" tabindex="-1"></a>    <span class="fu">coeftest</span>(iv_biv, <span class="at">vcov =</span> .)</span>
+<span id="cb19-219"><a href="#cb19-219" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-220"><a href="#cb19-220" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-221"><a href="#cb19-221" aria-hidden="true" tabindex="-1"></a><span class="do">##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span></span>
+<span id="cb19-222"><a href="#cb19-222" aria-hidden="true" tabindex="-1"></a><span class="do">##                            Multivariate models                           ----</span></span>
+<span id="cb19-223"><a href="#cb19-223" aria-hidden="true" tabindex="-1"></a><span class="do">##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span></span>
+<span id="cb19-224"><a href="#cb19-224" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-225"><a href="#cb19-225" aria-hidden="true" tabindex="-1"></a><span class="co"># %forest + edge</span></span>
+<span id="cb19-226"><a href="#cb19-226" aria-hidden="true" tabindex="-1"></a>iv_multi_1 <span class="ot">&lt;-</span> <span class="fu">ivreg</span>(LogLyme0103_1113 <span class="sc">~</span> EdgeDensity <span class="sc">+</span> PercLandForest <span class="sc">|</span> </span>
+<span id="cb19-227"><a href="#cb19-227" aria-hidden="true" tabindex="-1"></a>                        PercWuiPop <span class="sc">|</span> </span>
+<span id="cb19-228"><a href="#cb19-228" aria-hidden="true" tabindex="-1"></a>                        DensityResIndex, </span>
+<span id="cb19-229"><a href="#cb19-229" aria-hidden="true" tabindex="-1"></a>                    <span class="at">data =</span> lyme_na)</span>
+<span id="cb19-230"><a href="#cb19-230" aria-hidden="true" tabindex="-1"></a>iv_multi_1_clust <span class="ot">&lt;-</span> iv_multi_1 <span class="sc">%&gt;%</span> </span>
+<span id="cb19-231"><a href="#cb19-231" aria-hidden="true" tabindex="-1"></a>    <span class="fu">vcovCL</span>(<span class="at">cluster =</span> <span class="sc">~</span> AgStatDistrict) <span class="sc">%&gt;%</span> </span>
+<span id="cb19-232"><a href="#cb19-232" aria-hidden="true" tabindex="-1"></a>    <span class="fu">coeftest</span>(iv_multi_1, <span class="at">vcov =</span> .)</span>
+<span id="cb19-233"><a href="#cb19-233" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-234"><a href="#cb19-234" aria-hidden="true" tabindex="-1"></a><span class="co"># %Forest + patch area</span></span>
+<span id="cb19-235"><a href="#cb19-235" aria-hidden="true" tabindex="-1"></a>iv_multi_2 <span class="ot">&lt;-</span> <span class="fu">ivreg</span>(LogLyme0103_1113 <span class="sc">~</span> MeanPatchArea <span class="sc">+</span> PercLandForest <span class="sc">|</span> </span>
+<span id="cb19-236"><a href="#cb19-236" aria-hidden="true" tabindex="-1"></a>                        PercWuiPop <span class="sc">|</span> </span>
+<span id="cb19-237"><a href="#cb19-237" aria-hidden="true" tabindex="-1"></a>                        DensityResIndex, </span>
+<span id="cb19-238"><a href="#cb19-238" aria-hidden="true" tabindex="-1"></a>                    <span class="at">data =</span> lyme_na)</span>
+<span id="cb19-239"><a href="#cb19-239" aria-hidden="true" tabindex="-1"></a>iv_multi_2_clust <span class="ot">&lt;-</span> iv_multi_2 <span class="sc">%&gt;%</span> </span>
+<span id="cb19-240"><a href="#cb19-240" aria-hidden="true" tabindex="-1"></a>    <span class="fu">vcovCL</span>(<span class="at">cluster =</span> <span class="sc">~</span> AgStatDistrict) <span class="sc">%&gt;%</span> </span>
+<span id="cb19-241"><a href="#cb19-241" aria-hidden="true" tabindex="-1"></a>    <span class="fu">coeftest</span>(iv_multi_2, <span class="at">vcov =</span> .)</span>
+<span id="cb19-242"><a href="#cb19-242" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-243"><a href="#cb19-243" aria-hidden="true" tabindex="-1"></a><span class="co"># mean patch + edge</span></span>
+<span id="cb19-244"><a href="#cb19-244" aria-hidden="true" tabindex="-1"></a>iv_multi_3 <span class="ot">&lt;-</span> <span class="fu">ivreg</span>(LogLyme0103_1113 <span class="sc">~</span> MeanPatchArea <span class="sc">+</span> EdgeDensity <span class="sc">|</span> </span>
+<span id="cb19-245"><a href="#cb19-245" aria-hidden="true" tabindex="-1"></a>                        PercWuiPop <span class="sc">|</span> </span>
+<span id="cb19-246"><a href="#cb19-246" aria-hidden="true" tabindex="-1"></a>                        DensityResIndex, </span>
+<span id="cb19-247"><a href="#cb19-247" aria-hidden="true" tabindex="-1"></a>                    <span class="at">data =</span> lyme_na)</span>
+<span id="cb19-248"><a href="#cb19-248" aria-hidden="true" tabindex="-1"></a>iv_multi_3_clust <span class="ot">&lt;-</span> iv_multi_3 <span class="sc">%&gt;%</span> </span>
+<span id="cb19-249"><a href="#cb19-249" aria-hidden="true" tabindex="-1"></a>    <span class="fu">vcovCL</span>(<span class="at">cluster =</span> <span class="sc">~</span> AgStatDistrict) <span class="sc">%&gt;%</span> </span>
+<span id="cb19-250"><a href="#cb19-250" aria-hidden="true" tabindex="-1"></a>    <span class="fu">coeftest</span>(iv_multi_3, <span class="at">vcov =</span> .)</span>
+<span id="cb19-251"><a href="#cb19-251" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-252"><a href="#cb19-252" aria-hidden="true" tabindex="-1"></a><span class="co"># %Forest + mean patch + edge</span></span>
+<span id="cb19-253"><a href="#cb19-253" aria-hidden="true" tabindex="-1"></a>iv_multi_4 <span class="ot">&lt;-</span> <span class="fu">ivreg</span>(LogLyme0103_1113 <span class="sc">~</span> MeanPatchArea <span class="sc">+</span> EdgeDensity <span class="sc">+</span> PercLandForest <span class="sc">|</span> </span>
+<span id="cb19-254"><a href="#cb19-254" aria-hidden="true" tabindex="-1"></a>                        PercWuiPop <span class="sc">|</span> </span>
+<span id="cb19-255"><a href="#cb19-255" aria-hidden="true" tabindex="-1"></a>                        DensityResIndex, </span>
+<span id="cb19-256"><a href="#cb19-256" aria-hidden="true" tabindex="-1"></a>                    <span class="at">data =</span> lyme_na)</span>
+<span id="cb19-257"><a href="#cb19-257" aria-hidden="true" tabindex="-1"></a>iv_multi_4_clust <span class="ot">&lt;-</span> iv_multi_4 <span class="sc">%&gt;%</span> </span>
+<span id="cb19-258"><a href="#cb19-258" aria-hidden="true" tabindex="-1"></a>    <span class="fu">vcovCL</span>(<span class="at">cluster =</span> <span class="sc">~</span> AgStatDistrict) <span class="sc">%&gt;%</span> </span>
+<span id="cb19-259"><a href="#cb19-259" aria-hidden="true" tabindex="-1"></a>    <span class="fu">coeftest</span>(iv_multi_4, <span class="at">vcov =</span> .)</span>
+<span id="cb19-260"><a href="#cb19-260" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-261"><a href="#cb19-261" aria-hidden="true" tabindex="-1"></a>     <span class="co">#                Combine all models into list                 ~~~</span></span>
+<span id="cb19-262"><a href="#cb19-262" aria-hidden="true" tabindex="-1"></a>     <span class="co">#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span></span>
+<span id="cb19-263"><a href="#cb19-263" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-264"><a href="#cb19-264" aria-hidden="true" tabindex="-1"></a>iv_models <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">iv_biv =</span> iv_biv_clust[<span class="dv">1</span>, <span class="fu">c</span>(<span class="st">"Estimate"</span>, <span class="st">"Std. Error"</span>)], </span>
+<span id="cb19-265"><a href="#cb19-265" aria-hidden="true" tabindex="-1"></a>                <span class="at">iv_multi_1 =</span> iv_multi_1_clust[<span class="dv">2</span><span class="sc">:</span><span class="dv">4</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>], </span>
+<span id="cb19-266"><a href="#cb19-266" aria-hidden="true" tabindex="-1"></a>                <span class="at">iv_multi_2 =</span> iv_multi_2_clust[<span class="dv">2</span><span class="sc">:</span><span class="dv">4</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>], </span>
+<span id="cb19-267"><a href="#cb19-267" aria-hidden="true" tabindex="-1"></a>                <span class="at">iv_multi_3 =</span> iv_multi_3_clust[<span class="dv">2</span><span class="sc">:</span><span class="dv">4</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>], </span>
+<span id="cb19-268"><a href="#cb19-268" aria-hidden="true" tabindex="-1"></a>                <span class="at">iv_multi_4 =</span> iv_multi_4_clust[<span class="dv">2</span><span class="sc">:</span><span class="dv">5</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>])</span>
+<span id="cb19-269"><a href="#cb19-269" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-270"><a href="#cb19-270" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-271"><a href="#cb19-271" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-272"><a href="#cb19-272" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-273"><a href="#cb19-273" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-274"><a href="#cb19-274" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-275"><a href="#cb19-275" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-276"><a href="#cb19-276" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-277"><a href="#cb19-277" aria-hidden="true" tabindex="-1"></a><span class="do">##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span></span>
+<span id="cb19-278"><a href="#cb19-278" aria-hidden="true" tabindex="-1"></a><span class="do">##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span></span>
+<span id="cb19-279"><a href="#cb19-279" aria-hidden="true" tabindex="-1"></a><span class="do">##                                                                            ~~</span></span>
+<span id="cb19-280"><a href="#cb19-280" aria-hidden="true" tabindex="-1"></a><span class="do">##                                IV + YEAR FE                              ----</span></span>
+<span id="cb19-281"><a href="#cb19-281" aria-hidden="true" tabindex="-1"></a><span class="do">##                                                                            ~~</span></span>
+<span id="cb19-282"><a href="#cb19-282" aria-hidden="true" tabindex="-1"></a><span class="do">##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span></span>
+<span id="cb19-283"><a href="#cb19-283" aria-hidden="true" tabindex="-1"></a><span class="do">##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span></span>
+<span id="cb19-284"><a href="#cb19-284" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-285"><a href="#cb19-285" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-286"><a href="#cb19-286" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-287"><a href="#cb19-287" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-288"><a href="#cb19-288" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-289"><a href="#cb19-289" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-290"><a href="#cb19-290" aria-hidden="true" tabindex="-1"></a><span class="do">##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span></span>
+<span id="cb19-291"><a href="#cb19-291" aria-hidden="true" tabindex="-1"></a><span class="do">##                            Bivariate models                              ----</span></span>
+<span id="cb19-292"><a href="#cb19-292" aria-hidden="true" tabindex="-1"></a><span class="do">##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span></span>
+<span id="cb19-293"><a href="#cb19-293" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-294"><a href="#cb19-294" aria-hidden="true" tabindex="-1"></a>iv_yearfe_biv <span class="ot">&lt;-</span> <span class="fu">ivreg</span>(LogLyme0103_1113 <span class="sc">~</span> PercWuiPop  <span class="sc">+</span> <span class="fu">as_factor</span>(Year) <span class="sc">-</span> <span class="dv">1</span> <span class="sc">|</span> </span>
+<span id="cb19-295"><a href="#cb19-295" aria-hidden="true" tabindex="-1"></a>                           DensityResIndex <span class="sc">+</span> <span class="fu">as_factor</span>(Year) <span class="sc">-</span> <span class="dv">1</span>, </span>
+<span id="cb19-296"><a href="#cb19-296" aria-hidden="true" tabindex="-1"></a>                       <span class="at">data =</span> lyme_na</span>
+<span id="cb19-297"><a href="#cb19-297" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb19-298"><a href="#cb19-298" aria-hidden="true" tabindex="-1"></a>iv_yearfe_biv_clust <span class="ot">&lt;-</span> iv_yearfe_biv <span class="sc">%&gt;%</span> </span>
+<span id="cb19-299"><a href="#cb19-299" aria-hidden="true" tabindex="-1"></a>    <span class="fu">vcovCL</span>(<span class="at">cluster =</span> <span class="sc">~</span> AgStatDistrict) <span class="sc">%&gt;%</span></span>
+<span id="cb19-300"><a href="#cb19-300" aria-hidden="true" tabindex="-1"></a>    <span class="fu">coeftest</span>(iv_yearfe_biv, <span class="at">vcov =</span> .)</span>
+<span id="cb19-301"><a href="#cb19-301" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-302"><a href="#cb19-302" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-303"><a href="#cb19-303" aria-hidden="true" tabindex="-1"></a><span class="do">##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span></span>
+<span id="cb19-304"><a href="#cb19-304" aria-hidden="true" tabindex="-1"></a><span class="do">##                            Multivariate models                           ----</span></span>
+<span id="cb19-305"><a href="#cb19-305" aria-hidden="true" tabindex="-1"></a><span class="do">##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span></span>
+<span id="cb19-306"><a href="#cb19-306" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-307"><a href="#cb19-307" aria-hidden="true" tabindex="-1"></a><span class="co"># %forest + edge</span></span>
+<span id="cb19-308"><a href="#cb19-308" aria-hidden="true" tabindex="-1"></a>iv_yearfe_multi_1 <span class="ot">&lt;-</span> <span class="fu">ivreg</span>(</span>
+<span id="cb19-309"><a href="#cb19-309" aria-hidden="true" tabindex="-1"></a>    LogLyme0103_1113 <span class="sc">~</span> PercWuiPop <span class="sc">+</span> PercLandForest <span class="sc">+</span> EdgeDensity <span class="sc">+</span> <span class="fu">as_factor</span>(Year) <span class="sc">-</span> <span class="dv">1</span> <span class="sc">|</span> </span>
+<span id="cb19-310"><a href="#cb19-310" aria-hidden="true" tabindex="-1"></a>                       DensityResIndex <span class="sc">+</span> PercLandForest <span class="sc">+</span> EdgeDensity <span class="sc">+</span> <span class="fu">as_factor</span>(Year) <span class="sc">-</span> <span class="dv">1</span>, </span>
+<span id="cb19-311"><a href="#cb19-311" aria-hidden="true" tabindex="-1"></a>                       <span class="at">data =</span> lyme_na</span>
+<span id="cb19-312"><a href="#cb19-312" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb19-313"><a href="#cb19-313" aria-hidden="true" tabindex="-1"></a>iv_yearfe_multi_1_clust <span class="ot">&lt;-</span> iv_yearfe_multi_1 <span class="sc">%&gt;%</span> </span>
+<span id="cb19-314"><a href="#cb19-314" aria-hidden="true" tabindex="-1"></a>    <span class="fu">vcovCL</span>(<span class="at">cluster =</span> <span class="sc">~</span> AgStatDistrict) <span class="sc">%&gt;%</span> </span>
+<span id="cb19-315"><a href="#cb19-315" aria-hidden="true" tabindex="-1"></a>    <span class="fu">coeftest</span>(iv_yearfe_multi_1, <span class="at">vcov =</span> .)</span>
+<span id="cb19-316"><a href="#cb19-316" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-317"><a href="#cb19-317" aria-hidden="true" tabindex="-1"></a><span class="co"># %Forest + patch area</span></span>
+<span id="cb19-318"><a href="#cb19-318" aria-hidden="true" tabindex="-1"></a>iv_yearfe_multi_2 <span class="ot">&lt;-</span> <span class="fu">ivreg</span>(</span>
+<span id="cb19-319"><a href="#cb19-319" aria-hidden="true" tabindex="-1"></a>    LogLyme0103_1113 <span class="sc">~</span> PercWuiPop <span class="sc">+</span> PercLandForest <span class="sc">+</span> MeanPatchArea <span class="sc">+</span> <span class="fu">as_factor</span>(Year) <span class="sc">-</span> <span class="dv">1</span> <span class="sc">|</span> </span>
+<span id="cb19-320"><a href="#cb19-320" aria-hidden="true" tabindex="-1"></a>                       DensityResIndex <span class="sc">+</span> PercLandForest <span class="sc">+</span> MeanPatchArea <span class="sc">+</span> <span class="fu">as_factor</span>(Year) <span class="sc">-</span> <span class="dv">1</span>, </span>
+<span id="cb19-321"><a href="#cb19-321" aria-hidden="true" tabindex="-1"></a>                       <span class="at">data =</span> lyme_na</span>
+<span id="cb19-322"><a href="#cb19-322" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb19-323"><a href="#cb19-323" aria-hidden="true" tabindex="-1"></a>iv_yearfe_multi_2_clust <span class="ot">&lt;-</span> iv_yearfe_multi_2 <span class="sc">%&gt;%</span> </span>
+<span id="cb19-324"><a href="#cb19-324" aria-hidden="true" tabindex="-1"></a>    <span class="fu">vcovCL</span>(<span class="at">cluster =</span> <span class="sc">~</span> AgStatDistrict) <span class="sc">%&gt;%</span> </span>
+<span id="cb19-325"><a href="#cb19-325" aria-hidden="true" tabindex="-1"></a>    <span class="fu">coeftest</span>(iv_yearfe_multi_2, <span class="at">vcov =</span> .)</span>
+<span id="cb19-326"><a href="#cb19-326" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-327"><a href="#cb19-327" aria-hidden="true" tabindex="-1"></a><span class="co"># mean patch + edge</span></span>
+<span id="cb19-328"><a href="#cb19-328" aria-hidden="true" tabindex="-1"></a>iv_yearfe_multi_3 <span class="ot">&lt;-</span> <span class="fu">ivreg</span>(</span>
+<span id="cb19-329"><a href="#cb19-329" aria-hidden="true" tabindex="-1"></a>    LogLyme0103_1113 <span class="sc">~</span> PercWuiPop <span class="sc">+</span> EdgeDensity <span class="sc">+</span> MeanPatchArea <span class="sc">+</span> <span class="fu">as_factor</span>(Year) <span class="sc">-</span> <span class="dv">1</span> <span class="sc">|</span> </span>
+<span id="cb19-330"><a href="#cb19-330" aria-hidden="true" tabindex="-1"></a>                       DensityResIndex <span class="sc">+</span> EdgeDensity <span class="sc">+</span> MeanPatchArea <span class="sc">+</span> <span class="fu">as_factor</span>(Year) <span class="sc">-</span> <span class="dv">1</span> , </span>
+<span id="cb19-331"><a href="#cb19-331" aria-hidden="true" tabindex="-1"></a>                       <span class="at">data =</span> lyme_na</span>
+<span id="cb19-332"><a href="#cb19-332" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb19-333"><a href="#cb19-333" aria-hidden="true" tabindex="-1"></a>iv_yearfe_multi_3_clust <span class="ot">&lt;-</span> iv_yearfe_multi_3 <span class="sc">%&gt;%</span> </span>
+<span id="cb19-334"><a href="#cb19-334" aria-hidden="true" tabindex="-1"></a>    <span class="fu">vcovCL</span>(<span class="at">cluster =</span> <span class="sc">~</span> AgStatDistrict) <span class="sc">%&gt;%</span> </span>
+<span id="cb19-335"><a href="#cb19-335" aria-hidden="true" tabindex="-1"></a>    <span class="fu">coeftest</span>(iv_yearfe_multi_3, <span class="at">vcov =</span> .)</span>
+<span id="cb19-336"><a href="#cb19-336" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-337"><a href="#cb19-337" aria-hidden="true" tabindex="-1"></a><span class="co"># %Forest + mean patch + edge</span></span>
+<span id="cb19-338"><a href="#cb19-338" aria-hidden="true" tabindex="-1"></a>iv_yearfe_multi_4 <span class="ot">&lt;-</span> <span class="fu">ivreg</span>(</span>
+<span id="cb19-339"><a href="#cb19-339" aria-hidden="true" tabindex="-1"></a>    LogLyme0103_1113 <span class="sc">~</span> PercWuiPop <span class="sc">+</span> PercLandForest <span class="sc">+</span> EdgeDensity <span class="sc">+</span> MeanPatchArea <span class="sc">+</span> <span class="fu">as_factor</span>(Year) <span class="sc">-</span> <span class="dv">1</span><span class="sc">|</span> </span>
+<span id="cb19-340"><a href="#cb19-340" aria-hidden="true" tabindex="-1"></a>                       DensityResIndex <span class="sc">+</span> PercLandForest <span class="sc">+</span> EdgeDensity <span class="sc">+</span> MeanPatchArea <span class="sc">+</span> <span class="fu">as_factor</span>(Year) <span class="sc">-</span> <span class="dv">1</span>, </span>
+<span id="cb19-341"><a href="#cb19-341" aria-hidden="true" tabindex="-1"></a>                       <span class="at">data =</span> lyme_na</span>
+<span id="cb19-342"><a href="#cb19-342" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb19-343"><a href="#cb19-343" aria-hidden="true" tabindex="-1"></a>iv_yearfe_multi_4_clust <span class="ot">&lt;-</span> iv_yearfe_multi_4 <span class="sc">%&gt;%</span> </span>
+<span id="cb19-344"><a href="#cb19-344" aria-hidden="true" tabindex="-1"></a>    <span class="fu">vcovCL</span>(<span class="at">cluster =</span> <span class="sc">~</span> AgStatDistrict) <span class="sc">%&gt;%</span> </span>
+<span id="cb19-345"><a href="#cb19-345" aria-hidden="true" tabindex="-1"></a>    <span class="fu">coeftest</span>(iv_yearfe_multi_4, <span class="at">vcov =</span> .)</span>
+<span id="cb19-346"><a href="#cb19-346" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-347"><a href="#cb19-347" aria-hidden="true" tabindex="-1"></a>     <span class="co">#                Combine all models into list                 ~~~</span></span>
+<span id="cb19-348"><a href="#cb19-348" aria-hidden="true" tabindex="-1"></a>     <span class="co">#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span></span>
+<span id="cb19-349"><a href="#cb19-349" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-350"><a href="#cb19-350" aria-hidden="true" tabindex="-1"></a>iv_yearfe_models <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">iv_yearfe_biv =</span> iv_yearfe_biv_clust[<span class="dv">1</span>, <span class="fu">c</span>(<span class="st">"Estimate"</span>, <span class="st">"Std. Error"</span>)], </span>
+<span id="cb19-351"><a href="#cb19-351" aria-hidden="true" tabindex="-1"></a>                <span class="at">iv_yearfe_multi_1 =</span> iv_yearfe_multi_1_clust[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>], </span>
+<span id="cb19-352"><a href="#cb19-352" aria-hidden="true" tabindex="-1"></a>                <span class="at">iv_yearfe_multi_2 =</span> iv_yearfe_multi_2_clust[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>], </span>
+<span id="cb19-353"><a href="#cb19-353" aria-hidden="true" tabindex="-1"></a>                <span class="at">iv_yearfe_multi_3 =</span> iv_yearfe_multi_3_clust[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>], </span>
+<span id="cb19-354"><a href="#cb19-354" aria-hidden="true" tabindex="-1"></a>                <span class="at">iv_yearfe_multi_4 =</span> iv_yearfe_multi_4_clust[<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>])</span>
+<span id="cb19-355"><a href="#cb19-355" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-356"><a href="#cb19-356" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-357"><a href="#cb19-357" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-358"><a href="#cb19-358" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-359"><a href="#cb19-359" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-360"><a href="#cb19-360" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-361"><a href="#cb19-361" aria-hidden="true" tabindex="-1"></a><span class="do">##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span></span>
+<span id="cb19-362"><a href="#cb19-362" aria-hidden="true" tabindex="-1"></a><span class="do">##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span></span>
+<span id="cb19-363"><a href="#cb19-363" aria-hidden="true" tabindex="-1"></a><span class="do">##                                                                            ~~</span></span>
+<span id="cb19-364"><a href="#cb19-364" aria-hidden="true" tabindex="-1"></a><span class="do">##                          FUNCTION TO CREATE MODELS                       ----</span></span>
+<span id="cb19-365"><a href="#cb19-365" aria-hidden="true" tabindex="-1"></a><span class="do">##                                                                            ~~</span></span>
+<span id="cb19-366"><a href="#cb19-366" aria-hidden="true" tabindex="-1"></a><span class="do">##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span></span>
+<span id="cb19-367"><a href="#cb19-367" aria-hidden="true" tabindex="-1"></a><span class="do">##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span></span>
+<span id="cb19-368"><a href="#cb19-368" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-369"><a href="#cb19-369" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-370"><a href="#cb19-370" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-371"><a href="#cb19-371" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-372"><a href="#cb19-372" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-373"><a href="#cb19-373" aria-hidden="true" tabindex="-1"></a>make_table <span class="ot">&lt;-</span> <span class="cf">function</span>(models, type_label){</span>
+<span id="cb19-374"><a href="#cb19-374" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-375"><a href="#cb19-375" aria-hidden="true" tabindex="-1"></a>    table_output <span class="ot">=</span> <span class="fu">data_frame</span>()</span>
+<span id="cb19-376"><a href="#cb19-376" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb19-377"><a href="#cb19-377" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(models)){</span>
+<span id="cb19-378"><a href="#cb19-378" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb19-379"><a href="#cb19-379" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span>(<span class="fu">length</span>(models[[i]]) <span class="sc">&lt;</span> <span class="dv">3</span>){</span>
+<span id="cb19-380"><a href="#cb19-380" aria-hidden="true" tabindex="-1"></a>            </span>
+<span id="cb19-381"><a href="#cb19-381" aria-hidden="true" tabindex="-1"></a>            table_output <span class="ot">&lt;-</span> table_output <span class="sc">%&gt;%</span> </span>
+<span id="cb19-382"><a href="#cb19-382" aria-hidden="true" tabindex="-1"></a>                <span class="fu">bind_rows</span>(models[[i]]) <span class="sc">%&gt;%</span> </span>
+<span id="cb19-383"><a href="#cb19-383" aria-hidden="true" tabindex="-1"></a>              <span class="fu">mutate</span>(<span class="at">model =</span> type_label, </span>
+<span id="cb19-384"><a href="#cb19-384" aria-hidden="true" tabindex="-1"></a>                     <span class="at">type =</span> <span class="st">"bivariate"</span>,</span>
+<span id="cb19-385"><a href="#cb19-385" aria-hidden="true" tabindex="-1"></a>                     <span class="at">covariate =</span> <span class="st">"PercWuiPop"</span>,</span>
+<span id="cb19-386"><a href="#cb19-386" aria-hidden="true" tabindex="-1"></a>                     <span class="at">num =</span> <span class="dv">0</span>)</span>
+<span id="cb19-387"><a href="#cb19-387" aria-hidden="true" tabindex="-1"></a>        }</span>
+<span id="cb19-388"><a href="#cb19-388" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>{</span>
+<span id="cb19-389"><a href="#cb19-389" aria-hidden="true" tabindex="-1"></a>            table_output <span class="ot">&lt;-</span> table_output <span class="sc">%&gt;%</span> </span>
+<span id="cb19-390"><a href="#cb19-390" aria-hidden="true" tabindex="-1"></a>                 <span class="fu">bind_rows</span>(</span>
+<span id="cb19-391"><a href="#cb19-391" aria-hidden="true" tabindex="-1"></a>            models[[i]] <span class="sc">%&gt;%</span> <span class="fu">as_tibble</span>()</span>
+<span id="cb19-392"><a href="#cb19-392" aria-hidden="true" tabindex="-1"></a>         <span class="sc">%&gt;%</span></span>
+<span id="cb19-393"><a href="#cb19-393" aria-hidden="true" tabindex="-1"></a>              <span class="fu">mutate</span>(<span class="at">model =</span> type_label,</span>
+<span id="cb19-394"><a href="#cb19-394" aria-hidden="true" tabindex="-1"></a>                     <span class="at">type =</span> <span class="st">"multivariate"</span>,</span>
+<span id="cb19-395"><a href="#cb19-395" aria-hidden="true" tabindex="-1"></a>                     <span class="at">covariate =</span> <span class="fu">names</span>(models[[i]][,<span class="dv">1</span>]),</span>
+<span id="cb19-396"><a href="#cb19-396" aria-hidden="true" tabindex="-1"></a>                     <span class="at">num =</span> i <span class="sc">-</span> <span class="dv">1</span></span>
+<span id="cb19-397"><a href="#cb19-397" aria-hidden="true" tabindex="-1"></a>                     )</span>
+<span id="cb19-398"><a href="#cb19-398" aria-hidden="true" tabindex="-1"></a>                 )</span>
+<span id="cb19-399"><a href="#cb19-399" aria-hidden="true" tabindex="-1"></a>        }</span>
+<span id="cb19-400"><a href="#cb19-400" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb19-401"><a href="#cb19-401" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb19-402"><a href="#cb19-402" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(table_output)</span>
+<span id="cb19-403"><a href="#cb19-403" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-404"><a href="#cb19-404" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb19-405"><a href="#cb19-405" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-406"><a href="#cb19-406" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-407"><a href="#cb19-407" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-408"><a href="#cb19-408" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-409"><a href="#cb19-409" aria-hidden="true" tabindex="-1"></a>ols_table <span class="ot">&lt;-</span> <span class="fu">make_table</span>(ols_models, <span class="st">"OLS"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb19-410"><a href="#cb19-410" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(<span class="sc">-</span>model) <span class="sc">%&gt;%</span> </span>
+<span id="cb19-411"><a href="#cb19-411" aria-hidden="true" tabindex="-1"></a>    <span class="fu">rename</span>(<span class="at">Std_Error =</span> <span class="st">"Std. Error"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb19-412"><a href="#cb19-412" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">Estimate =</span> Estimate <span class="sc">%&gt;%</span> <span class="fu">signif</span>(<span class="dv">2</span>), </span>
+<span id="cb19-413"><a href="#cb19-413" aria-hidden="true" tabindex="-1"></a>           <span class="at">Std_Error =</span> Std_Error <span class="sc">%&gt;%</span> <span class="fu">signif</span>(<span class="dv">2</span>))</span>
+<span id="cb19-414"><a href="#cb19-414" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-415"><a href="#cb19-415" aria-hidden="true" tabindex="-1"></a>year_fe_table <span class="ot">&lt;-</span> <span class="fu">make_table</span>(year_fe_models, <span class="st">"Year FE"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb19-416"><a href="#cb19-416" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(<span class="sc">-</span>model) <span class="sc">%&gt;%</span> </span>
+<span id="cb19-417"><a href="#cb19-417" aria-hidden="true" tabindex="-1"></a>    <span class="fu">rename</span>(<span class="at">Std_Error =</span> <span class="st">"Std. Error"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb19-418"><a href="#cb19-418" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">Estimate =</span> Estimate <span class="sc">%&gt;%</span> <span class="fu">signif</span>(<span class="dv">2</span>), </span>
+<span id="cb19-419"><a href="#cb19-419" aria-hidden="true" tabindex="-1"></a>           <span class="at">Std_Error =</span> Std_Error <span class="sc">%&gt;%</span> <span class="fu">signif</span>(<span class="dv">2</span>))</span>
+<span id="cb19-420"><a href="#cb19-420" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-421"><a href="#cb19-421" aria-hidden="true" tabindex="-1"></a>stateyearfe_table <span class="ot">&lt;-</span> <span class="fu">make_table</span>(stateyearfe_models, <span class="st">"State + Year FE"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb19-422"><a href="#cb19-422" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(<span class="sc">-</span>model) <span class="sc">%&gt;%</span> </span>
+<span id="cb19-423"><a href="#cb19-423" aria-hidden="true" tabindex="-1"></a>    <span class="fu">rename</span>(<span class="at">Std_Error =</span> <span class="st">"Std. Error"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb19-424"><a href="#cb19-424" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">Estimate =</span> Estimate <span class="sc">%&gt;%</span> <span class="fu">signif</span>(<span class="dv">2</span>), </span>
+<span id="cb19-425"><a href="#cb19-425" aria-hidden="true" tabindex="-1"></a>           <span class="at">Std_Error =</span> Std_Error <span class="sc">%&gt;%</span> <span class="fu">signif</span>(<span class="dv">2</span>))</span>
+<span id="cb19-426"><a href="#cb19-426" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-427"><a href="#cb19-427" aria-hidden="true" tabindex="-1"></a>iv_table <span class="ot">&lt;-</span> <span class="fu">make_table</span>(iv_models, <span class="st">"IV"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb19-428"><a href="#cb19-428" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(<span class="sc">-</span>model) <span class="sc">%&gt;%</span> </span>
+<span id="cb19-429"><a href="#cb19-429" aria-hidden="true" tabindex="-1"></a>    <span class="fu">rename</span>(<span class="at">Std_Error =</span> <span class="st">"Std. Error"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb19-430"><a href="#cb19-430" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">Estimate =</span> Estimate <span class="sc">%&gt;%</span> <span class="fu">signif</span>(<span class="dv">2</span>), </span>
+<span id="cb19-431"><a href="#cb19-431" aria-hidden="true" tabindex="-1"></a>           <span class="at">Std_Error =</span> Std_Error <span class="sc">%&gt;%</span> <span class="fu">signif</span>(<span class="dv">2</span>))</span>
+<span id="cb19-432"><a href="#cb19-432" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-433"><a href="#cb19-433" aria-hidden="true" tabindex="-1"></a>iv_yearfe_table <span class="ot">&lt;-</span> <span class="fu">make_table</span>(iv_yearfe_models, <span class="st">"IV + Year FE"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb19-434"><a href="#cb19-434" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(<span class="sc">-</span>model) <span class="sc">%&gt;%</span> </span>
+<span id="cb19-435"><a href="#cb19-435" aria-hidden="true" tabindex="-1"></a>    <span class="fu">rename</span>(<span class="at">Std_Error =</span> <span class="st">"Std. Error"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb19-436"><a href="#cb19-436" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">Estimate =</span> Estimate <span class="sc">%&gt;%</span> <span class="fu">signif</span>(<span class="dv">2</span>), </span>
+<span id="cb19-437"><a href="#cb19-437" aria-hidden="true" tabindex="-1"></a>           <span class="at">Std_Error =</span> Std_Error <span class="sc">%&gt;%</span> <span class="fu">signif</span>(<span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<section id="table-creation-for-every-model" class="level4">
+<h4 class="anchored" data-anchor-id="table-creation-for-every-model">Table creation for every model</h4>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 14 × 5
+   Estimate Std_Error type         covariate        num
+      &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;        &lt;chr&gt;          &lt;dbl&gt;
+ 1   0.017     0.0034 bivariate    PercWuiPop         0
+ 2   0.0051    0.0038 multivariate PercWuiPop         1
+ 3   0.03      0.0061 multivariate EdgeDensity        1
+ 4  -0.013     0.009  multivariate PercLandForest     1
+ 5   0.0066    0.0037 multivariate PercWuiPop         2
+ 6  -0.059     0.013  multivariate MeanPatchArea      2
+ 7   0.057     0.012  multivariate PercLandForest     2
+ 8   0.0052    0.0037 multivariate PercWuiPop         3
+ 9  -0.014     0.0077 multivariate MeanPatchArea      3
+10   0.026     0.0048 multivariate EdgeDensity        3
+11   0.005     0.0038 multivariate PercWuiPop         4
+12  -0.022     0.02   multivariate MeanPatchArea      4
+13   0.023     0.0094 multivariate EdgeDensity        4
+14   0.0095    0.023  multivariate PercLandForest     4</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 14 × 5
+   Estimate Std_Error type         covariate        num
+      &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;        &lt;chr&gt;          &lt;dbl&gt;
+ 1   0.016     0.0035 bivariate    PercWuiPop         0
+ 2   0.0046    0.0038 multivariate PercWuiPop         1
+ 3   0.03      0.0061 multivariate EdgeDensity        1
+ 4  -0.012     0.0091 multivariate PercLandForest     1
+ 5   0.0061    0.0038 multivariate PercWuiPop         2
+ 6  -0.06      0.013  multivariate MeanPatchArea      2
+ 7   0.058     0.012  multivariate PercLandForest     2
+ 8   0.0047    0.0038 multivariate PercWuiPop         3
+ 9  -0.014     0.0078 multivariate MeanPatchArea      3
+10   0.027     0.0049 multivariate EdgeDensity        3
+11   0.0045    0.0038 multivariate PercWuiPop         4
+12  -0.022     0.019  multivariate MeanPatchArea      4
+13   0.023     0.0095 multivariate EdgeDensity        4
+14   0.01      0.022  multivariate PercLandForest     4</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 14 × 5
+   Estimate Std_Error type         covariate        num
+      &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;        &lt;chr&gt;          &lt;dbl&gt;
+ 1   0.018     0.0038 bivariate    PercWuiPop         0
+ 2   0.0057    0.0038 multivariate PercWuiPop         1
+ 3   0.029     0.0057 multivariate EdgeDensity        1
+ 4  -0.0069    0.011  multivariate PercLandForest     1
+ 5   0.0066    0.0038 multivariate PercWuiPop         2
+ 6  -0.061     0.013  multivariate MeanPatchArea      2
+ 7   0.064     0.014  multivariate PercLandForest     2
+ 8   0.0064    0.0039 multivariate PercWuiPop         3
+ 9  -0.011     0.0089 multivariate MeanPatchArea      3
+10   0.027     0.0049 multivariate EdgeDensity        3
+11   0.0055    0.0038 multivariate PercWuiPop         4
+12  -0.028     0.019  multivariate MeanPatchArea      4
+13   0.02      0.0086 multivariate EdgeDensity        4
+14   0.021     0.023  multivariate PercLandForest     4</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 14 × 5
+   Estimate Std_Error type         covariate        num
+      &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;        &lt;chr&gt;          &lt;dbl&gt;
+ 1  1.4        0.4    bivariate    PercWuiPop         0
+ 2  0.038      0.014  multivariate PercWuiPop         1
+ 3  0.0093     0.0089 multivariate EdgeDensity        1
+ 4 -0.031      0.014  multivariate PercLandForest     1
+ 5  0.037      0.013  multivariate PercWuiPop         2
+ 6 -0.038      0.019  multivariate MeanPatchArea      2
+ 7  0.0031     0.026  multivariate PercLandForest     2
+ 8  0.037      0.014  multivariate PercWuiPop         3
+ 9 -0.035      0.012  multivariate MeanPatchArea      3
+10  0.00038    0.011  multivariate EdgeDensity        3
+11  0.037      0.014  multivariate PercWuiPop         4
+12 -0.042      0.022  multivariate MeanPatchArea      4
+13 -0.0025     0.011  multivariate EdgeDensity        4
+14  0.008      0.027  multivariate PercLandForest     4</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 14 × 5
+   Estimate Std_Error type         covariate        num
+      &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;        &lt;chr&gt;          &lt;dbl&gt;
+ 1   0.037     0.0087 bivariate    PercWuiPop         0
+ 2   0.038     0.014  multivariate PercWuiPop         1
+ 3  -0.031     0.014  multivariate PercLandForest     1
+ 4   0.0095    0.0089 multivariate EdgeDensity        1
+ 5   0.037     0.013  multivariate PercWuiPop         2
+ 6   0.0038    0.026  multivariate PercLandForest     2
+ 7  -0.038     0.019  multivariate MeanPatchArea      2
+ 8   0.037     0.014  multivariate PercWuiPop         3
+ 9   0.0007    0.011  multivariate EdgeDensity        3
+10  -0.035     0.012  multivariate MeanPatchArea      3
+11   0.037     0.014  multivariate PercWuiPop         4
+12   0.0084    0.027  multivariate PercLandForest     4
+13  -0.0023    0.011  multivariate EdgeDensity        4
+14  -0.042     0.022  multivariate MeanPatchArea      4</code></pre>
+</div>
+</div>
+<p>These tables contain all estimates and errors for every tested model.</p>
+<p>A series of robust checks were also performed on the first stage for 5 different models containing the different combinations of covariates specified previously. These tests are the non-robust F test, the Effective F test, and the Specification test. Although here I will just perform the Effective F Weak Instruments Test.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="do">##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="do">##  ~ Model 1: No Covariates  ----</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="do">##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>no_covariates <span class="ot">&lt;-</span> <span class="fu">eff_F</span>(lyme_na, <span class="at">Y =</span> <span class="st">"LogLyme0103_1113"</span>, <span class="at">D =</span> <span class="st">"PercWuiPop"</span>, <span class="at">Z =</span> <span class="st">"DensityResIndex"</span>, <span class="at">cl =</span> <span class="st">"AgStatDistrict"</span>, <span class="at">FE =</span> <span class="st">"as_factor(Year)"</span>)</span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a><span class="do">##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span></span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a><span class="do">##  ~ Model 2: % Forest + Edge Density  ----</span></span>
+<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a><span class="do">##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span></span>
+<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a>forest_edge <span class="ot">&lt;-</span> <span class="fu">eff_F</span>(lyme_na, <span class="at">Y =</span> <span class="st">"LogLyme0103_1113"</span>, <span class="at">D =</span> <span class="st">"PercWuiPop"</span>, <span class="at">Z =</span> <span class="st">"DensityResIndex"</span>, <span class="at">controls =</span> <span class="fu">c</span>(<span class="st">"PercLandForest"</span>, <span class="st">"EdgeDensity"</span>), <span class="at">cl =</span> <span class="st">"AgStatDistrict"</span>)</span>
+<span id="cb25-14"><a href="#cb25-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-15"><a href="#cb25-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-16"><a href="#cb25-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-17"><a href="#cb25-17" aria-hidden="true" tabindex="-1"></a><span class="do">##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span></span>
+<span id="cb25-18"><a href="#cb25-18" aria-hidden="true" tabindex="-1"></a><span class="do">##  ~ Model 3: % Forest + Mean Patch Area  ----</span></span>
+<span id="cb25-19"><a href="#cb25-19" aria-hidden="true" tabindex="-1"></a><span class="do">##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span></span>
+<span id="cb25-20"><a href="#cb25-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-21"><a href="#cb25-21" aria-hidden="true" tabindex="-1"></a>forest_patch <span class="ot">&lt;-</span> <span class="fu">eff_F</span>(lyme_na, <span class="at">Y =</span> <span class="st">"LogLyme0103_1113"</span>, <span class="at">D =</span> <span class="st">"PercWuiPop"</span>, <span class="at">Z =</span> <span class="st">"DensityResIndex"</span>, <span class="at">controls =</span> <span class="fu">c</span>(<span class="st">"PercLandForest"</span>, <span class="st">"MeanPatchArea"</span>), <span class="at">cl =</span> <span class="st">"AgStatDistrict"</span>)</span>
+<span id="cb25-22"><a href="#cb25-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-23"><a href="#cb25-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-24"><a href="#cb25-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-25"><a href="#cb25-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-26"><a href="#cb25-26" aria-hidden="true" tabindex="-1"></a><span class="do">##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span></span>
+<span id="cb25-27"><a href="#cb25-27" aria-hidden="true" tabindex="-1"></a><span class="do">##  ~ Model 4: Edge Density + Mean Patch Area  ----</span></span>
+<span id="cb25-28"><a href="#cb25-28" aria-hidden="true" tabindex="-1"></a><span class="do">##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span></span>
+<span id="cb25-29"><a href="#cb25-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-30"><a href="#cb25-30" aria-hidden="true" tabindex="-1"></a>edge_patch <span class="ot">&lt;-</span> <span class="fu">eff_F</span>(lyme_na, <span class="at">Y =</span> <span class="st">"LogLyme0103_1113"</span>, <span class="at">D =</span> <span class="st">"PercWuiPop"</span>, <span class="at">Z =</span> <span class="st">"DensityResIndex"</span>, <span class="at">controls =</span> <span class="fu">c</span>(<span class="st">"EdgeDensity"</span>, <span class="st">"MeanPatchArea"</span>), <span class="at">cl =</span> <span class="st">"AgStatDistrict"</span>)</span>
+<span id="cb25-31"><a href="#cb25-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-32"><a href="#cb25-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-33"><a href="#cb25-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-34"><a href="#cb25-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-35"><a href="#cb25-35" aria-hidden="true" tabindex="-1"></a><span class="do">##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span></span>
+<span id="cb25-36"><a href="#cb25-36" aria-hidden="true" tabindex="-1"></a><span class="do">##  ~ Model 5: All Covariates  ----</span></span>
+<span id="cb25-37"><a href="#cb25-37" aria-hidden="true" tabindex="-1"></a><span class="do">##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span></span>
+<span id="cb25-38"><a href="#cb25-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-39"><a href="#cb25-39" aria-hidden="true" tabindex="-1"></a>all_covariates <span class="ot">&lt;-</span> <span class="fu">eff_F</span>(lyme_na, <span class="at">Y =</span> <span class="st">"LogLyme0103_1113"</span>, <span class="at">D =</span> <span class="st">"PercWuiPop"</span>, <span class="at">Z =</span> <span class="st">"DensityResIndex"</span>, <span class="at">controls =</span> <span class="fu">c</span>(<span class="st">"PercLandForest"</span>, <span class="st">"EdgeDensity"</span>, <span class="st">"MeanPatchArea"</span>), <span class="at">cl =</span> <span class="st">"AgStatDistrict"</span>)</span>
+<span id="cb25-40"><a href="#cb25-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-41"><a href="#cb25-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-42"><a href="#cb25-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-43"><a href="#cb25-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-44"><a href="#cb25-44" aria-hidden="true" tabindex="-1"></a><span class="co">#....................Printing the F statistics...................</span></span>
+<span id="cb25-45"><a href="#cb25-45" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">" No covariates effective F stat: "</span>, no_covariates, <span class="st">"**"</span>, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>, </span>
+<span id="cb25-46"><a href="#cb25-46" aria-hidden="true" tabindex="-1"></a>    <span class="st">"% forest + edge density effective F stat: "</span>, forest_edge, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>, </span>
+<span id="cb25-47"><a href="#cb25-47" aria-hidden="true" tabindex="-1"></a>    <span class="st">"% forest + Mean Patch Area effective F stat: "</span>, forest_patch, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>, </span>
+<span id="cb25-48"><a href="#cb25-48" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Edge density + mean match area effective F stat: "</span>, edge_patch, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>, </span>
+<span id="cb25-49"><a href="#cb25-49" aria-hidden="true" tabindex="-1"></a>    <span class="st">"All covariates effective F stat: "</span>, all_covariates, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span></span>
+<span id="cb25-50"><a href="#cb25-50" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code> No covariates effective F stat:  23.6541 ** 
+ % forest + edge density effective F stat:  11.9416 
+ % forest + Mean Patch Area effective F stat:  10.5339 
+ Edge density + mean match area effective F stat:  12.8009 
+ All covariates effective F stat:  11.4094 </code></pre>
+</div>
+</div>
+<p>The only model that is significant to <span class="math inline">\(\alpha &lt; 0.05\)</span> is the no covariates model. The other models would be significant if we accept <span class="math inline">\(\tau &lt; 0.30\)</span>, but that is very low precision.</p>
+<p>The other robustness tests were not performed because I could not replicate their values, likely due to my own error. This being said, we can still check the F statistic of each of the models, as it is build into <code>summary()</code>.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>no_covariates_f <span class="ot">&lt;-</span> <span class="fu">lm</span>(PercWuiPop <span class="sc">~</span> DensityResIndex <span class="sc">+</span> <span class="co"># instrumental variable</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">as_factor</span>(Year), <span class="co"># fixed effects</span></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> lyme_na) <span class="sc">%&gt;%</span> </span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summary</span>()</span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>forest_edge_f <span class="ot">&lt;-</span> <span class="fu">lm</span>(PercWuiPop <span class="sc">~</span> DensityResIndex <span class="sc">+</span> <span class="co"># instrumental variable</span></span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>       MeanPatchArea <span class="sc">+</span> EdgeDensity <span class="sc">+</span> <span class="co"># covariates</span></span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>       <span class="fu">as_factor</span>(Year), <span class="co"># fixed effects</span></span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> lyme_na) <span class="sc">%&gt;%</span> </span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summary</span>()</span>
+<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a>forest_patch_f <span class="ot">&lt;-</span> <span class="fu">lm</span>(PercWuiPop <span class="sc">~</span> DensityResIndex <span class="sc">+</span> <span class="co"># instrumental variable</span></span>
+<span id="cb27-13"><a href="#cb27-13" aria-hidden="true" tabindex="-1"></a>       MeanPatchArea <span class="sc">+</span> PercLandForest <span class="sc">+</span> <span class="co"># covariates</span></span>
+<span id="cb27-14"><a href="#cb27-14" aria-hidden="true" tabindex="-1"></a>       <span class="fu">as_factor</span>(Year), <span class="co"># fixed effects</span></span>
+<span id="cb27-15"><a href="#cb27-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> lyme_na) <span class="sc">%&gt;%</span> </span>
+<span id="cb27-16"><a href="#cb27-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summary</span>()</span>
+<span id="cb27-17"><a href="#cb27-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-18"><a href="#cb27-18" aria-hidden="true" tabindex="-1"></a>edge_patch_f <span class="ot">&lt;-</span> <span class="fu">lm</span>(PercWuiPop <span class="sc">~</span> DensityResIndex <span class="sc">+</span> <span class="co"># instrumental variable</span></span>
+<span id="cb27-19"><a href="#cb27-19" aria-hidden="true" tabindex="-1"></a>       MeanPatchArea <span class="sc">+</span> EdgeDensity <span class="sc">+</span> <span class="co"># covariates</span></span>
+<span id="cb27-20"><a href="#cb27-20" aria-hidden="true" tabindex="-1"></a>       <span class="fu">as_factor</span>(Year), <span class="co"># fixed effects</span></span>
+<span id="cb27-21"><a href="#cb27-21" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> lyme_na) <span class="sc">%&gt;%</span> </span>
+<span id="cb27-22"><a href="#cb27-22" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summary</span>()</span>
+<span id="cb27-23"><a href="#cb27-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-24"><a href="#cb27-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-25"><a href="#cb27-25" aria-hidden="true" tabindex="-1"></a>all_covariates_f <span class="ot">&lt;-</span> <span class="fu">lm</span>(PercWuiPop <span class="sc">~</span> DensityResIndex <span class="sc">+</span> <span class="co"># instrumental variable</span></span>
+<span id="cb27-26"><a href="#cb27-26" aria-hidden="true" tabindex="-1"></a>       MeanPatchArea <span class="sc">+</span> EdgeDensity <span class="sc">+</span> PercLandForest <span class="sc">+</span> <span class="co"># covariates</span></span>
+<span id="cb27-27"><a href="#cb27-27" aria-hidden="true" tabindex="-1"></a>       <span class="fu">as_factor</span>(Year), <span class="co"># fixed effects</span></span>
+<span id="cb27-28"><a href="#cb27-28" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> lyme_na) <span class="sc">%&gt;%</span> </span>
+<span id="cb27-29"><a href="#cb27-29" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summary</span>()</span>
+<span id="cb27-30"><a href="#cb27-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-31"><a href="#cb27-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-32"><a href="#cb27-32" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">" No covariates non-robust F stat: "</span>, no_covariates_f<span class="sc">$</span>fstatistic[<span class="dv">1</span>], <span class="st">"**"</span>, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>, </span>
+<span id="cb27-33"><a href="#cb27-33" aria-hidden="true" tabindex="-1"></a>    <span class="st">"% forest + edge density non-robust F stat: "</span>, forest_edge_f<span class="sc">$</span>fstatistic[<span class="dv">1</span>], <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>, </span>
+<span id="cb27-34"><a href="#cb27-34" aria-hidden="true" tabindex="-1"></a>    <span class="st">"% forest + Mean Patch Area non-robust F stat: "</span>, forest_patch_f<span class="sc">$</span>fstatistic[<span class="dv">1</span>], <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>, </span>
+<span id="cb27-35"><a href="#cb27-35" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Edge density + mean match area non-robust F stat: "</span>, edge_patch_f<span class="sc">$</span>fstatistic[<span class="dv">1</span>], <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>, </span>
+<span id="cb27-36"><a href="#cb27-36" aria-hidden="true" tabindex="-1"></a>    <span class="st">"All covariates non-robust F stat: "</span>, all_covariates_f<span class="sc">$</span>fstatistic[<span class="dv">1</span>]</span>
+<span id="cb27-37"><a href="#cb27-37" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code> No covariates non-robust F stat:  37.18896 ** 
+ % forest + edge density non-robust F stat:  141.0745 
+ % forest + Mean Patch Area non-robust F stat:  140.3725 
+ Edge density + mean match area non-robust F stat:  141.0745 
+ All covariates non-robust F stat:  116.9124</code></pre>
+</div>
+</div>
+<p>These F statistics are likely very overinflated, but are significantly above 10.</p>
+</section>
+</section>
+<section id="conclusion" class="level2">
+<h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
+<p>The study seems pretty rock solid in terms of validating the assumptions of the model, as CMSE accounts for clustering and biases, the effective F accounts for potential heteroscedasticity, and the fixed effects account for any autocorrelation issues (even though it didn’t have much of an effect). Furthermore, the IV approach potentially mitigated any endogeneity bias.</p>
+<p>The only mark against the study is that the effective F was not significant when adding the covariates at a <span class="math inline">\(\tau\)</span> of 10%. It was significant without them, but omitting them could lead of omitted variable bias.</p>
+<p>This study possibly suggests that lot size regulations are a good instrument to measure Lyme incidence. At the very least, it suggests that this methodology could be more effective than previously used ones, as the endogeneity bias makes directly using habitat fragmentation as a predictor unreliable.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>No Copyright, Feel free to distribute.</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+<p>This website is built with <i class="fa-brands fa-github" title="the octocat github icon" aria-label="github"></i></p>
+</div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

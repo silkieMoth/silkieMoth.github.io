@@ -31,7 +31,10 @@ library(fixest)
 library(kableExtra)
 library(ivDiag)
 
-lyme <- read_csv(here::here('data', 'MacDonaldetal_JAE_2018.csv'))
+lyme <- read_csv(here::here('posts', 
+                            'macdonald_2018_breakdown', 
+                            'data', 
+                            'MacDonaldetal_JAE_2018.csv'))
 lyme_na <- lyme %>% filter(is.na(DensityResIndex) == FALSE)
 ```
 
