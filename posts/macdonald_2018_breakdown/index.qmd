@@ -2,10 +2,16 @@
 title: "MacDonald et al. (2018) Breakdown"
 author: "Joshua Paul Cohen, Josh Mull, Amanda Overbye"
 format: html
+date: last-modified
 execute: 
   warning: false
   error: false
 ---
+
+<script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
 
 When it comes to insect and invert borne zoonotic diseases, edge forest habitat is thought of in the literature to be high risk. But because the worlds forests are only getting more fragmented, the area of edge forest is increasing. Lyme disease particularly, has been found to be a major offender, as the land type lends itself well to strong tick vectors like deer. 
 
@@ -117,7 +123,10 @@ In the most general sense, a F-test looks for statistical significance by compar
 The general equation: 
 
 
-$F = \frac{\text{SSE}_R - \text{SSE}_{UR} / e}{\text{SSE}_{UR} / (n - k)}$
+{% raw %}
+$$F = \frac{\text{SSE}_R - \text{SSE}_{UR} / e}{\text{SSE}_{UR} / (n - k)}$$
+{% endraw %}
+
 
 Where:
 

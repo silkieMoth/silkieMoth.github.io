@@ -7,6 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Joshua Paul Cohen, Josh Mull, Amanda Overbye">
+<meta name="dcterms.date" content="2025-03-22">
 
 <title>MacDonald et al.&nbsp;(2018) Breakdown – Joshua Paul Cohen</title>
 <style>
@@ -70,10 +71,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <link href="../../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
 <link href="../../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
@@ -198,6 +199,12 @@ window.Quarto = {
             </div>
     </div>
       
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">March 22, 2025</p>
+      </div>
+    </div>
     
       
     </div>
@@ -214,6 +221,8 @@ window.Quarto = {
 
 
 
+<script type="text/javascript" async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
 <p>When it comes to insect and invert borne zoonotic diseases, edge forest habitat is thought of in the literature to be high risk. But because the worlds forests are only getting more fragmented, the area of edge forest is increasing. Lyme disease particularly, has been found to be a major offender, as the land type lends itself well to strong tick vectors like deer.</p>
 <p>This has been a strong motivator for studying Lyme disease incidence. If the wildlife-urban interface (WUI) is getting larger, it’s likely a result of people to live in those areas, and we may expect the rate of Lyme disease to rise. It’s for this reason that habitat fragmentation has logically been used as an indicator for incidence. But studies on this topic, while generally supporting this idea, have been inconsistent.</p>
 <p>MacDonald et al.&nbsp;(2018), suggests that the reason for this inconsistency could be an endogeneity bias, in which as much as habitat fragmentation influences Lyme prevalence, it also works the other way around, in which Lyme incidence influences where people choose to live, which ironically can lead to more fragmentation. This violates a very important assumption that makes most statistical models work, in which the predictor variables must not be correlated with the error term. Because this is the method used in most other studies on this topic, this suggest some bias in the literature.</p>
@@ -420,7 +429,6 @@ F-statistic: 154.8 on 25 and 489 DF,  p-value: &lt; 2.2e-16</code></pre>
 <h3 class="anchored" data-anchor-id="f-test-and-robustness-checks">F-test and Robustness Checks</h3>
 <p>In the most general sense, a F-test looks for statistical significance by comparing variances. But in a modeling context, a F-test can be used to estimate how much the addition of 1 or more variables improves the model. We do this by comparing our <em>restricted</em> and <em>unrestricted</em> models.</p>
 <p>The general equation:</p>
-<p><span class="math inline">\(F = \frac{\text{SSE}_R - \text{SSE}_{UR} / e}{\text{SSE}_{UR} / (n - k)}\)</span></p>
 <p>Where:</p>
 <ul>
 <li><span class="math inline">\(\text{SSE}_{UR}\)</span> is the full model with every variable.</li>
