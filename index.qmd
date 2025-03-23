@@ -18,19 +18,19 @@ about:
       href: mailto:jpcohen@bren.ucsb.edu
 ---
 
-[Hi there! I’m Joshua. I'm currently a Environmental Data Science student at the UCSN Bren School. But I also like bugs, music, hiking, rock climbing, and all the cool stuff.]{.white-text}
+[Hi there! I’m Joshua. I'm currently a Environmental Data Science student at the UCSN Bren School. But I also like bugs, music, hiking, rock climbing, and all the cool stuff.]{.black-text}
 
-## [Education]{.white-text}
+## [Education]{.black-text}
 
-[Master of Environmental Data Science (Expected June 2025)]{.white-text}</br>
-[Bren School of Environmental Science & Management – University of California, Santa Barbara (UCSB)]{.white-text}
+[Master of Environmental Data Science (Expected June 2025)]{.black-text}</br>
+[Bren School of Environmental Science & Management – University of California, Santa Barbara (UCSB)]{.black-text}
 
-[Bachelor of Science in Environmental Science (May 2020)]{.white-text} </br>
-[Minors in Chesapeake Regional Studies, Music]{.white-text} </br>
-[Washington College (WAC), Chestertown, MD]{.white-text} </br>
+[Bachelor of Science in Environmental Science (May 2020)]{.black-text} </br>
+[Minors in Chesapeake Regional Studies, Music]{.black-text} </br>
+[Washington College (WAC), Chestertown, MD]{.black-text} </br>
 
-### [I'm currently looking to be hired!]{.white-text}
+### [I'm currently looking to be hired!]{.black-text}
 
-[I have significant GIS experience, did my undergrad along the Cheaspeake Bay, and am motivated to use my skills to preserve the environment.]{.white-text}
+[I have significant GIS experience, did my undergrad along the Cheaspeake Bay, and am motivated to use my skills to preserve the environment.]{.black-text}
 
-#### [Send me questions and inquiries at the below links if interested!]{.white-text}
+#### [Send me questions and inquiries at the below links if interested!]{.black-text}

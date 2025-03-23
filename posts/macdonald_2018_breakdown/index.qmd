@@ -1,7 +1,10 @@
 ---
 title: "MacDonald et al. (2018) Breakdown"
 author: "Joshua Paul Cohen, Josh Mull, Amanda Overbye"
-format: html
+format: 
+  html:
+    toc: true
+    html-math-method: mathjax
 date: last-modified
 execute: 
   warning: false
@@ -44,7 +47,7 @@ lyme <- read_csv(here::here('posts',
 lyme_na <- lyme %>% filter(is.na(DensityResIndex) == FALSE)
 ```
 
-## Workflow
+# Workflow
 
 
 ### Variable names
@@ -123,9 +126,9 @@ In the most general sense, a F-test looks for statistical significance by compar
 The general equation: 
 
 
-{% raw %}
-$$F = \frac{\text{SSE}_R - \text{SSE}_{UR} / e}{\text{SSE}_{UR} / (n - k)}$$
-{% endraw %}
+$$
+F = \frac{\text{SSE}_R - \text{SSE}_{UR} / e}{\text{SSE}_{UR} / (n - k)}
+$$
 
 
 Where:

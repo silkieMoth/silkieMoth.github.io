@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Joshua Paul Cohen, Josh Mull, Amanda Overbye">
-<meta name="dcterms.date" content="2025-03-22">
+<meta name="dcterms.date" content="2025-03-23">
 
 <title>MacDonald et al.&nbsp;(2018) Breakdown – Joshua Paul Cohen</title>
 <style>
@@ -184,13 +184,13 @@ window.Quarto = {
 <!-- content -->
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
-    <div class="quarto-title column-page">
+    <div class="quarto-title column-page-left">
       <h1 class="title">MacDonald et al.&nbsp;(2018) Breakdown</h1>
                       </div>
   </div>
     
   
-  <div class="quarto-title-meta column-page">
+  <div class="quarto-title-meta column-page-left">
 
       <div>
       <div class="quarto-title-meta-heading">Author</div>
@@ -202,7 +202,7 @@ window.Quarto = {
       <div>
       <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">March 22, 2025</p>
+        <p class="date">March 23, 2025</p>
       </div>
     </div>
     
@@ -213,9 +213,26 @@ window.Quarto = {
   </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#workflow" id="toc-workflow" class="nav-link active" data-scroll-target="#workflow">Workflow</a>
+  <ul class="collapse">
+  <li><a href="#variable-names" id="toc-variable-names" class="nav-link" data-scroll-target="#variable-names">Variable names</a></li>
+  <li><a href="#first-and-second-stage-iv-regression" id="toc-first-and-second-stage-iv-regression" class="nav-link" data-scroll-target="#first-and-second-stage-iv-regression">First and second stage IV regression</a></li>
+  <li><a href="#fixed-effects" id="toc-fixed-effects" class="nav-link" data-scroll-target="#fixed-effects">Fixed effects</a></li>
+  <li><a href="#f-test-and-robustness-checks" id="toc-f-test-and-robustness-checks" class="nav-link" data-scroll-target="#f-test-and-robustness-checks">F-test and Robustness Checks</a></li>
+  <li><a href="#clustered-mean-squared-errors" id="toc-clustered-mean-squared-errors" class="nav-link" data-scroll-target="#clustered-mean-squared-errors">Clustered Mean Squared Errors</a></li>
+  <li><a href="#results" id="toc-results" class="nav-link" data-scroll-target="#results">Results</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
-<main class="content quarto-banner-title-block column-page" id="quarto-document-content">
+<main class="content quarto-banner-title-block column-page-left" id="quarto-document-content">
 
 
 
@@ -246,8 +263,8 @@ window.Quarto = {
 <span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>                            <span class="st">'MacDonaldetal_JAE_2018.csv'</span>))</span>
 <span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>lyme_na <span class="ot">&lt;-</span> lyme <span class="sc">%&gt;%</span> <span class="fu">filter</span>(<span class="fu">is.na</span>(DensityResIndex) <span class="sc">==</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<section id="workflow" class="level2">
-<h2 class="anchored" data-anchor-id="workflow">Workflow</h2>
+<section id="workflow" class="level1">
+<h1>Workflow</h1>
 <section id="variable-names" class="level3">
 <h3 class="anchored" data-anchor-id="variable-names">Variable names</h3>
 <table class="caption-top table">
@@ -429,6 +446,9 @@ F-statistic: 154.8 on 25 and 489 DF,  p-value: &lt; 2.2e-16</code></pre>
 <h3 class="anchored" data-anchor-id="f-test-and-robustness-checks">F-test and Robustness Checks</h3>
 <p>In the most general sense, a F-test looks for statistical significance by comparing variances. But in a modeling context, a F-test can be used to estimate how much the addition of 1 or more variables improves the model. We do this by comparing our <em>restricted</em> and <em>unrestricted</em> models.</p>
 <p>The general equation:</p>
+<p><span class="math display">\[
+F = \frac{\text{SSE}_R - \text{SSE}_{UR} / e}{\text{SSE}_{UR} / (n - k)}
+\]</span></p>
 <p>Where:</p>
 <ul>
 <li><span class="math inline">\(\text{SSE}_{UR}\)</span> is the full model with every variable.</li>
@@ -526,7 +546,6 @@ PercLandForest   0.80993    0.45888  1.7650 0.0781565 .
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </div>
 </div>
-</section>
 </section>
 <section id="results" class="level2">
 <h2 class="anchored" data-anchor-id="results">Results</h2>
@@ -1206,6 +1225,7 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 <p>This study possibly suggests that lot size regulations are a good instrument to measure Lyme incidence. At the very least, it suggests that this methodology could be more effective than previously used ones, as the endogeneity bias makes directly using habitat fragmentation as a predictor unreliable.</p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
