@@ -9,16 +9,25 @@ $marshmallow: #fcefeb;
 $bright: #b65c5cff;
 $black: #000;
 $white: #fff;
+$lightgrey: #ededed;
+$stonelight: #84646420;
 
 // Quarto Sass Variables
-$body-bg: $white;
-$navbar-bg: $stone;
+$body-bg: $lightgrey;
+$navbar-bg: $black;
 $navbar-fg: $pumpkin;
-$navbar-hl: $black;
-$toc-color: $black;
-$code-block-bg: $peach;
-$body-color: $white;
-$input-bg: $white;
+$navbar-hl: $marshmallow;
+$toc-color: $marshmallow;
+$code-block-bg: $stonelight;
+//$code-block-bg-alpha: 0.90;
+
+//$code-bg: $stone;
+//$code-color: $marshmallow;
+
+$monobackgroundcolor: $marshmallow;
+
+$body-color: $black;
+$input-bg: $stone;
 
 h1, h2 {
   letter-spacing: 5px;
@@ -41,3 +50,4 @@ h1, h2 {
   max-height: 60px;
   width: auto;
 }
+
