@@ -7,24 +7,25 @@ $peach: #ecc498;
 $stone: #846464;
 $marshmallow: #fcefeb;
 $bright: #b65c5cff;
+$brightlight: #b65c5c30;
 $black: #000;
 $white: #fff;
 $lightgrey: #ededed;
 $stonelight: #84646420;
 
 // Quarto Sass Variables
-$body-bg: $lightgrey;
-$navbar-bg: $black;
+$body-bg: $brightlight;
+$navbar-bg: $dark_brown;
 $navbar-fg: $pumpkin;
 $navbar-hl: $marshmallow;
-$toc-color: $marshmallow;
+$toc-color: $pumpkin;
 $code-block-bg: $stonelight;
 //$code-block-bg-alpha: 0.90;
 
 //$code-bg: $stone;
 //$code-color: $marshmallow;
 
-$monobackgroundcolor: $marshmallow;
+//$monobackgroundcolor: $marshmallow;
 
 $body-color: $black;
 $input-bg: $stone;
