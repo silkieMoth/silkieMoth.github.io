@@ -1,11 +1,29 @@
 ---
 title: "MacDonald et al. (2018) Breakdown"
-author: "Joshua Paul Cohen, Josh Mull, Amanda Overbye"
+description: "Description of the methods of findings in MacDonald et al's 2018 paper: 'Missing the people for the trees: Identifying coupled natural human system feedbacks driving the ecology of Lyme disease'"
+# author: "Joshua Paul Cohen, Josh Mull, Amanda Overbye"
+author: 
+  - name: Joshua Paul Cohen
+    url: https://silkiemoth.github.io/
+    affiliation: MEDS
+    affiliation_URL: https://bren.ucsb.edu/masters-programs/master-environmental-data-science
+  - name: Amanda Overbye
+    url: https://aoverbye.github.io/
+    affiliation: MEDS
+    affiliation_URL: https://bren.ucsb.edu/masters-programs/master-environmental-data-science
+  - name: Josh Mull
+    url: https://llumj.github.io/
+    affiliation: MEDS
+    affiliation_URL: https://bren.ucsb.edu/masters-programs/master-environmental-data-science
 format: 
   html:
     toc: true
     html-math-method: mathjax
-date: last-modified
+date: 03-23-2025
+categories: [R, Ticks, Zoonotic-Diseases, Wildland-Urban-Interface, Instrumental-Variable]
+image: ixodes-ricinus-5260405_1280.jpg
+citation:
+  url: https://silkiemoth.github.io/
 execute: 
   warning: false
   error: false
@@ -18,7 +36,7 @@ execute:
 
 When it comes to insect and invert borne zoonotic diseases, edge forest habitat is thought of in the literature to be high risk. But because the worlds forests are only getting more fragmented, the area of edge forest is increasing. Lyme disease particularly, has been found to be a major offender, as the land type lends itself well to strong tick vectors like deer. 
 
-This has been a strong motivator for studying Lyme disease incidence. If the wildlife-urban interface (WUI) is getting larger, it's likely a result of people to live in those areas, and we may expect the rate of Lyme disease to rise. It's for this reason that habitat fragmentation has logically been used as an indicator for incidence. But studies on this topic, while generally supporting this idea, have been inconsistent.
+This has been a strong motivator for studying Lyme disease incidence. If the wildlife-urban interface (WUI) is getting larger, it's likely that more people will choose to live in those areas, and we may expect the rate of Lyme disease to rise. It's for this reason that habitat fragmentation has logically been used as an indicator for incidence. But studies on this topic, while generally supporting this idea, have been inconsistent.
 
 MacDonald et al. (2018), suggests that the reason for this inconsistency could be an endogeneity bias, in which as much as habitat fragmentation influences Lyme prevalence, it also works the other way around, in which Lyme incidence influences where people choose to live, which ironically can lead to more fragmentation. This violates a very important assumption that makes most statistical models work, in which the predictor variables must not be correlated with the error term. Because this is the method used in most other studies on this topic, this suggest some bias in the literature.
 
