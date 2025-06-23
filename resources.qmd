@@ -2,7 +2,7 @@
 title: "The Resources Page."
 ---
 
-<p class=white-text> Here are some of the projects I've completed as a student at UCSB: <p>
+Here are some of the projects I've completed as a student at UCSB:
 
 * [Fire Scars from the 2017 Thomas Fire in Santa Barbara and Ventura](https://github.com/silkieMoth/2017-Thomas-Fire-Analysis)
 * [The Biodiverisity Intactness Index and Biodiveristy Decline in Phoenix, AZ](https://github.com/silkieMoth/phoenix-biodiversity-intactness)

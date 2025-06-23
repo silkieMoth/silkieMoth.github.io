@@ -18,16 +18,11 @@ about:
       href: mailto:jpcohen@bren.ucsb.edu
 ---
 
-[Hi there! I’m Joshua. I'm currently a Environmental Data Science student at the UCSN Bren School. But I also like bugs, music, hiking, rock climbing, and all the cool stuff.]{.black-text}
+[Hi there! I’m Joshua. I just recently graduated from the Master's of Environmental Data Science program with the Bren School @ UCSB. But I also like bugs, music, hiking, rock climbing, and all the cool stuff.]{.black-text}
 
-## [Education]{.black-text}
+[Outside of work, you can catch me trying to wandering aimlessly around some chunk of wilderness or trying to write a song on my guitar.]{.black-text}
 
-[Master of Environmental Data Science (Expected June 2025)]{.black-text}</br>
-[Bren School of Environmental Science & Management – University of California, Santa Barbara (UCSB)]{.black-text}
-
-[Bachelor of Science in Environmental Science (May 2020)]{.black-text} </br>
-[Minors in Chesapeake Regional Studies, Music]{.black-text} </br>
-[Washington College (WAC), Chestertown, MD]{.black-text} </br>
+[Feel Free to Explore my website if you are interested in my work!]{.black-text}
 
 ### [I'm currently looking to be hired!]{.black-text}
 

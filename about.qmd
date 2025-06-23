@@ -1,21 +1,30 @@
 ---
 title: "About"
 ---
-## What I've done for work
 
-::: {.white-text}
-* I've done all these things!
-    + Corps Member with Americorps NCCC SW Region (Aurora, CO)
-    + Corps Member with CB Trust's Chesapeake Conservation Corps, at my host org Interfaith Partner's for the Chesapeake (Salisbury, MD)
-    + Environmental Technician with Maryland DNR (Swanton, MD)
-    + Land Steward with Friends of Hopewell Valley Open Space (Titusville, NJ)
-    + Tortoise Transect Technician with Great Basin Institute (Las Vegas, NV)
-    + Pinyon-Juniper Field Technician with UNLV and USFWS (Las Vegas, NV)
-:::
+## Education
+
+Master of Environmental Data Science </br>
+Bren School of Environmental Science & Management – University of California, Santa Barbara (UCSB)
+
+Bachelor of Science in Environmental Science (May 2020) </br>
+Minors in Chesapeake Regional Studies, Music </br>
+Washington College (WAC), Chestertown, MD </br>
+
+
+## What I've done for work
+    
+#### I've done all these things!
+  * Pinyon-Juniper Field Technician with UNLV and USFWS (Las Vegas, NV)
+  * Tortoise Transect Technician with Great Basin Institute (Las Vegas, NV)
+  * Land Steward with Friends of Hopewell Valley Open Space (Titusville, NJ)
+  * Environmental Technician with Maryland DNR (Swanton, MD)
+  * Corps Member with CB Trust's Chesapeake Conservation Corps, at my host org Interfaith Partner's for the Chesapeake (Salisbury, MD)
+  * Corps Member with Americorps NCCC SW Region (Aurora, CO)
 
 
 ## What I do for fun
 
-<p class=white-text>I love whenever I can get some time with my guitar, maybe with some paper and a pencil to strech my creative side. I also love trying things I've never tried before, or getting outside and exploring places I have never seen or been to.<p>
+I love whenever I can get some time with my guitar, maybe with some paper and a pencil to stretch my creative side. I also love trying things I've never tried before, or getting outside and exploring places I have never seen or been to.
 
-<p class=white-text>Anyone is free to reach out if they ever want to go hiking or rock climbing!<p>
+Anyone is free to reach out if they ever want to go hiking or rock climbing!
