@@ -6,14 +6,14 @@ author:
     url: https://silkiemoth.github.io/
     affiliation: MEDS
     affiliation_URL: https://bren.ucsb.edu/masters-programs/master-environmental-data-science
-date: last-modified
+date: 11-30-2024
 categories: [Wildfire, Python, Pandas, Geopandas, Xarray]
 toc: true
 bibliography: references.bib
 image: helicopter.jpg
 citation:
   url: https://silkiemoth.github.io/
-draft: true
+draft: false
 draft-mode: visible
 highlight-style: github
 #theme: cosmo
