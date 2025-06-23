@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.57">
+<meta name="generator" content="quarto-1.6.42">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -34,10 +34,10 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-0bb5e7dd1128cb789ae8b01fa520e146.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <link href="site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
 <link href="site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
@@ -132,11 +132,9 @@ ul.task-list li input[type="checkbox"] {
 <div class="quarto-title-meta column-page">
   </div>
 </header><main class="content column-page" id="quarto-document-content">
-<p><span class="black-text">Hi there! I’m Joshua. I’m currently a Environmental Data Science student at the UCSN Bren School. But I also like bugs, music, hiking, rock climbing, and all the cool stuff.</span></p>
-<section id="education" class="level2">
-<h2 data-anchor-id="education"><span class="black-text">Education</span></h2>
-<p><span class="black-text">Master of Environmental Data Science (Expected June 2025)</span><br> <span class="black-text">Bren School of Environmental Science &amp; Management – University of California, Santa Barbara (UCSB)</span></p>
-<p><span class="black-text">Bachelor of Science in Environmental Science (May 2020)</span> <br> <span class="black-text">Minors in Chesapeake Regional Studies, Music</span> <br> <span class="black-text">Washington College (WAC), Chestertown, MD</span> <br></p>
+<p><span class="black-text">Hi there! I’m Joshua. I just recently graduated from the Master’s of Environmental Data Science program with the Bren School @ UCSB. But I also like bugs, music, hiking, rock climbing, and all the cool stuff.</span></p>
+<p><span class="black-text">Outside of work, you can catch me trying to wandering aimlessly around some chunk of wilderness or trying to write a song on my guitar.</span></p>
+<p><span class="black-text">Feel Free to Explore my website if you are interested in my work!</span></p>
 <section id="im-currently-looking-to-be-hired" class="level3">
 <h3 data-anchor-id="im-currently-looking-to-be-hired"><span class="black-text">I’m currently looking to be hired!</span></h3>
 <p><span class="black-text">I have significant GIS experience, did my undergrad along the Cheaspeake Bay, and am motivated to use my skills to preserve the environment.</span></p>
@@ -144,7 +142,6 @@ ul.task-list li input[type="checkbox"] {
 <h4 data-anchor-id="send-me-questions-and-inquiries-at-the-below-links-if-interested"><span class="black-text">Send me questions and inquiries at the below links if interested!</span></h4>
 
 
-</section>
 </section>
 </section>
 </main> 
@@ -238,8 +235,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   });
   clipboard.on('success', onCopySuccess);
   if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-    // For code content inside modals, clipBoardJS needs to be initialized with a container option
-    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
     const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
       text: getTextToCopy,
       container: window.document.getElementById('quarto-embedded-source-code-modal')
@@ -350,7 +345,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (window.Quarto?.typesetMath) {
         window.Quarto.typesetMath(note);
       }
-      // TODO in 1.5, we should make sure this works without a callout special case
       if (note.classList.contains("callout")) {
         return note.outerHTML;
       } else {

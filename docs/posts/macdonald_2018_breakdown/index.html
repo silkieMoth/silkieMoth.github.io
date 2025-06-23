@@ -2,12 +2,15 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.57">
+<meta name="generator" content="quarto-1.6.42">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Joshua Paul Cohen, Josh Mull, Amanda Overbye">
+<meta name="author" content="Joshua Paul Cohen">
+<meta name="author" content="Amanda Overbye">
+<meta name="author" content="Josh Mull">
 <meta name="dcterms.date" content="2025-03-23">
+<meta name="description" content="Description of the methods of findings in MacDonald et al’s 2018 paper: ‘Missing the people for the trees: Identifying coupled natural human system feedbacks driving the ecology of Lyme disease’">
 
 <title>MacDonald et al.&nbsp;(2018) Breakdown – Joshua Paul Cohen</title>
 <style>
@@ -71,10 +74,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-0bb5e7dd1128cb789ae8b01fa520e146.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <link href="../../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
 <link href="../../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
@@ -186,19 +189,54 @@ window.Quarto = {
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-page-left">
       <h1 class="title">MacDonald et al.&nbsp;(2018) Breakdown</h1>
-                      </div>
+                  <div>
+        <div class="description">
+          Description of the methods of findings in MacDonald et al’s 2018 paper: ‘Missing the people for the trees: Identifying coupled natural human system feedbacks driving the ecology of Lyme disease’
+        </div>
+      </div>
+                          <div class="quarto-categories">
+                <div class="quarto-category">R</div>
+                <div class="quarto-category">Ticks</div>
+                <div class="quarto-category">Zoonotic-Diseases</div>
+                <div class="quarto-category">Wildland-Urban-Interface</div>
+                <div class="quarto-category">Instrumental-Variable</div>
+              </div>
+                  </div>
   </div>
     
-  
+  <div class="quarto-title-meta-author column-page-left">
+    <div class="quarto-title-meta-heading">Authors</div>
+    <div class="quarto-title-meta-heading">Affiliation</div>
+    
+      <div class="quarto-title-meta-contents">
+      <p class="author"><a href="https://silkiemoth.github.io/">Joshua Paul Cohen</a> </p>
+    </div>
+    <div class="quarto-title-meta-contents">
+          <p class="affiliation">
+              MEDS
+            </p>
+        </div>
+      <div class="quarto-title-meta-contents">
+      <p class="author"><a href="https://aoverbye.github.io/">Amanda Overbye</a> </p>
+    </div>
+    <div class="quarto-title-meta-contents">
+          <p class="affiliation">
+              MEDS
+            </p>
+        </div>
+      <div class="quarto-title-meta-contents">
+      <p class="author"><a href="https://llumj.github.io/">Josh Mull</a> </p>
+    </div>
+    <div class="quarto-title-meta-contents">
+          <p class="affiliation">
+              MEDS
+            </p>
+        </div>
+    </div>
+
   <div class="quarto-title-meta column-page-left">
 
-      <div>
-      <div class="quarto-title-meta-heading">Author</div>
-      <div class="quarto-title-meta-contents">
-               <p>Joshua Paul Cohen, Josh Mull, Amanda Overbye </p>
-            </div>
-    </div>
-      
+        
       <div>
       <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
@@ -241,7 +279,7 @@ window.Quarto = {
 <script type="text/javascript" async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
 </script>
 <p>When it comes to insect and invert borne zoonotic diseases, edge forest habitat is thought of in the literature to be high risk. But because the worlds forests are only getting more fragmented, the area of edge forest is increasing. Lyme disease particularly, has been found to be a major offender, as the land type lends itself well to strong tick vectors like deer.</p>
-<p>This has been a strong motivator for studying Lyme disease incidence. If the wildlife-urban interface (WUI) is getting larger, it’s likely a result of people to live in those areas, and we may expect the rate of Lyme disease to rise. It’s for this reason that habitat fragmentation has logically been used as an indicator for incidence. But studies on this topic, while generally supporting this idea, have been inconsistent.</p>
+<p>This has been a strong motivator for studying Lyme disease incidence. If the wildlife-urban interface (WUI) is getting larger, it’s likely that more people will choose to live in those areas, and we may expect the rate of Lyme disease to rise. It’s for this reason that habitat fragmentation has logically been used as an indicator for incidence. But studies on this topic, while generally supporting this idea, have been inconsistent.</p>
 <p>MacDonald et al.&nbsp;(2018), suggests that the reason for this inconsistency could be an endogeneity bias, in which as much as habitat fragmentation influences Lyme prevalence, it also works the other way around, in which Lyme incidence influences where people choose to live, which ironically can lead to more fragmentation. This violates a very important assumption that makes most statistical models work, in which the predictor variables must not be correlated with the error term. Because this is the method used in most other studies on this topic, this suggest some bias in the literature.</p>
 <p>They therefore try a different approach, and instead use an instrumental variable (IV) model. An IV is a variable that correlates with the predictor variable in a model. We refer to this as endogeneity, and the variable as our endogenous variable. This method can be used to predict Lyme disease by proximity, as habitat fragmentation on it’s own is unreliable.</p>
 <p>MacDonald et al.&nbsp;(2018) utilizes this concept by including a density restriction index, which indicates lot size regulation in an area. The thing about the instrumental variable approach to modeling is that it’s a 2 stage process where first, the instrument is regressed on our habitat fragmentation (our endogenous variable), and second, the the endogenous variable is regressed on the dependent variable (Lyme disease incidence). This is a very robust way performing this analysis.</p>
@@ -1228,7 +1266,17 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </section>
 </section>
 
-</main> <!-- /main -->
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{paul_cohen2025,
+  author = {Paul Cohen, Joshua and Overbye, Amanda and Mull, Josh},
+  title = {MacDonald Et Al. (2018) {Breakdown}},
+  date = {2025-03-23},
+  url = {https://silkiemoth.github.io/},
+  langid = {en}
+}
+</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-paul_cohen2025" class="csl-entry quarto-appendix-citeas" role="listitem">
+Paul Cohen, Joshua, Amanda Overbye, and Josh Mull. 2025.
+<span>“MacDonald Et Al. (2018) Breakdown.”</span> March 23, 2025. <a href="https://silkiemoth.github.io/">https://silkiemoth.github.io/</a>.
+</div></div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -1311,8 +1359,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   });
   clipboard.on('success', onCopySuccess);
   if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-    // For code content inside modals, clipBoardJS needs to be initialized with a container option
-    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
     const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
       text: getTextToCopy,
       container: window.document.getElementById('quarto-embedded-source-code-modal')
@@ -1423,7 +1469,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (window.Quarto?.typesetMath) {
         window.Quarto.typesetMath(note);
       }
-      // TODO in 1.5, we should make sure this works without a callout special case
       if (note.classList.contains("callout")) {
         return note.outerHTML;
       } else {
