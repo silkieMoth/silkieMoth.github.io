@@ -12,7 +12,8 @@ website:
     right:
       - href: index.qmd
         text: Home
-      - about.qmd
+      - href: about.qmd
+        text: About
       - href: resources.qmd
         text: Resources
       - href: MEDS_Master_Resume.pdf
