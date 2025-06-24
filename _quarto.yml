@@ -6,7 +6,7 @@ website:
   title: "Joshua Paul Cohen"
   #favicon: website_icon_cropped.png
   navbar:
-    logo: website_icon_cropped.PNG
+    logo: silk_moth.png
     title: false
     logo-alt: "cute silk moth"
     right:
