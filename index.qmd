@@ -1,7 +1,7 @@
 ---
 title: "Joshua Paul Cohen"
 subtitle: "Making things better by doing what I'm good at."
-image: headshot.jpg
+image: hiking_self.jpg
 about: 
   template: jolla
   image-shape: round
@@ -18,14 +18,16 @@ about:
       href: mailto:jpcohen@bren.ucsb.edu
 ---
 
-[Hi there! I’m Joshua. I just recently graduated from the Master's of Environmental Data Science program with the Bren School @ UCSB. But I also like bugs, music, hiking, rock climbing, and all the cool stuff.]{.black-text}
+Hi there! I’m Joshua. I just recently graduated from the Master's of Environmental Data Science program with the Bren School @ UCSB. But I also like bugs, music, hiking, rock climbing, and all the cool stuff.
 
-[Outside of work, you can catch me trying to wandering aimlessly around some chunk of wilderness or trying to write a song on my guitar.]{.black-text}
+Outside of work, you can catch me trying to wandering aimlessly around some chunk of wilderness or trying to write a song on my guitar.
 
-[Feel Free to Explore my website if you are interested in my work!]{.black-text}
+Feel Free to Explore my website if you are interested in my work!
 
-### [I'm currently looking to be hired!]{.black-text}
+### I'm currently looking to be hired!
 
-[I have significant GIS experience, did my undergrad along the Cheaspeake Bay, and am motivated to use my skills to preserve the environment.]{.black-text}
+I've worked all over the country, from my undergrad right along the shores of the Chesapeake Bay, to my home state of NJ, to landlocked Colorado, arid Nevada, high altitude AZ and UT, currently ending up in SoCal at the pacific coasts.
 
-#### [Send me questions and inquiries at the below links if interested!]{.black-text}
+I also have a lot of experience in Python, R, SQL, ArcGIS Pro, and Airtable.
+
+#### Send me questions and inquiries at the below links if interested!
