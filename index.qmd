@@ -3,7 +3,7 @@ title: "Joshua Paul Cohen"
 subtitle: "Making things better by doing what I'm good at."
 image: hiking_self.jpg
 about: 
-  template: jolla
+  template: trestles
   image-shape: round
   image-width: 17em
   links: 
