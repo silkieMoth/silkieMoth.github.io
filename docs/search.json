@@ -2,7 +2,7 @@
   {
     "objectID": "resources.html",
     "href": "resources.html",
-    "title": "The Resources Page.",
+    "title": "Resources, Links, and Projects",
     "section": "",
     "text": "Here are some of the projects I’ve completed as a student at UCSB:\n\nFire Scars from the 2017 Thomas Fire in Santa Barbara and Ventura\nThe Biodiverisity Intactness Index and Biodiveristy Decline in Phoenix, AZ\nCreation of A Habitat Suitability Map Function for the California Coast\nHouston 2021 Blackout Analysis"
   },
@@ -65,21 +65,21 @@
   {
     "objectID": "about.html",
     "href": "about.html",
-    "title": "About",
+    "title": "About Me",
     "section": "",
     "text": "Master of Environmental Data Science  Bren School of Environmental Science & Management – University of California, Santa Barbara (UCSB)\nBachelor of Science in Environmental Science (May 2020)  Minors in Chesapeake Regional Studies, Music  Washington College (WAC), Chestertown, MD"
   },
   {
     "objectID": "about.html#what-ive-done-for-work",
     "href": "about.html#what-ive-done-for-work",
-    "title": "About",
+    "title": "About Me",
     "section": "What I’ve done for work",
     "text": "What I’ve done for work\n\nI’ve done all these things!\n\nPinyon-Juniper Field Technician with UNLV and USFWS (Las Vegas, NV)\nTortoise Transect Technician with Great Basin Institute (Las Vegas, NV)\nLand Steward with Friends of Hopewell Valley Open Space (Titusville, NJ)\nEnvironmental Technician with Maryland DNR (Swanton, MD)\nCorps Member with CB Trust’s Chesapeake Conservation Corps, at my host org Interfaith Partner’s for the Chesapeake (Salisbury, MD)\nCorps Member with Americorps NCCC SW Region (Aurora, CO)"
   },
   {
     "objectID": "about.html#what-i-do-for-fun",
     "href": "about.html#what-i-do-for-fun",
-    "title": "About",
+    "title": "About Me",
     "section": "What I do for fun",
     "text": "What I do for fun\nI love whenever I can get some time with my guitar, maybe with some paper and a pencil to stretch my creative side. I also love trying things I’ve never tried before, or getting outside and exploring places I have never seen or been to.\nAnyone is free to reach out if they ever want to go hiking or rock climbing!"
   },
@@ -88,7 +88,7 @@
     "href": "index.html",
     "title": "Joshua Paul Cohen",
     "section": "",
-    "text": "Hi there! I’m Joshua. I just recently graduated from the Master’s of Environmental Data Science program with the Bren School @ UCSB. But I also like bugs, music, hiking, rock climbing, and all the cool stuff.\nOutside of work, you can catch me trying to wandering aimlessly around some chunk of wilderness or trying to write a song on my guitar.\nFeel Free to Explore my website if you are interested in my work!\n\nI’m currently looking to be hired!\nI have significant GIS experience, did my undergrad along the Cheaspeake Bay, and am motivated to use my skills to preserve the environment.\n\nSend me questions and inquiries at the below links if interested!"
+    "text": "Hi there! I’m Joshua. I just recently graduated from the Master’s of Environmental Data Science program with the Bren School @ UCSB. But I also like bugs, music, hiking, rock climbing, and all the cool stuff.\nOutside of work, you can catch me trying to wandering aimlessly around some chunk of wilderness or trying to write a song on my guitar.\nFeel Free to Explore my website if you are interested in my work!\n\nI’m currently looking to be hired!\nI’ve worked all over the country, from my undergrad right along the shores of the Chesapeake Bay, to my home state of NJ, to landlocked Colorado, arid Nevada, high altitude AZ and UT, currently ending up in SoCal at the pacific coasts.\nI also have a lot of experience in Python, R, SQL, ArcGIS Pro, and Airtable.\n\nSend me questions and inquiries at the below links if interested!"
   },
   {
     "objectID": "index.html#education",
@@ -198,7 +198,7 @@
   {
     "objectID": "about.html#education",
     "href": "about.html#education",
-    "title": "About",
+    "title": "About Me",
     "section": "",
     "text": "Master of Environmental Data Science  Bren School of Environmental Science & Management – University of California, Santa Barbara (UCSB)\nBachelor of Science in Environmental Science (May 2020)  Minors in Chesapeake Regional Studies, Music  Washington College (WAC), Chestertown, MD"
   }
