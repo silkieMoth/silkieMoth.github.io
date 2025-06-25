@@ -2,49 +2,81 @@
 title: "Portfolio"
 ---
 
-### Projects
+### **Projects**
 
 
 #### [Remote Sensing of Defensible Space Compliance to Enhance Wildfire Preparedness](https://github.com/wildfire-prep)
 **Other Contributors**
+
 * [Rachel Swick](https://github.com/rfswick)
 * [Ryan Green](https://github.com/ryangreen6)
 * [Leilanie Rubinstein](https://github.com/leirubinstein)
+
 **Description**
+
 * This project was an investigation into the possibility of building a machine learning model to predict compliance with defensible space rules in Santa Barbara County
 * The models were based off of 5 years of Santa Barbara County Fire Department parcel inspections data, as well as variables like NDVI, rainfall, land use, past compliance status, and random convolutional features.
 
+<br> 
+
 #### [Climate Modeling Analysis of Indian Monsoons using CMIP6](https://github.com/silkieMoth/eds_296_climate-modeling_final_proj)
+
 **Other Contributors**
+
 * [Amanda Overbye](https://github.com/Aoverbye)
 * [Matteo Torres](https://github.com/matteo-torres)
+
 **Description**
+
 * We leverage CMIP6 climate models to analyze and visualize historical and predicted monsoon season conditions, specifically as they relate to precipitation and windspeed.
-  
+
+<br>
+
 #### [How Spider Traits Differ Across the World](https://github.com/silkieMoth/databases_project)
+
 **Description**
+
 * Ingested data from NMBE World Spider Catalog, World Spider Trait Database, WWF Terrestrial Ecoregions of the World, and geoBoundaries into a SQL database to determine patterns in spider traits and global biomes among 15000+ species.
   
+<br>
+
 #### [Houston 2021 Blackout Analysis](https://github.com/silkieMoth/UCSB-EDS-223-Houston-Blackout-Analysis)
+
 **Description**
+
 * A geospatial analysis of the 2021 TX power crisis from an EJ perspective.
   
+<br>
+
 #### [California Fisheries Habitat Suitability Mapping Function](https://github.com/silkieMoth/UCSB-EDS-223-Fisheries-Habitat-Suitability)
+
 **Description**
+
 * Code and workflow for a function that produces a habitat suitability map for any CA coast dwelling species based on user inputted abiotic parameter values.
   
+<br>
+
 #### [The Biodiverisity Intactness Index and Biodiveristy Decline in Phoenix, AZ](https://github.com/silkieMoth/phoenix-biodiversity-intactness)
+
 **Description**
+
 * A geospatial analysis of the change in the Biodiversity Intactness Index within the Phoenix, AZ area from 2017 to 2020.
-  
+
+<br>
+
 #### [Fire Scars from the 2017 Thomas Fire in Santa Barbara and Ventura](https://github.com/silkieMoth/2017-Thomas-Fire-Analysis)
+
 **Description**
+
 * An analysis of impacts from the 2017 Thomas Fire in Santa Barbara County, CA.
   
+<br><br>
 
-### Visualizations
+### **Visualizations**
 
 #### Are You Afraid of Me?
 * Infographic investigating societal attitutes towards and bias against spiders.
 
-![Infographic investigating bias against spiders in society](spider_infographic.png "Spider Societal Bias Infographic")
+<p align="center">
+  <img src="spider_infographic.png" width="800"/>
+</p>
