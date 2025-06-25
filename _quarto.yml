@@ -15,7 +15,7 @@ website:
       - href: about.qmd
         text: About
       - href: resources.qmd
-        text: Resources
+        text: Portfolio
       - href: website_resume.pdf
         text: Resume
       - href: posts.qmd
